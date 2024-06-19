@@ -1,5 +1,6 @@
 
 import express from "express";
+import technologyController from "./controller/technologyController.js";
 const router = express.Router();
 
 // exemple
@@ -25,10 +26,9 @@ router.post("/province") //pour créer une nouvelle province
 router.delete("/province/:id") //pour supprimer une province en particulier via son id 
 
 //  technology
-router.get("/technology") //pour obtenir la liste complète des R&D possibles
-router.get("/technology/:id") //pour obtenir une R&D en particulier via son id
-router.get("/province/:id/technology") //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
-router.get("/province/:id/technology/:id") //pour obtenir une R&D en particulier via son id pour une province //  JOIN avec province à faire
+router.get("/technology", technologyController.read) //pour obtenir la liste complète des R&D possibles
+router.get("/technology/:id", technologyController.readById) //pour obtenir une R&D en particulier via son id
+router.get("/province/:id/technology", technologyController.readByProvince) //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
 
 
 // building
