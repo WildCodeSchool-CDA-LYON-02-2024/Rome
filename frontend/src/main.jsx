@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import TechnologyPage from "./pages/TechnologyPage";
+import TechnologyById from "./components/Technology/TechnologyById";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/technology",
         element: <TechnologyPage />,
+      },
+      {
+        path: "/technology/:id",
+        element: <TechnologyById />,
       },
     ],
   },

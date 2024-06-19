@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-export default function Technology() {
+export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
+  const { id: id } = useParams();
+ 
   useEffect(() => {
-    fetch("http://localhost:3310/technology")
+    fetch(`http://localhost:3310/technology/${id}`)
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((err) => {
@@ -22,9 +23,6 @@ export default function Technology() {
               <p>{technologies.name}</p>
               <p>{technologies.description}</p>
               <img src={technologies.image} alt="" />
-              <Link to={`/technology/${technologies.id}`}>
-                <button>Acheter</button>
-              </Link>
             </div>
           ))}
       </div>
