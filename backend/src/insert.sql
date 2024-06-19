@@ -337,7 +337,7 @@ VALUES
     (100, 50, 55, 'merchant.jpg', 6, 6);
 
 INSERT INTO
-    ressource_technology (technology_id, province_id)
+    province_technology (technology_id, province_id)
 VALUES
     (1, 1),
     (2, 2),

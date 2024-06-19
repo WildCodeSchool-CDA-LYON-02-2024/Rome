@@ -1,9 +1,9 @@
-export class BuildingModel {
+export default class BuildingModel {
   constructor(db) {
     this.connection = db.connection;
   }
 
-  read() {
+  selectAll() {
     return new Promise((resolve, reject) => {
       const query = `SELECT *
                            FROM building`;
@@ -15,11 +15,11 @@ export class BuildingModel {
     });
   }
 
-  readById(id) {
+  selectById(id) {
     return new Promise((resolve, reject) => {
       const query = `SELECT *
                            FROM building
-                           WHERE id=?`;
+                           WHERE id = ?`;
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) reject(err);
@@ -28,9 +28,26 @@ export class BuildingModel {
     });
   }
 
+  selectByProvince(id) {
+    return new Promise((resolve, reject) => {
+      const query = `SELECT *
+                           FROM building AS b
+                                    JOIN province_building AS pb ON b.id = pb.building_id
+                                    JOIN province AS p ON p.id = pb.province_id
+                           WHERE p.id = ?`;
+      const values = [id];
+      this.connection(query, values, (err, result) => {
+        if (err) reject(err);
+        resolve(result);
+      });
+    });
+  }
+
   delete(id) {
     return new Promise((resolve, reject) => {
-      const query = `DELETE FROM building WHERE id=?`;
+      const query = `DELETE
+                           FROM building
+                           WHERE id = ?`;
       const values = [id];
       this.connection.query(query, values, (err, result) => {
         if (err) reject(err);
