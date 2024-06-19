@@ -1,5 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 import { createConnection } from "mysql2";
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
