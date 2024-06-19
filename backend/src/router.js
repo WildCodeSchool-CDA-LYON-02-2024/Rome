@@ -1,4 +1,3 @@
-
 import express from "express";
 import technologyController from "./controller/technologyController.js";
 const router = express.Router();

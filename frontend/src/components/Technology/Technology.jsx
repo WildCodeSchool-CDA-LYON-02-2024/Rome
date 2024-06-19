@@ -6,7 +6,7 @@ export default function Technology() {
   useEffect(() => {
     fetch("http://localhost:3310/technology")
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => setTechnology(data))
       .catch((err) => {
         console.error(err);
       });
@@ -21,7 +21,7 @@ export default function Technology() {
             <div>
               <p>{technologies.name}</p>
               <p>{technologies.description}</p>
-              <img src={technologies.image} alt="" />
+              <img src={technologies.image} alt={technologies.name} />
               <Link to={`/technology/${technologies.id}`}>
                 <button>Acheter</button>
               </Link>
