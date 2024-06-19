@@ -1,3 +1,5 @@
+USE rome;
+
 INSERT INTO
     user (username, email, password, image)
 VALUES
