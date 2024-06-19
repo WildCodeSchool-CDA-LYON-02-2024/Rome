@@ -58,3 +58,4 @@ router.post("/province/:id/inhabitant") //pour créer un nouvel habitant dans un
 router.put("/province/:id/inhabitant/:id") //pour modifier un habitant en particulier (role)
 
 
+export default router;
