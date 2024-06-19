@@ -1,0 +1,13 @@
+### BUILDING ROUTES
+
+### GET All Buildings of a province
+#GET http://localhost:3310/province/3/building
+#Content-Type: application/json
+
+### GET A Building in a province
+#GET http://localhost:3310/province/1/building/1
+#Content-Type: application/json
+
+### DELETE A Building in a province
+DELETE http://localhost:3310/province/6/building/6
+Content-Type: application/json

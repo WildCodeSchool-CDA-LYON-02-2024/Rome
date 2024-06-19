@@ -1,48 +1,91 @@
 import { Database } from "../model/Database.js";
 import BuildingModel from "../model/BuildingModel.js";
+import { provinceBuildingModel } from "./provinceBuildingController.js";
 
 const db = new Database();
-const buildingModel = new BuildingModel(db);
+export const buildingModel = new BuildingModel(db);
 
-const read = (req, res) => {
+const getBuildingsByProvince = (req, res) => {
+  const { provinceId } = req.params;
+
   buildingModel
-    .selectAll()
-    .then((allBuilding) => res.json(allBuilding))
+    .selectAllByProvince(provinceId)
+    .then((allBuilding) => res.status(200).json(allBuilding))
     .catch((err) => {
-      res.json(err);
+      res.status(500).json(err);
     });
 };
 
-const readById = (req, res) => {
+const getBuildingById = (req, res) => {
+  const { provinceId, buildingId } = req.params;
+
   buildingModel
-    .selectById(id)
-    .then((building) => res.json(building))
+    .selectById(provinceId, buildingId)
+    .then((building) => res.status(200).json(building))
     .catch((err) => {
-      res.json(err);
+      res.status(500).json(err);
     });
 };
 
-const readByProvince = (req, res) => {
-  buildingModel
-    .selectByProvince(id)
-    .then((building) => res.json(building))
-    .catch((err) => {
-      res.json(err);
-    });
-};
+const deleteBuilding = (req, res) => {
+  const { provinceId, buildingId } = req.params;
 
-const remove = (id) => {
-  buildingModel
-    .delete(id)
-    .then((id) => res.json(id))
+  // provinceBuildingModel
+  //   .deleteBuilding(provinceId, buildingId)
+  //   .then(() => {
+  //     buildingModel
+  //       .delete(buildingId)
+  //       .then((result) => {
+  //         if (result.affectedRows > 0) {
+  //           return res.status(200).json({
+  //             message: `Building ${buildingId} in Province ${provinceId} has been deleted.`,
+  //           });
+  //         } else {
+  //           res.status(404).json({ message: "Building not found" });
+  //         }
+  //       })
+  //       .catch();
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json(err);
+  //   });
+
+  provinceBuildingModel
+    .deleteBuilding(provinceId, buildingId)
+    .then(() => {
+      return buildingModel.delete(buildingId);
+    })
+    .then((result) => {
+      if (result.affectedRows > 0) {
+        return res.status(200).json({
+          message: `Building ${buildingId} in Province ${provinceId} has been deleted.`,
+        });
+      } else {
+        res.status(404).json({ message: "Building not found" });
+      }
+    })
     .catch((err) => {
-      res.json(err);
+      res.status(500).json(err);
     });
+
+  // buildingModel
+  //   .delete(provinceId, buildingId)
+  //   .then((result) => {
+  //     if (result.affectedRows > 0) {
+  //       return res.status(200).json({
+  //         message: `Building ${buildingId} in Province ${provinceId} has been deleted.`,
+  //       });
+  //     } else {
+  //       res.status(404).json({ message: "Building not found" });
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json(err);
+  //   });
 };
 
 export default {
-  read,
-  readById,
-  readByProvince,
-  remove,
+  getBuildingsByProvince,
+  getBuildingById,
+  deleteBuilding,
 };
