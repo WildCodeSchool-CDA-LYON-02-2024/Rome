@@ -1,5 +1,6 @@
 
 import express from "express";
+import userController from "./controller/userController.js";
 const router = express.Router();
 
 // exemple
@@ -12,7 +13,7 @@ router.delete("/ouvrage/:id");
 
 router.get("/user") // pour obtenir toute les information des users
 router.get("/user/:id")// pour obtenir toute les information d'un user en particulier via son id
-router.post("/user") //pour créer un nouvel utilisateur
+router.post("/user/register",userController.register) //pour créer un nouvel utilisateur
 router.put("/user/:id") //pour mettre à jour le profil d'un utilisateur en particulier via son id
 router.delete("/user/:id") // pour supprimer un user en particulier via son id
 
