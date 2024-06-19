@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const { id: id } = useParams();
+  console.log(id);
  
   useEffect(() => {
     fetch(`http://localhost:3310/technology/${id}`)
