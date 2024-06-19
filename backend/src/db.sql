@@ -126,7 +126,7 @@ CREATE TABLE
 
 -- Create the ressource_technology table
 CREATE TABLE
-    ressource_technology (
+    province_technology (
         id INT NOT NULL AUTO_INCREMENT,
         technology_id INT NOT NULL,
         province_id INT NOT NULL,
