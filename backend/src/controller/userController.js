@@ -71,6 +71,19 @@ const deleteById = (req, res) => {
               res.status(500).json({ message: "Failed to update user" });
             });
         }
+        const readById = (req, res) => {
+            
+              const id = req.params.id;
+              UserModel
+                .readById(id)
+                .then((user) => {
+                  res.json(user);
+                })
+                .catch((error) => {
+                  res.json(error);
+                });
+            }
+          
       
  
-export default { register, login,deleteById,update };
+export default { register, login,deleteById,update,readById };

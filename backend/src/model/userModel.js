@@ -83,6 +83,21 @@ update( username, email, password, image,id) {
     });
   });
 }
+
+readById(id) {
+  return new Promise((resolve, reject) => {
+    const query = "select * from user where id = ?;";
+    const values = [id];
+    this.connection.execute(query, values, (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+}
+
 }
 
 
