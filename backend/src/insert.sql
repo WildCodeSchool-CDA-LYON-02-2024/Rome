@@ -120,9 +120,9 @@ INSERT INTO
     technology (name, description, image)
 VALUES
     (
-        'Concrete',
-        'A building material invented by the Romans',
-        'concrete.jpg'
+        'axe',
+        'axe to cut trees, Bonus : wood generation +10%',
+        '/images/axe.png'
     ),
     (
         'Roads',
