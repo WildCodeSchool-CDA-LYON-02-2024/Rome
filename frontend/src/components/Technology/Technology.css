@@ -19,7 +19,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 1.5rem;
-    background-image: url("../../../public/images/background_map.png");
+    background-image: url("/images/background_map.png");
 }
 
 .buttonContainer{
