@@ -46,4 +46,8 @@ function Map() {
   return <canvas ref={canvasRef}></canvas>;
 }
 
+// let myScreenOrientation = window.screen.orientation;
+// console.log(myScreenOrientation, "orientation screen");
+// myScreenOrientation.lock('landscape');
+
 export default Map;
