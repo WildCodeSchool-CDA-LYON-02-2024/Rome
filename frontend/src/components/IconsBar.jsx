@@ -1,6 +1,6 @@
 import React from 'react'
 
-const IconsBar = (props) => {
+function IconsBar  () {
   return (
     <nav className='iconsbar'>
       <ul className='wrapper-iconsbar'>
