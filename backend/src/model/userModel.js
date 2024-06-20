@@ -44,4 +44,19 @@ export class userModel {
       });
     });
   }
+
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      const query = `DELETE FROM user WHERE id = ?`;
+      const values = [id];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
 }
+
