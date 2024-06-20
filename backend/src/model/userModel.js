@@ -58,5 +58,33 @@ export class userModel {
       });
     });
   }
+
+
+update( username, email, password, image,id) {
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, 10).then((passwordHash) => {
+      const query = `UPDATE user SET username=?, email=?, password=?, image=? WHERE id=?`;
+      const values = [
+        username,
+        email,
+        passwordHash,
+        image,
+        id,
+      ];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    }).catch((err) => {
+      reject(err); // Handle bcrypt hashing error
+    });
+  });
 }
+}
+
+
+
 

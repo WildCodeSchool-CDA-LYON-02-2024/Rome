@@ -56,5 +56,21 @@ const deleteById = (req, res) => {
           res.status(500).json({ message: "Failed to delete user" });
         });
     } 
+
+    const update = (req, res) => {
+       
+          const id = req.params.id;
+          const { username, email, password, image } = req.body;
+          UserModel
+            .update(username, email, password, image, id)
+            .then(() => {
+              res.status(201).json({ message: "User updated successfully" });
+            })
+            .catch((error) => {
+              console.error(error);
+              res.status(500).json({ message: "Failed to update user" });
+            });
+        }
+      
  
-export default { register, login,deleteById };
+export default { register, login,deleteById,update };
