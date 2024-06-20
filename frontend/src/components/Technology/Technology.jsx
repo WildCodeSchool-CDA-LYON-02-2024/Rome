@@ -20,7 +20,6 @@ export default function Technology() {
           technology.map((technologies) => (
             <div>
               <p>{technologies.name}</p>
-              <p>{technologies.description}</p>
               <img src={technologies.image} alt={technologies.name} />
               <Link to={`/technology/${technologies.id}`}>
                 <button>Acheter</button>
