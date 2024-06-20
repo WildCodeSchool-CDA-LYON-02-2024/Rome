@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
@@ -7,10 +7,6 @@ export default function TechnologyById() {
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
-
-  console.log(technologyID);
-  console.log(provinceID);
-  console.log(technology);
 
   useEffect(() => {
     fetch(`http://localhost:3310/technology/${technologyID}`)
@@ -42,8 +38,7 @@ export default function TechnologyById() {
 
   return (
     <section>
-      <div className="ouvragesContainer">
-        {" "}
+      <div>
         {technology &&
           technology.map((technologies) => (
             <div key={technologies.id}>

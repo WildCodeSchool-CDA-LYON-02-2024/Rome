@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
   const [technology, setTechnology] = useState([]);
-  const [show, setShow] = useState(false);
   const provinceID = 1;
 
   useEffect(() => {
@@ -25,14 +24,6 @@ export default function Technology() {
       });
   }, [provinceID]);
 
-  useEffect(() => {
-    if (technology.length && userTechnology.length) {
-      const userTechNames = userTechnology.map(tech => tech.name);
-      const hasMatchingTech = technology.some(tech => userTechNames.includes(tech.name));
-      setShow(hasMatchingTech);
-    }
-  }, [technology, userTechnology]);
-
   return (
     <section>
       <div className="ouvragesContainer">
@@ -40,7 +31,7 @@ export default function Technology() {
           <div key={tech.id}>
             <p>{tech.name}</p>
             <img src={tech.image} alt={tech.name} />
-            {show && userTechnology.some(userTech => userTech.name === tech.name) ? (
+            {userTechnology.some(userTech => userTech.name === tech.name) ? (
               <p>okay</p>
             ) : (
               <Link to={`/technology/${tech.id}`}>
