@@ -30,28 +30,8 @@ const getBuildingById = (req, res) => {
 const deleteBuilding = (req, res) => {
   const { provinceId, buildingId } = req.params;
 
-  // provinceBuildingModel
-  //   .deleteBuilding(provinceId, buildingId)
-  //   .then(() => {
-  //     buildingModel
-  //       .delete(buildingId)
-  //       .then((result) => {
-  //         if (result.affectedRows > 0) {
-  //           return res.status(200).json({
-  //             message: `Building ${buildingId} in Province ${provinceId} has been deleted.`,
-  //           });
-  //         } else {
-  //           res.status(404).json({ message: "Building not found" });
-  //         }
-  //       })
-  //       .catch();
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).json(err);
-  //   });
-
   provinceBuildingModel
-    .deleteBuilding(provinceId, buildingId)
+    .deleteConstraint(provinceId, buildingId)
     .then(() => {
       return buildingModel.delete(buildingId);
     })
@@ -67,21 +47,6 @@ const deleteBuilding = (req, res) => {
     .catch((err) => {
       res.status(500).json(err);
     });
-
-  // buildingModel
-  //   .delete(provinceId, buildingId)
-  //   .then((result) => {
-  //     if (result.affectedRows > 0) {
-  //       return res.status(200).json({
-  //         message: `Building ${buildingId} in Province ${provinceId} has been deleted.`,
-  //       });
-  //     } else {
-  //       res.status(404).json({ message: "Building not found" });
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     res.status(500).json(err);
-  //   });
 };
 
 export default {

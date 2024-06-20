@@ -3,6 +3,18 @@ export default class BuildingModel {
     this.connection = db.connection;
   }
 
+  createBuilding(name, description, image) {
+    return new Promise((resolve, reject) => {
+      const query = `INSERT INTO building (name, description, image)
+                           VALUES (?, ?, ?)`;
+      const values = [name, description, image];
+      this.connection.query(query, values, (err, result) => {
+        if (err) reject(err);
+        resolve(result);
+      });
+    });
+  }
+
   selectAllByProvince(provinceId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT *
@@ -33,13 +45,6 @@ export default class BuildingModel {
       });
     });
   }
-
-  // const query = `DELETE b
-  //                          FROM building b
-  //                                   JOIN province_building pb ON b.id = pb.building_id
-  //                                   JOIN province p ON p.id = pb.province_id
-  //                          WHERE p.id = ?
-  //                            AND b.id = ?`;
 
   delete(buildingId) {
     return new Promise((resolve, reject) => {
