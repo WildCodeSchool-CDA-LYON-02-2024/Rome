@@ -34,11 +34,10 @@ export default function GenericCard({ id, title, image, name, description }) {
           <img src={image} alt={name} className="image" />
         </div>
         <div className="informationContainer">
-          <p>{name}</p>
-          <p>{description}</p>
+          <p className="description">{description}</p>
         </div>
         <div>
-          <button onClick={handleAdd}>Lancer la recherche</button>
+          <button className="button" onClick={handleAdd}>Lancer la recherche</button>
         </div>
       </div>
     </section>

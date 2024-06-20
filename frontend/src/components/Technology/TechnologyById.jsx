@@ -24,7 +24,7 @@ export default function TechnologyById() {
           technology.map((technologies) => (
             <GenericCard
               key={technologies.id}
-              title={`Création de ${technologies.name}`}
+              title={`Création de la technologie : ${technologies.name}`}
               id={technologies.id}
               image={technologies.image}
               name={technologies.name}
