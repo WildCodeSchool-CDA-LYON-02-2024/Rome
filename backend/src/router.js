@@ -11,7 +11,7 @@ router.delete("/ouvrage/:id");
 
 // user
 
-router.get("/user") // pour obtenir toute les information des users
+router.post("/user/login",userController.login) // pour obtenir toute les information des users
 router.get("/user/:id")// pour obtenir toute les information d'un user en particulier via son id
 router.post("/user/register",userController.register) //pour créer un nouvel utilisateur
 router.put("/user/:id") //pour mettre à jour le profil d'un utilisateur en particulier via son id
