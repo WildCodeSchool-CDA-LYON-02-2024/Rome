@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root{
+      display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+.section-building{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+  background-color: green;
+   /* height: 100px;
+   line-height: 100px; */
+}
+
+
+

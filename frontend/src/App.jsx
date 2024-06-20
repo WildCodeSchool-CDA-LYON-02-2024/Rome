@@ -1,14 +1,19 @@
-import './App.css'
-import IconsBar from './components/IconsBar'
-import Map from './pages/Map'
+// import './App.css'
+
+import Map2 from "./pages/Map2";
+import './App2.css'
+
+
 
 function App() {
 
+  // let myScreenOrientation = window.screen.orientation;
+  // myScreenOrientation.lock('landscape');
 
   return (
     <>
-      <Map />
-     <IconsBar/>
+     <Map2/> 
+    
     </>
   )
 }
