@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
@@ -31,7 +32,7 @@ export default function TechnologyById() {
       .then((response) => {
         if (response.status === 201) {
           console.info("technology research launched successfully.");
-          window.location.reload();
+          navigate("/technology");
         }
       })
       .catch((err) => {
