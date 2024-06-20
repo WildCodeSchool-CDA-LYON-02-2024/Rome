@@ -28,8 +28,18 @@ export default function GenericCard({ id, title, image, name, description }) {
       });
   };
 
+  const handlePrev = (event) => {
+    event.preventDefault();
+    navigate("/technology");
+  };
+
   return (
     <section className="globalContainer">
+      <div className="buttonXContainer">
+        <button className="buttonX" onClick={handlePrev}>
+          X
+        </button>
+      </div>
       <h2>{title}</h2>
       <div className="container">
         <div className="imageContainer">
@@ -39,7 +49,9 @@ export default function GenericCard({ id, title, image, name, description }) {
           <p className="description">{description}</p>
         </div>
         <div>
-          <button className="button" onClick={handleAdd}>Lancer la recherche</button>
+          <button className="button" onClick={handleAdd}>
+            Lancer la recherche
+          </button>
         </div>
       </div>
     </section>
