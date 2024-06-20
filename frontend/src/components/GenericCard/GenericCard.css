@@ -55,6 +55,7 @@
   border-radius: 2rem;
   font-size: 1rem;
   cursor: pointer;
-  color: white;
+  color: goldenrod;
+  border:2px solid goldenrod ;
   font-weight: bold;
 }

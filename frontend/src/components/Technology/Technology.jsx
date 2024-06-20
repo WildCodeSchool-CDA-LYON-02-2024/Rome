@@ -30,19 +30,20 @@ export default function Technology() {
       <div className="allTech">
         {technology.map((tech) => (
           <div key={tech.id} className="technologyContainer">
-            
             <div className="imageContainer">
               <img className="image" src={tech.image} alt={tech.name} />
               <p>{tech.name}</p>
-            </div>
-            <div className="buttonContainer">
-            {userTechnology.some((userTech) => userTech.name === tech.name) ? (
-              <p className="techAcquise">Déjà acquis</p>
-            ) : (
-              <Link to={`/technology/${tech.id}`}>
-                <button className="rechercheTech">Rechercher</button>
-              </Link>
-            )}
+              <div className="buttonContainer">
+                {userTechnology.some(
+                  (userTech) => userTech.name === tech.name
+                ) ? (
+                  <p className="techAcquise">Déjà acquis</p>
+                ) : (
+                  <Link to={`/technology/${tech.id}`}>
+                    <button className="rechercheTech">Rechercher</button>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         ))}
