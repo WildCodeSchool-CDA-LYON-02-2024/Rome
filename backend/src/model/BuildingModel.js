@@ -46,7 +46,25 @@ export default class BuildingModel {
     });
   }
 
+  update(provinceId, buildingId, buildingData) {
+    return new Promise((resolve, reject) => {
+      const fields = Object.keys(buildingData)
+        .map((key) => `${key} = ?`)
+        .join(", ");
+      const values = [...Object.values(buildingData), provinceId, buildingId];
+      const query = `UPDATE building b
+                JOIN province_building pb ON b.id = pb.building_id
+                           SET ${fields}
+                           WHERE pb.province_id = ? AND b.id = ?`; // Add JOIN ?
+      this.connection.query(query, values, (err, result) => {
+        if (err) reject(err);
+        resolve(result);
+      });
+    });
+  }
+
   delete(buildingId) {
+    // provinceId & JOIN to avoid deleting every building with the same id in all provinces
     return new Promise((resolve, reject) => {
       const query = `DELETE
                            FROM building

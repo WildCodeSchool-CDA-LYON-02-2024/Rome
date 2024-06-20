@@ -39,12 +39,14 @@ router.get(
   "/province/:provinceId/building/:buildingId",
   buildingController.getBuildingById,
 ); // get specific building by ID
+router.put(
+  "/province/:provinceId/building/:buildingId",
+  buildingController.updateBuilding,
+); // update a specific building by ID
 router.delete(
   "/province/:provinceId/building/:buildingId",
   buildingController.deleteBuilding,
-); // delete specific building by ID + connect userId
-router.put("/province/:provinceId/building/:buildingId"); // update a specific building by ID (to be implemented)
-//pour mettre à jour le profil de bulding  particulier (// avec plus de details dans la models) //  JOIN avec province à faire
+); // delete specific building by ID
 
 // Alliance
 router.get("/alliance"); // avoir la liste de toutes les alliances disponibles

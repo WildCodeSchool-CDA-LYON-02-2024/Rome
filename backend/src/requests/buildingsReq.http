@@ -8,6 +8,14 @@
 #GET http://localhost:3310/province/1/building/1
 #Content-Type: application/json
 
+### UPDATE A Building in a province
+#PUT http://localhost:3310/province/1/building/1
+#Content-Type: application/json
+#
+#{
+#  "name": "Coucou"
+#}
+
 ### DELETE A Building in a province
-DELETE http://localhost:3310/province/6/building/6
-Content-Type: application/json
+#DELETE http://localhost:3310/province/6/building/6
+#Content-Type: application/json
