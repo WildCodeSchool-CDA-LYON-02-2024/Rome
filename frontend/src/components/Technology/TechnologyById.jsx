@@ -4,7 +4,6 @@ import GenericCard from "../GenericCard/GenericCard";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
-  const navigate = useNavigate();
   const { id } = useParams();
   const technologyID = parseInt(id);
 

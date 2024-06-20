@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
 
 export default function GenericCard({ id, title, image, name, description }) {
   const technologyID = parseInt(id);
   const provinceID = 1;
+  const navigate = useNavigate();
   //   const { userData } = useUserContext();
 
   //   const role = userData && userData.user ? userData.user.role : null;

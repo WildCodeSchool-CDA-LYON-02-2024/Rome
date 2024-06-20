@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./Technology.css";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
@@ -26,18 +27,23 @@ export default function Technology() {
 
   return (
     <section>
-      <div className="ouvragesContainer">
+      <div className="allTech">
         {technology.map((tech) => (
-          <div key={tech.id}>
-            <p>{tech.name}</p>
-            <img src={tech.image} alt={tech.name} />
-            {userTechnology.some(userTech => userTech.name === tech.name) ? (
-              <p>okay</p>
+          <div key={tech.id} className="technologyContainer">
+            
+            <div className="imageContainer">
+              <img className="image" src={tech.image} alt={tech.name} />
+              <p>{tech.name}</p>
+            </div>
+            <div className="buttonContainer">
+            {userTechnology.some((userTech) => userTech.name === tech.name) ? (
+              <p className="techAcquise">Déjà acquis</p>
             ) : (
               <Link to={`/technology/${tech.id}`}>
-                <button>Rechercher</button>
+                <button className="rechercheTech">Rechercher</button>
               </Link>
             )}
+            </div>
           </div>
         ))}
       </div>

@@ -1,0 +1,47 @@
+.technologyContainer{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.allTech{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-image: url("../../../public/images/background_map.png");
+}
+
+.buttonContainer{
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.techAcquise{
+color: green;
+}
+
+.rechercheTech{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkred;
+    height: 2rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}

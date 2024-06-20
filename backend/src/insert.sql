@@ -120,34 +120,49 @@ INSERT INTO
     technology (name, description, image)
 VALUES
     (
-        'axe',
-        'axe to cut trees, Bonus : wood generation +10%',
+        'Hache',
+        'Outil tuilisé pour couper du bois, Bonus : génération de bois +10%',
         '/images/axe.png'
     ),
     (
-        'Roads',
-        'Extensive network of roads built by the Romans',
-        'roads.jpg'
+        'pioche',
+        'Outil tuilisé pour miner de la pierre, Bonus : génération de pierre +10%',
+        '/images/pickaxe.png'
     ),
     (
-        'Aqueducts',
-        'Engineering marvels to supply water',
-        'aqueducts.jpg'
+        "Mine d'or",
+        "Permet la création de mine d'or",
+        '/images/goldMine.png'
     ),
     (
-        'Arches',
-        'Architectural innovation allowing strong structures',
-        'arches.jpg'
+        'elevage',
+        "Permet d'avoir un élévage de bétail pour générer de la viande",
+        '/images/elevage.png'
     ),
     (
-        'Roman Numerals',
-        'Numerical system used in ancient Rome',
-        'roman_numerals.jpg'
+        'Fourche',
+        'Outil permettant de travail de la terre, Bonus',
+        '/images/fork.png'
     ),
     (
-        'Sewers',
-        'Advanced sanitation system',
-        'sewers.jpg'
+        'Arc',
+        "Permet la formation d'archer",
+        '/images/bow.png'
+    ),
+    (
+        'cheval',
+        "Permet la formation de cavalier",
+        '/images/horse.png'
+    ),
+    (
+        'lance',
+        "Permet la formation de lancier",
+        '/images/lance.png'
+    ),
+    (
+        'Epée',
+        "Permet la formation de légionnaire",
+        '/images/sword.png'
     );
 
 INSERT INTO
