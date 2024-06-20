@@ -28,6 +28,7 @@ router.delete("/province/:id") //pour supprimer une province en particulier via 
 router.get("/technology", technologyController.read) //pour obtenir la liste complète des R&D possibles
 router.get("/technology/:id", technologyController.readById) //pour obtenir une R&D en particulier via son id
 router.get("/province/:id/technology", technologyController.readByProvince) //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
+router.post("/technology/:id", technologyController.add) //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
 
 
 // building

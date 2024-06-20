@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Technology() {
   const [technology, setTechnology] = useState(null);
+  const provinceID = 1;
+
   useEffect(() => {
-    fetch("http://localhost:3310/technology")
+    fetch(`http://localhost:3310/province/${provinceID}/technology`)
       .then((response) => response.json())
       .then((data) => setTechnology(data))
       .catch((err) => {
@@ -18,11 +20,11 @@ export default function Technology() {
         {" "}
         {technology &&
           technology.map((technologies) => (
-            <div>
+            <div key={technologies.id}>
               <p>{technologies.name}</p>
               <img src={technologies.image} alt={technologies.name} />
               <Link to={`/technology/${technologies.id}`}>
-                <button>Acheter</button>
+                <button>Rechercher</button>
               </Link>
             </div>
           ))}
