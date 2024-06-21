@@ -1,7 +1,8 @@
 .technologyContainer{
     display: flex;
-    flex-direction: column;
-    width: 20%;
+    width: 100%;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .imageContainer{
@@ -17,9 +18,22 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 2rem;
     padding: 1.5rem;
     background-image: url("/images/background_map.png");
+    width: 100%;
+}
+
+.age{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+}
+
+.periodTechno{
+    width: 10rem;
 }
 
 .buttonContainer{

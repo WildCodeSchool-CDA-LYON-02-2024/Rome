@@ -1,3 +1,4 @@
+-- Insérer des données dans la table user
 INSERT INTO
     user (username, email, password, image)
 VALUES
@@ -38,16 +39,15 @@ VALUES
         'caligula.jpg'
     );
 
+-- Insérer des données dans la table period
 INSERT INTO
     period (name)
 VALUES
-    ('Republican Rome'),
-    ('Imperial Rome'),
-    ('Late Antiquity'),
-    ('Early Empire'),
-    ('Middle Empire'),
-    ('Crisis of the Third Century');
+    ('Age de pierre'),
+    ('Age de bronze'),
+    ('Age de fer');
 
+-- Insérer des données dans la table alliance
 INSERT INTO
     alliance (name, description, image)
 VALUES
@@ -82,6 +82,7 @@ VALUES
         'nerva_antonine.jpg'
     );
 
+-- Insérer des données dans la table building
 INSERT INTO
     building (name, description, image)
 VALUES
@@ -116,55 +117,66 @@ VALUES
         'baths_of_caracalla.jpg'
     );
 
+-- Insérer des données dans la table technology
 INSERT INTO
-    technology (name, description, image)
+    technology (name, description, image, category)
 VALUES
     (
         'Hache',
-        'Outil tuilisé pour couper du bois, Bonus : génération de bois +10%',
-        '/images/axe.png'
+        'Outil utilisé pour couper du bois, Bonus : génération de bois +10%',
+        '/images/axe.png',
+        1
     ),
     (
         'pioche',
-        'Outil tuilisé pour miner de la pierre, Bonus : génération de pierre +10%',
-        '/images/pickaxe.png'
+        'Outil utilisé pour miner de la pierre, Bonus : génération de pierre +10%',
+        '/images/pickaxe.png',
+        1
     ),
     (
         "Mine d'or",
-        "Permet la création de mine d'or",
-        '/images/goldMine.png'
+        'Permet la création de mine d\'or',
+        '/images/goldMine.png',
+        1
     ),
     (
         'elevage',
-        "Permet d'avoir un élévage de bétail pour générer de la viande",
-        '/images/elevage.png'
+        'Permet d\'avoir un élevage de bétail pour générer de la viande',
+        '/images/elevage.png',
+        1
     ),
     (
         'Fourche',
-        'Outil permettant de travail de la terre, Bonus',
-        '/images/fork.png'
+        'Outil permettant de travailler la terre, Bonus',
+        '/images/fork.png',
+        1
     ),
     (
         'Arc',
-        "Permet la formation d'archer",
-        '/images/bow.png'
+        'Permet la formation d\'archer',
+        '/images/bow.png',
+        2
     ),
     (
         'cheval',
-        "Permet la formation de cavalier",
-        '/images/horse.png'
+        'Permet la formation de cavalier',
+        '/images/horse.png',
+        2
     ),
     (
         'lance',
-        "Permet la formation de lancier",
-        '/images/lance.png'
+        'Permet la formation de lancier',
+        '/images/lance.png',
+        2
     ),
     (
         'Epée',
-        "Permet la formation de légionnaire",
-        '/images/sword.png'
+        'Permet la formation de légionnaire',
+        '/images/sword.png',
+        3
     );
 
+-- Insérer des données dans la table role
 INSERT INTO
     role (name, status, description, image)
 VALUES
@@ -205,6 +217,7 @@ VALUES
         'merchant.jpg'
     );
 
+-- Insérer des données dans la table user_alliance
 INSERT INTO
     user_alliance (user_id, alliance_id)
 VALUES
@@ -215,6 +228,7 @@ VALUES
     (5, 5),
     (6, 6);
 
+-- Insérer des données dans la table battle
 INSERT INTO
     battle (
         resume,
@@ -251,8 +265,8 @@ VALUES
     ),
     (
         'Battle of the Teutoburg Forest',
-        '9-09-09',
-        '9-09-11',
+        '09-09-09',
+        '09-09-11',
         6,
         4,
         6
@@ -266,6 +280,7 @@ VALUES
         5
     );
 
+-- Insérer des données dans la table province
 INSERT INTO
     province (
         name,
@@ -308,7 +323,7 @@ VALUES
         'Hispania',
         'Region in the Iberian Peninsula',
         'hispania.jpg',
-        4,
+        1,
         4,
         3,
         4
@@ -317,7 +332,7 @@ VALUES
         'Dacia',
         'Region in Eastern Europe',
         'dacia.jpg',
-        5,
+        2,
         5,
         2,
         5
@@ -326,12 +341,13 @@ VALUES
         'Asia',
         'Region in Asia Minor',
         'asia.jpg',
-        6,
+        3,
         6,
         1,
         6
     );
 
+-- Insérer des données dans la table inhabitant
 INSERT INTO
     inhabitant (
         health,
@@ -349,6 +365,7 @@ VALUES
     (90, 70, 65, 'praetorian_guard.jpg', 5, 5),
     (100, 50, 55, 'merchant.jpg', 6, 6);
 
+-- Insérer des données dans la table province_technology
 INSERT INTO
     province_technology (technology_id, province_id)
 VALUES
@@ -359,6 +376,7 @@ VALUES
     (5, 2),
     (6, 3);
 
+-- Insérer des données dans la table province_building
 INSERT INTO
     province_building (level, province_id, building_id)
 VALUES
