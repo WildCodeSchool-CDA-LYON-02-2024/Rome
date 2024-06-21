@@ -75,37 +75,39 @@ export default function Technology() {
       </div>
       <div className="age">
         <div>
-          <h3 className="periodTechno">{getAgeName(2)}</h3>
+        <h3 className="periodTechno">{getAgeName(2)}</h3>
         </div>
-        {bronze.map((tech) => (
-          <div key={tech.id} className="technologyContainer">
-            <div className="imageContainer">
-              <img className="image" src={tech.image} alt={tech.name} />
-              <p>{tech.name}</p>
-              <div className="buttonContainer">
-                {userTechnology.some(
-                  (userTech) => userTech.name === tech.name
-                ) ? (
-                  <p className="techAcquise">Déjà acquis</p>
-                ) : provinceAgeID >= tech.category ? (
-                  <Link to={`/technology/${tech.id}`}>
-                    <button className="rechercheTech">Rechercher</button>
-                  </Link>
-                ) : (
-                  <p>Veuillez développer votre province</p>
-                )}
+        <div className="technologyContainer">
+          {bronze.map((tech) => (
+            <div key={tech.id} >
+              <div className="imageContainer">
+                <img className="image" src={tech.image} alt={tech.name} />
+                <p>{tech.name}</p>
+                <div className="buttonContainer">
+                  {userTechnology.some(
+                    (userTech) => userTech.name === tech.name
+                  ) ? (
+                    <p className="techAcquise">Déjà acquis</p>
+                  ) : provinceAgeID >= tech.category ? (
+                    <Link to={`/technology/${tech.id}`}>
+                      <button className="rechercheTech">Rechercher</button>
+                    </Link>
+                  ) : (
+                    <p>Veuillez développer votre province</p>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="age">
-        <div className="ageContainer">
-          <h3 className="periodTechno">{getAgeName(3)}</h3>
-        </div>
         <div>
+        <h3 className="periodTechno">{getAgeName(3)}</h3>
+        </div>
+        <div className="technologyContainer">
           {iron.map((tech) => (
-            <div key={tech.id} className="technologyContainer">
+            <div key={tech.id} >
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>

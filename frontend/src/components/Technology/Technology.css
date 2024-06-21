@@ -3,6 +3,8 @@
     width: 100%;
     gap: 2rem;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .imageContainer{
