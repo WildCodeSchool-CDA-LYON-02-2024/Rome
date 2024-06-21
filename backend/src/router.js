@@ -1,10 +1,12 @@
-
 import express from "express";
 import userController from "./controller/userController.js";
 import verifyToken from "./model/service/verifyToken.js";
+import technologyController from "./controller/technologyController.js";
+import buildingController from "./controller/buildingController.js";
+
 const router = express.Router();
 
-// exemple
+// Example
 router.get("/ouvrage/:field/:value");
 router.post("/ouvrage");
 router.put("/ouvrage/:id");
@@ -18,46 +20,52 @@ router.post("/user/register",userController.register) //pour créer un nouvel ut
 router.put("/user/:id",userController.update) //pour mettre à jour le profil d'un utilisateur en particulier via son id  /// we should use the token here after the test in the dfront end //
 router.delete("/user/:id",verifyToken,userController.deleteById) // pour supprimer un user en particulier via son id  // everthing work corrctly 
 
-//  province
-router.get("/province") //pour obtenir la liste complète des provinces, avec leurs informations
-router.get("/province/:id") //pour obtenir les informations d'une province en particulier via son id
+// Province
+router.get("/province"); //pour obtenir la liste complète des provinces, avec leurs informations
+router.get("/province/:id"); //pour obtenir les informations d'une province en particulier via son id
 
-//admin ?
-router.post("/province") //pour créer une nouvelle province
-router.delete("/province/:id") //pour supprimer une province en particulier via son id 
+// Admin ?
+router.post("/province"); //pour créer une nouvelle province
+router.delete("/province/:id"); //pour supprimer une province en particulier via son id
 
-//  technology
-router.get("/technology") //pour obtenir la liste complète des R&D possibles
-router.get("/technology/:id") //pour obtenir une R&D en particulier via son id
-router.get("/province/:id/technology") //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
-router.get("/province/:id/technology/:id") //pour obtenir une R&D en particulier via son id pour une province //  JOIN avec province à faire
+// Technology
+router.get("/technology", technologyController.read); //pour obtenir la liste complète des R&D possibles
+router.get("/technology/:id", technologyController.readById); //pour obtenir une R&D en particulier via son id
+router.get("/province/:id/technology", technologyController.readByProvince); //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
 
+// Building
+router.get(
+  "/province/:provinceId/building",
+  buildingController.getBuildingsByProvince,
+); // get all buildings in a province
+router.get(
+  "/province/:provinceId/building/:buildingId",
+  buildingController.getBuildingById,
+); // get specific building by ID
+router.put(
+  "/province/:provinceId/building/:buildingId",
+  buildingController.updateBuilding,
+); // update a specific building by ID
+router.delete(
+  "/province/:provinceId/building/:buildingId",
+  buildingController.deleteBuilding,
+); // delete specific building by ID
 
-// building
-router.get("/province/:id/building/:id")  
-router.delete("/province/:id/building/:id") // pour suppimer la bulding //// ID user qui conatcter avec bulding  //  JOIN avec province à faire
-router.put("/province/:id/building/:id") //pour mettre à jour le profil de bulding  particulier (// avec plus de details dans la models) //  JOIN avec province à faire
+// Alliance
+router.get("/alliance"); // avoir la liste de toutes les alliances disponibles
+router.get("/alliance/:id"); // avoir les informations d'une alliance en particulier via son id
+router.put("/alliance/:id"); // modifier les informations d'une alliance en particulier via son id
+router.delete("/alliance/:id"); // supprimer une alliance en particulier via son id
 
+// Period
+router.get("/province/:id/period"); //avoir l'age d'une province en particulier
 
-//aliance
-router.get("/aliance") // avoir la liste de toutes les alliances disponibles
-router.get("/aliance/:id") // avoir les informations d'une alliance en particulier via son id
-router.put("/aliance/:id") // modifier les informations d'une alliance en particulier via son id
-router.delete("/aliance/:id") // supprimer une alliance en particulier via son id
+// Battle
+router.get("/province/:id/battle"); // avoit la liste des battle pour une province en particulier
 
-
-//period
-router.get("/province/:id/period") //avoir l'age d'une province en particulier
-
-
-//battle
-router.get ("/province/:id/battle") // avoit la liste des battle pour une province en particulier 
-
-
-//inhabitant
-router.get("/province/:id/inhabitant") //avoir l'information sur la population d'une province en particulier
-router.post("/province/:id/inhabitant") //pour créer un nouvel habitant dans une province en particulier
-router.put("/province/:id/inhabitant/:id") //pour modifier un habitant en particulier (role)
-
+// Inhabitant
+router.get("/province/:id/inhabitant"); //avoir l'information sur la population d'une province en particulier
+router.post("/province/:id/inhabitant"); //pour créer un nouvel habitant dans une province en particulier
+router.put("/province/:id/inhabitant/:id"); //pour modifier un habitant en particulier (role)
 
 export default router;
