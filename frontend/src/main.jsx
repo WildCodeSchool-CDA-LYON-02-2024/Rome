@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.jsx";
+import "./index.css";
 
-import App from "./App";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import Buildings from "./pages/Buildings";
 import TechnologyPage from "./pages/TechnologyPage";
 import TechnologyById from "./components/Technology/TechnologyById";
 
@@ -11,6 +14,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/", // Shouldn't this be /province/:id ?
+        element: <Home />,
+      },
+      {
+        path: "/buildings",
+        element: <Buildings />,
+      },
       {
         path: "/technology",
         element: <TechnologyPage />,
@@ -23,9 +34,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
