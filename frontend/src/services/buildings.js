@@ -146,6 +146,17 @@ const building = {
       height: '150',
     },
   ],
+  ressources: [
+    {
+      name: 'gold',
+      count:'35%'
+    },
+    {
+      name: 'food',
+      count:'50%'
+    }
+    
+ ]
 };
 
 export default building;

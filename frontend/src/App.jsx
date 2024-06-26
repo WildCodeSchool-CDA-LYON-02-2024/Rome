@@ -12,10 +12,13 @@ function App() {
 
   return (
     <>
-     <Map2/> 
-    
+      <div className="title-app-container">
+        <h1 className='title-app'>ROME ANTIQUE</h1>
+      </div>
+
+      <Map2 />
     </>
-  )
+  );
 }
 
 export default App
