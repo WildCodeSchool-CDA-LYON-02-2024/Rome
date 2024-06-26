@@ -26,12 +26,32 @@
   backdrop-filter: blur(10px);
 }
 
+.cost{
+  width: 4rem;
+  text-align: center;
+}
+.resourceImage{
+  width: 4rem;
+}
+
+.costsContainer{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.imageGallery{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .image {
   width: 100%;
 }
 
 .informationContainer {
-  height: 8rem;
+  height: auto;
   width: 55%;
   padding: 1rem;
   box-shadow: inset 0 0 10px lightgray;

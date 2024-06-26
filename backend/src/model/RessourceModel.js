@@ -34,7 +34,7 @@ export class RessourceModel {
 
   selectByProvince(id) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT ressource.name,ressource.image, province_ressource.quantity FROM ressource JOIN province_ressource ON province_ressource.ressource_id = ressource.id  WHERE province_id = ?;`;
+      const query = `SELECT ressource.id, ressource.name,ressource.image, province_ressource.quantity FROM ressource JOIN province_ressource ON province_ressource.ressource_id = ressource.id  WHERE province_id = ?;`;
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {

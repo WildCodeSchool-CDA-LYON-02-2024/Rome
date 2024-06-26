@@ -16,7 +16,7 @@ export default function TechnologyById() {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
+  }, [technologyID]);
 
   const handleAdd = (event) => {
     event.preventDefault();
@@ -28,31 +28,31 @@ export default function TechnologyById() {
     })
       .then((response) => {
         if (response.status === 201) {
-          console.info("technology research launched successfully.");
+          console.info("La recherche de la technologie a été lancée avec succès.");
           navigate("/technology");
         }
       })
       .catch((err) => {
-        console.error("Error launching reseach :", err);
+        console.error("Erreur lors du lancement de la recherche :", err);
       });
   };
 
   return (
     <section>
       <div>
-        {technology &&
-          technology.map((technologies) => (
-            <GenericCard
-              key={technologies.id}
-              title={`Création de la technologie : ${technologies.name}`}
-              id={technologies.id}
-              image={technologies.image}
-              name={technologies.name}
-              description={technologies.description}
-              technologyID={technologyID}
-              handleButton={handleAdd}
-            />
-          ))}
+        {technology && (
+          <GenericCard
+            title={`Création de la technologie : ${technology[0].name}`}
+            id={technology[0].id}
+            image={technology[0].image}
+            name={technology[0].name}
+            description={technology[0].description}
+            costs={technology.map((ressource) => ressource.ressource_cost)}
+            resourceImages={technology.map((ressource) => ressource.ressource_image)}
+            technologyID={technologyID}
+            handleButton={handleAdd}
+          />
+        )}
       </div>
     </section>
   );

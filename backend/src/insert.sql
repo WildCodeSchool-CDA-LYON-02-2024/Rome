@@ -450,3 +450,14 @@ VALUES
     (200, 6, 3),
     (200, 6, 4),
     (200, 6, 5);
+
+-- Insertion dans la table technology_ressource
+INSERT INTO
+    technology_ressource (technology_id, ressource_id, cost)
+VALUES
+    (1, 1, 100),
+    (1, 2, 50),
+    (2, 1, 200),
+    (2, 3, 75),
+    (3, 2, 300),
+    (3, 3, 150);
