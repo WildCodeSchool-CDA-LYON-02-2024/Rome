@@ -39,15 +39,31 @@ const readByProvince = (req, res) => {
     });
 };
 
+const add = (req, res) => {
+  // Extract the item data from the request body
+  const id = req.params.id;
+  const technologyID = parseInt(id);
+  technologyModel
+    .createByProvince(technologyID, req.body.provinceID)
+    .then(() => {
+      res.status(201).json({ message: "technology added successfully" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: "Failed to update user" });
+    });
+};
+
 const deleteById = (req, res) => {
   const id = req.params.id;
   technologyModel
     .delete(id)
-    .then((allTechnology) => {
-      res.json(allTechnology);
+    .then(() => {
+      res.status(201).json({ message: "technology deleted successfully" });
     })
     .catch((error) => {
-      res.json(error);
+      console.error(error);
+      res.status(500).json({ message: "Failed to delete technology" });
     });
 };
 
@@ -55,5 +71,6 @@ export default {
   read,
   readById,
   readByProvince,
+  add,
   deleteById,
 };

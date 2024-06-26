@@ -26,16 +26,20 @@ VALUES ('julius_caesar',
         'password987',
         'caligula.jpg');
 
-INSERT INTO period (name)
-VALUES ('Republican Rome'),
-       ('Imperial Rome'),
-       ('Late Antiquity'),
-       ('Early Empire'),
-       ('Middle Empire'),
-       ('Crisis of the Third Century');
+-- Insérer des données dans la table period
+INSERT INTO
+    period (name)
+VALUES
+    ('Age de pierre'),
+    ('Age de bronze'),
+    ('Age de fer');
 
-INSERT INTO alliance (name, description, image)
-VALUES ('Roman Senate',
+-- Insérer des données dans la table alliance
+INSERT INTO
+    alliance (name, description, image)
+VALUES
+    (
+        'Roman Senate',
         'The ruling body of Republican Rome',
         'senate.jpg'),
        ('Triumvirate',
@@ -54,8 +58,12 @@ VALUES ('Roman Senate',
         'Dynasty known for adopting capable successors',
         'nerva_antonine.jpg');
 
-INSERT INTO building (name, description, image)
-VALUES ('Colosseum',
+-- Insérer des données dans la table building
+INSERT INTO
+    building (name, description, image)
+VALUES
+    (
+        'Colosseum',
         'A large amphitheatre in Rome',
         'colosseum.jpg'),
        ('Pantheon',
@@ -74,28 +82,71 @@ VALUES ('Colosseum',
         'Large public baths in Rome',
         'baths_of_caracalla.jpg');
 
-INSERT INTO technology (name, description, image)
-VALUES ('Concrete',
-        'A building material invented by the Romans',
-        'concrete.jpg'),
-       ('Roads',
-        'Extensive network of roads built by the Romans',
-        'roads.jpg'),
-       ('Aqueducts',
-        'Engineering marvels to supply water',
-        'aqueducts.jpg'),
-       ('Arches',
-        'Architectural innovation allowing strong structures',
-        'arches.jpg'),
-       ('Roman Numerals',
-        'Numerical system used in ancient Rome',
-        'roman_numerals.jpg'),
-       ('Sewers',
-        'Advanced sanitation system',
-        'sewers.jpg');
+-- Insérer des données dans la table technology
+INSERT INTO
+    technology (name, description, image, category)
+VALUES
+    (
+        'Hache',
+        'Outil utilisé pour couper du bois, Bonus : génération de bois +10%',
+        '/images/axe.png',
+        1
+    ),
+    (
+        'pioche',
+        'Outil utilisé pour miner de la pierre, Bonus : génération de pierre +10%',
+        '/images/pickaxe.png',
+        1
+    ),
+    (
+        "Mine d'or",
+        'Permet la création de mine d\'or',
+        '/images/goldMine.png',
+        1
+    ),
+    (
+        'elevage',
+        'Permet d\'avoir un élevage de bétail pour générer de la viande',
+        '/images/elevage.png',
+        1
+    ),
+    (
+        'Fourche',
+        'Outil permettant de travailler la terre, Bonus',
+        '/images/fork.png',
+        1
+    ),
+    (
+        'Arc',
+        'Permet la formation d\'archer',
+        '/images/bow.png',
+        2
+    ),
+    (
+        'cheval',
+        'Permet la formation de cavalier',
+        '/images/horse.png',
+        2
+    ),
+    (
+        'lance',
+        'Permet la formation de lancier',
+        '/images/lance.png',
+        2
+    ),
+    (
+        'Epée',
+        'Permet la formation de légionnaire',
+        '/images/sword.png',
+        3
+    );
 
-INSERT INTO role (name, status, description, image)
-VALUES ('Legionary',
+-- Insérer des données dans la table role
+INSERT INTO
+    role (name, status, description, image)
+VALUES
+    (
+        'Legionary',
         'Active',
         'A Roman soldier',
         'legionary.jpg'),
@@ -120,21 +171,30 @@ VALUES ('Legionary',
         'A trader and businessman',
         'merchant.jpg');
 
-INSERT INTO user_alliance (user_id, alliance_id)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3),
-       (4, 4),
-       (5, 5),
-       (6, 6);
+-- Insérer des données dans la table user_alliance
+INSERT INTO
+    user_alliance (user_id, alliance_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6);
 
-INSERT INTO battle (resume,
-                    start_date,
-                    end_date,
-                    userAttack_id,
-                    userDefense_id,
-                    userWinner_id)
-VALUES ('Battle of Actium',
+-- Insérer des données dans la table battle
+INSERT INTO
+    battle (
+        resume,
+        start_date,
+        end_date,
+        userAttack_id,
+        userDefense_id,
+        userWinner_id
+    )
+VALUES
+    (
+        'Battle of Actium',
         '31-09-02',
         '31-09-02',
         1,
@@ -151,10 +211,12 @@ VALUES ('Battle of Actium',
         '312-10-28',
         4,
         5,
-        4),
-       ('Battle of the Teutoburg Forest',
-        '9-09-09',
-        '9-09-11',
+        4
+    ),
+    (
+        'Battle of the Teutoburg Forest',
+        '09-09-09',
+        '09-09-11',
         6,
         4,
         6),
@@ -165,14 +227,20 @@ VALUES ('Battle of Actium',
         6,
         5);
 
-INSERT INTO province (name,
-                      description,
-                      image,
-                      period_id,
-                      user_id,
-                      battle_id,
-                      alliance_id)
-VALUES ('Gaul',
+-- Insérer des données dans la table province
+INSERT INTO
+    province (
+        name,
+        description,
+        image,
+        period_id,
+        user_id,
+        battle_id,
+        alliance_id
+    )
+VALUES
+    (
+        'Gaul',
         'Region in Western Europe',
         'gaul.jpg',
         1,
@@ -196,50 +264,59 @@ VALUES ('Gaul',
        ('Hispania',
         'Region in the Iberian Peninsula',
         'hispania.jpg',
-        4,
+        1,
         4,
         3,
         4),
        ('Dacia',
         'Region in Eastern Europe',
         'dacia.jpg',
-        5,
+        2,
         5,
         2,
         5),
        ('Asia',
         'Region in Asia Minor',
         'asia.jpg',
-        6,
+        3,
         6,
         1,
         6);
 
-INSERT INTO inhabitant (health,
-                        attack,
-                        defense,
-                        image,
-                        province_id,
-                        role_id)
-VALUES (100, 75, 50, 'legionary.jpg', 1, 1),
-       (80, 50, 60, 'senator.jpg', 2, 2),
-       (120, 90, 70, 'emperor.jpg', 3, 3),
-       (110, 80, 60, 'gladiator.jpg', 4, 4),
-       (90, 70, 65, 'praetorian_guard.jpg', 5, 5),
-       (100, 50, 55, 'merchant.jpg', 6, 6);
+-- Insérer des données dans la table inhabitant
+INSERT INTO
+    inhabitant (
+        health,
+        attack,
+        defense,
+        image,
+        province_id,
+        role_id
+    )
+VALUES
+    (100, 75, 50, 'legionary.jpg', 1, 1),
+    (80, 50, 60, 'senator.jpg', 2, 2),
+    (120, 90, 70, 'emperor.jpg', 3, 3),
+    (110, 80, 60, 'gladiator.jpg', 4, 4),
+    (90, 70, 65, 'praetorian_guard.jpg', 5, 5),
+    (100, 50, 55, 'merchant.jpg', 6, 6);
 
-INSERT INTO province_technology (technology_id, province_id)
-VALUES (1, 1),
-       (2, 2),
-       (3, 3),
-       (4, 4),
-       (5, 5),
-       (6, 6);
+INSERT INTO
+    province_technology (technology_id, province_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6);
 
-INSERT INTO province_building (level, province_id, building_id)
-VALUES (1, 1, 1),
-       (2, 2, 2),
-       (3, 3, 3),
-       (4, 4, 4),
-       (5, 5, 5),
-       (6, 6, 6);
+INSERT INTO
+    province_building (level, province_id, building_id)
+VALUES
+    (1, 1, 1),
+    (2, 2, 2),
+    (3, 3, 3),
+    (4, 4, 4),
+    (5, 5, 5),
+    (6, 6, 6);

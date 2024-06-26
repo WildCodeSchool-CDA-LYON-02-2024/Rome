@@ -46,6 +46,20 @@ export class TechnologyModel {
     });
   }
 
+  createByProvince(technology_id, province_id) {
+    return new Promise((resolve, reject) => {
+      const query = `INSERT INTO province_technology (technology_id, province_id) VALUES (?, ?);`;
+      const values = [technology_id, province_id];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+
   delete(id) {
     return new Promise((resolve, reject) => {
       const query = "delete from technology where id = ?;";
