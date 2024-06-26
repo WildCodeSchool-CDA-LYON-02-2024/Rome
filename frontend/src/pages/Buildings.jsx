@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Table from "../components/Table/Table";
 
-function Buildings() {
+export default function Buildings() {
   const navigate = useNavigate();
 
   const [buildings, setBuildings] = useState([]);
@@ -43,16 +44,8 @@ function Buildings() {
       ) : error ? (
         <p>Error: {error}</p>
       ) : (
-        buildings.map((building, index) => (
-          <div key={index}>
-            <h2>{building.name}</h2>
-            <p>{building.description}</p>
-            <img src={building.image} alt={building.description} />
-          </div>
-        ))
+        <Table buildings={buildings} />
       )}
     </>
   );
 }
-
-export default Buildings;
