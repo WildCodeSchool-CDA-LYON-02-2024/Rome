@@ -154,7 +154,7 @@ VALUES
     ),
     (
         'Arc',
-        'Permet la formation d\'archer',
+        "Permet la formation d'archer",
         '/images/bow.png',
         2
     ),
@@ -455,9 +455,21 @@ VALUES
 INSERT INTO
     technology_ressource (technology_id, ressource_id, cost)
 VALUES
-    (1, 1, 100),
+    (1, 1, 50),
     (1, 2, 50),
-    (2, 1, 200),
-    (2, 3, 75),
-    (3, 2, 300),
-    (3, 3, 150);
+    (2, 3, 50),
+    (2, 4, 50),
+    (3, 5, 50),
+    (3, 1, 50),
+    (4, 2, 50),
+    (4, 3, 50),
+    (5, 4, 50),
+    (5, 5, 50),
+    (6, 1, 50),
+    (6, 2, 50),
+    (7, 3, 50),
+    (7, 4, 50),
+    (8, 5, 50),
+    (8, 1, 50),
+    (9, 2, 50),
+    (9, 3, 50);

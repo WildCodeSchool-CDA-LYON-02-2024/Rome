@@ -4,6 +4,9 @@ import GenericCard from "../GenericCard/GenericCard";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
+  const [ressource, setRessource] = useState([]);
+  const [quantities, setQuantities] = useState([]);
+  const [ressourceIDs, setRessourceIDs] = useState([]);
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
@@ -12,7 +15,25 @@ export default function TechnologyById() {
   useEffect(() => {
     fetch(`http://localhost:3310/technology/${technologyID}`)
       .then((response) => response.json())
-      .then((data) => setTechnology(data))
+      .then((data) => {
+        if (data && data.length > 0) {
+          setTechnology(data);
+          setQuantities(data.map((item) => item.ressource_cost));
+          setRessourceIDs(data.map((item) => item.ressource_id));
+        }
+      })
+      .catch((err) => {
+        console.error(
+          "Erreur lors de la récupération des données de technologie :",
+          err
+        );
+      });
+
+    fetch(`http://localhost:3310/province/${provinceID}/ressource`)
+      .then((response) => response.json())
+      .then((data) => {
+        setRessource(data);
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -20,20 +41,64 @@ export default function TechnologyById() {
 
   const handleAdd = (event) => {
     event.preventDefault();
-    fetch(`http://localhost:3310/technology/${technologyID}`, {
-      method: "POST",
+
+        // fetch(`http://localhost:3310/technology/${technologyID}`, {
+    //   method: "POST",
+    //   credentials: "include",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ provinceID }),
+    // })
+    //   .then((response) => {
+    //     if (response.status === 201) {
+    //       console.info("La recherche de la technologie a été lancée avec succès.");
+    //       navigate(-1);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error("Erreur lors du lancement de la recherche :", err);
+    //   });
+
+    // Subtract resource costs from quantities if IDs match
+    const updatedQuantities = ressource.map((resourceItem) => {
+      const technologyItem = technology.find(
+        (techItem) => techItem.ressource_id === resourceItem.id
+      );
+      if (technologyItem) {
+        return {
+          id: resourceItem.id,
+          quantity: resourceItem.quantity - technologyItem.ressource_cost,
+        };
+      }
+      return resourceItem;
+    });
+
+    const quantitiesToUpdate = updatedQuantities.map((item) => item.quantity);
+    const idsToUpdate = updatedQuantities.map((item) => item.id);
+
+    console.log(
+      `PUT request to /province/${provinceID}/ressource with quantities: ${quantitiesToUpdate}, ressourceIDs: ${idsToUpdate}`
+    );
+
+    fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
+      method: "PUT",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ provinceID }),
+      body: JSON.stringify({ quantities: quantitiesToUpdate, ressourceIDs: idsToUpdate, provinceID }),
     })
       .then((response) => {
         if (response.status === 201) {
-          console.info("La recherche de la technologie a été lancée avec succès.");
-          navigate("/technology");
+          console.info("Les ressources sont suffisantes.");
+          navigate(-1);
+          window.location.reload();
+        } else {
+          console.error(
+            "Erreur lors de la mise à jour des ressources :",
+            response.statusText
+          );
         }
       })
       .catch((err) => {
-        console.error("Erreur lors du lancement de la recherche :", err);
+        console.error("Erreur lors de la mise à jour des ressources :", err);
       });
   };
 
@@ -48,7 +113,9 @@ export default function TechnologyById() {
             name={technology[0].name}
             description={technology[0].description}
             costs={technology.map((ressource) => ressource.ressource_cost)}
-            resourceImages={technology.map((ressource) => ressource.ressource_image)}
+            resourceImages={technology.map(
+              (ressource) => ressource.ressource_image
+            )}
             technologyID={technologyID}
             handleButton={handleAdd}
           />

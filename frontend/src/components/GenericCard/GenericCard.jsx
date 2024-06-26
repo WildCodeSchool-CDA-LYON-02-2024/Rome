@@ -21,13 +21,11 @@ export default function GenericCard({
 
   return (
     <section className="globalContainer">
-      <div className="buttonXContainer">
-        <button className="buttonX" onClick={handlePrev}>
-          X
-        </button>
-      </div>
       <h2>{title}</h2>
       <div className="container">
+      <button className="buttonX" onClick={handlePrev}>
+          X
+        </button>
         <div className="imageContainer">
           <img src={image} alt={name} className="image" />
         </div>
