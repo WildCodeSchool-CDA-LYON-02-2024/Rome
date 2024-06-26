@@ -1,7 +1,7 @@
 import React from 'react'
 import building from '../services/buildings';
 import Button from '../components/Button';
-import ProgressBar from '../components/ProgressBar';
+
 
 
 function Map2({handleClick}) {
@@ -17,15 +17,6 @@ function Map2({handleClick}) {
     alert(`${building.name}`)
   }
 
-  const goldPercentage = building.ressources.filter((ressource) => ressource.name === 'gold')
-  const foodPercentage = building.ressources.filter(
-      (ressource) => ressource.name === 'food'
-    );
-
-    const widthGold = (120 * parseInt(goldPercentage[0].count)) / 100;
-  const widthFood= (140 * parseInt(foodPercentage[0].count)) / 100;
-  
-  
 
   return (
     <section className='section-building'>
@@ -40,25 +31,7 @@ function Map2({handleClick}) {
         <Button onClick={handleClick}>ALLIES</Button>
       </div>
 
-      <div
-        className='progressBar fill-background'
-        style={{ '--fill-width': `${widthFood}px`, '--bgColor': 'violet' }}
-      >
-        <ProgressBar>
-          <div className='progressBar-icon'>🍇</div>
-          <span className='text-progressBar'>{`${building.ressources[0].count}`}</span>
-        </ProgressBar>
-      </div>
-
-      <div
-        className='progressBar-or fill-background'
-        style={{ '--fill-width': `${widthGold}px`, '--bgColor': 'orange' }}
-      >
-        <ProgressBar>
-          <div className='progressBar-icon'>🪙</div>
-          <span className='text-progressBar'>{`${building.ressources[1].count}`}</span>
-        </ProgressBar>
-      </div>
+     
     </section>
   );
 }
