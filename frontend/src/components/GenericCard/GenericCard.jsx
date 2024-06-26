@@ -2,35 +2,19 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
 
-export default function GenericCard({ id, title, image, name, description }) {
-  const technologyID = parseInt(id);
-  const provinceID = 1;
+export default function GenericCard({
+  id,
+  title,
+  image,
+  name,
+  description,
+  handleButton,
+}) {
   const navigate = useNavigate();
-  //   const { userData } = useUserContext();
-
-  //   const role = userData && userData.user ? userData.user.role : null;
-  const handleAdd = (event) => {
-    event.preventDefault();
-    fetch(`http://localhost:3310/technology/${technologyID}`, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ provinceID }),
-    })
-      .then((response) => {
-        if (response.status === 201) {
-          console.info("technology research launched successfully.");
-          navigate("/technology");
-        }
-      })
-      .catch((err) => {
-        console.error("Error launching reseach :", err);
-      });
-  };
 
   const handlePrev = (event) => {
     event.preventDefault();
-    navigate("/technology");
+    navigate((-1));
   };
 
   return (
@@ -49,7 +33,7 @@ export default function GenericCard({ id, title, image, name, description }) {
           <p className="description">{description}</p>
         </div>
         <div>
-          <button className="button" onClick={handleAdd}>
+          <button className="button" onClick={handleButton}>
             Lancer la recherche
           </button>
         </div>
