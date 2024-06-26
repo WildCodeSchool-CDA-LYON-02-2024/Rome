@@ -14,10 +14,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/", // Shouldn't this be /province/:id ?
-        element: <Home />,
-      },
+      // {
+      //   path: "/", // Shouldn't this be /province/:id ?
+      //   element: <Home />,
+      // },
       {
         path: "/buildings",
         element: <Buildings />,
