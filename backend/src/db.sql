@@ -146,3 +146,12 @@ CREATE TABLE
         FOREIGN KEY (province_id) REFERENCES province (id),
         FOREIGN KEY (building_id) REFERENCES building (id)
     );
+
+    -- create the ressources table
+    CREATE TABLE 
+    resources (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    image VARCHAR(255)
+);
