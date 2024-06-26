@@ -3,6 +3,7 @@ import userController from "./controller/userController.js";
 import verifyToken from "./model/service/verifyToken.js";
 import technologyController from "./controller/technologyController.js";
 import buildingController from "./controller/buildingController.js";
+import ressourceController from "./controller/ressourceController.js";
 
 const router = express.Router();
 
@@ -69,5 +70,12 @@ router.get("/province/:id/battle"); // avoit la liste des battle pour une provin
 router.get("/province/:id/inhabitant"); //avoir l'information sur la population d'une province en particulier
 router.post("/province/:id/inhabitant"); //pour créer un nouvel habitant dans une province en particulier
 router.put("/province/:id/inhabitant/:id"); //pour modifier un habitant en particulier (role)
+
+
+// Ressource
+router.get("/ressource", ressourceController.read); //pour obtenir la liste des ressources en général
+router.get("/ressource/:id", ressourceController.readById); //pour obtenir les informations d'une ressource en particulier
+router.get("/province/:id/ressource", ressourceController.readByProvince); //avoir l'information sur les ressources d'une province en particulier
+router.put("/province/:id/ressource", ressourceController.update); //pour modifier une ressource d'une en particulier (role)
 
 export default router;
