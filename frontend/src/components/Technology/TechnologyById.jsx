@@ -6,6 +6,8 @@ export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const { id } = useParams();
   const technologyID = parseInt(id);
+  const provinceID = 1;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3310/technology/${technologyID}`)
@@ -15,6 +17,25 @@ export default function TechnologyById() {
         console.error(err);
       });
   }, []);
+
+  const handleAdd = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:3310/technology/${technologyID}`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provinceID }),
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          console.info("technology research launched successfully.");
+          navigate("/technology");
+        }
+      })
+      .catch((err) => {
+        console.error("Error launching reseach :", err);
+      });
+  };
 
   return (
     <section>
@@ -29,6 +50,7 @@ export default function TechnologyById() {
               name={technologies.name}
               description={technologies.description}
               technologyID={technologyID}
+              handleButton={handleAdd}
             />
           ))}
       </div>
