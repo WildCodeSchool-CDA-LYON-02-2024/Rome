@@ -13,7 +13,8 @@ Vous aurez l'opportunité de découvrir les multiples facettes de la gestion imp
 Pour ériger un bâtiment dans nos provinces romaines, il faut des ressources minières (bois, pierre, fer) et du temps. Une fois édifié, chaque bâtiment peut être amélioré en dépensant davantage d'or et de ressources.
 
 Niveaux de Bâtiments :
-- Niveau 1 : Or. 
+
+- Niveau 1 : Or.
 - Niveau 2 : Or x2, ressources minières supplémentaires, temps, ou Hôtel de Ville de niveau 2.
 - Niveau 3 : Or x3, ressources minières supplémentaires, temps, ou Hôtel de Ville de niveau 3.
 
@@ -37,9 +38,10 @@ Les avancées technologiques se réalisent en investissant des ressources et du 
 ### V. Batailles
 
 Les batailles entre provinces nécessitent des ressources militaires, du temps et de l'or. Chaque unité de légion a des points de vie, d'attaque et de défense lesquels dépendent du niveau de l'armée, du nombre et du type de guerrier. Par exemple :
-- Légionnaire : 50 points de vie, 10 d'attaque et 10 de défense. 
+
+- Légionnaire : 50 points de vie, 10 d'attaque et 10 de défense.
 - Deux Légionnaires : 100 points de vie, 20 d'attaque et 20 de défense.
-Les points de vie de la province attaquée diminuent si sa défense est inférieure à l'attaque de l'assaillant. Si les points de vie de la province attaquée atteignent zéro, l'assaillant gagne la bataille. La victoire permet des actions telles que le pillage ou l’annexion de la province conquise.
+  Les points de vie de la province attaquée diminuent si sa défense est inférieure à l'attaque de l'assaillant. Si les points de vie de la province attaquée atteignent zéro, l'assaillant gagne la bataille. La victoire permet des actions telles que le pillage ou l’annexion de la province conquise.
 
 ### VI. Gestion du Temps
 
@@ -51,4 +53,4 @@ Les relations diplomatiques et alliances avec d'autres provinces permettent de n
 
 ### VIII. Formation des Légions
 
-Les citoyens peuvent être formés en divers types de légionnaires, tels que fantassins, archers, lanciers et cavaliers. Chaque type  de formation nécessite des ressources spécifiques, du temps, et parfois des recherches préalables pour être débloqué.
+Les citoyens peuvent être formés en divers types de légionnaires, tels que fantassins, archers, lanciers et cavaliers. Chaque type de formation nécessite des ressources spécifiques, du temps, et parfois des recherches préalables pour être débloqué.

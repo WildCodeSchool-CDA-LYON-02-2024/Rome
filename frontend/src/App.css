@@ -54,4 +54,5 @@ object-fit: cover;
      canvas {
     height: 80vh; /* Ajuster la hauteur du canvas pour les écrans de bureau */
   }
+    
 }

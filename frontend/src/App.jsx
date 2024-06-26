@@ -1,6 +1,7 @@
 // import './App.css'
 
 import Map2 from "./pages/Map2";
+import { Outlet } from 'react-router-dom';
 import './App2.css'
 
 
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+      <Outlet/>
       <div className="title-app-container">
         <h1 className='title-app'>ROME ANTIQUE</h1>
       </div>
@@ -21,4 +23,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

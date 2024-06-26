@@ -1,155 +1,147 @@
-INSERT INTO
-    user (username, email, password, image)
-VALUES
-    (
-        'julius_caesar',
+USE rome;
+
+INSERT INTO user (username, email, password, image)
+VALUES ('julius_caesar',
         'caesar@rome.com',
         'password123',
-        'caesar.jpg'
-    ),
-    (
-        'augustus',
+        'caesar.jpg'),
+       ('augustus',
         'augustus@rome.com',
         'password456',
-        'augustus.jpg'
-    ),
-    (
-        'cleopatra',
+        'augustus.jpg'),
+       ('cleopatra',
         'cleopatra@egypt.com',
         'password789',
-        'cleopatra.jpg'
-    ),
-    (
-        'marcus_aurelius',
+        'cleopatra.jpg'),
+       ('marcus_aurelius',
         'marcus@rome.com',
         'password321',
-        'marcus.jpg'
-    ),
-    (
-        'nero',
+        'marcus.jpg'),
+       ('nero',
         'nero@rome.com',
         'password654',
-        'nero.jpg'
-    ),
-    (
-        'caligula',
+        'nero.jpg'),
+       ('caligula',
         'caligula@rome.com',
         'password987',
-        'caligula.jpg'
-    );
+        'caligula.jpg');
 
+-- Insérer des données dans la table period
 INSERT INTO
     period (name)
 VALUES
-    ('Republican Rome'),
-    ('Imperial Rome'),
-    ('Late Antiquity'),
-    ('Early Empire'),
-    ('Middle Empire'),
-    ('Crisis of the Third Century');
+    ('Age de pierre'),
+    ('Age de bronze'),
+    ('Age de fer');
 
+-- Insérer des données dans la table alliance
 INSERT INTO
     alliance (name, description, image)
 VALUES
     (
         'Roman Senate',
         'The ruling body of Republican Rome',
-        'senate.jpg'
-    ),
-    (
-        'Triumvirate',
+        'senate.jpg'),
+       ('Triumvirate',
         'Alliance between three powerful leaders',
-        'triumvirate.jpg'
-    ),
-    (
-        'Ptolemaic Dynasty',
+        'triumvirate.jpg'),
+       ('Ptolemaic Dynasty',
         'The ruling dynasty of Egypt',
-        'ptolemaic.jpg'
-    ),
-    (
-        'Julio-Claudian Dynasty',
+        'ptolemaic.jpg'),
+       ('Julio-Claudian Dynasty',
         'The first dynasty of Roman emperors',
-        'julio_claudian.jpg'
-    ),
-    (
-        'Flavian Dynasty',
+        'julio_claudian.jpg'),
+       ('Flavian Dynasty',
         'Dynasty following the Julio-Claudians',
-        'flavian.jpg'
-    ),
-    (
-        'Nerva-Antonine Dynasty',
+        'flavian.jpg'),
+       ('Nerva-Antonine Dynasty',
         'Dynasty known for adopting capable successors',
-        'nerva_antonine.jpg'
-    );
+        'nerva_antonine.jpg');
 
+-- Insérer des données dans la table building
 INSERT INTO
     building (name, description, image)
 VALUES
     (
         'Colosseum',
         'A large amphitheatre in Rome',
-        'colosseum.jpg'
-    ),
-    (
-        'Pantheon',
+        'colosseum.jpg'),
+       ('Pantheon',
         'A former Roman temple, now a church',
-        'pantheon.jpg'
-    ),
-    (
-        'Aqueduct',
+        'pantheon.jpg'),
+       ('Aqueduct',
         'A structure to convey water',
-        'aqueduct.jpg'
-    ),
-    (
-        'Circus Maximus',
+        'aqueduct.jpg'),
+       ('Circus Maximus',
         'A large chariot racing stadium',
-        'circus_maximus.jpg'
-    ),
-    (
-        'Roman Forum',
+        'circus_maximus.jpg'),
+       ('Roman Forum',
         'The center of public life in Rome',
-        'roman_forum.jpg'
-    ),
-    (
-        'Baths of Caracalla',
+        'roman_forum.jpg'),
+       ('Baths of Caracalla',
         'Large public baths in Rome',
-        'baths_of_caracalla.jpg'
-    );
+        'baths_of_caracalla.jpg');
 
+-- Insérer des données dans la table technology
 INSERT INTO
-    technology (name, description, image)
+    technology (name, description, image, category)
 VALUES
     (
-        'Concrete',
-        'A building material invented by the Romans',
-        'concrete.jpg'
+        'Hache',
+        'Outil utilisé pour couper du bois, Bonus : génération de bois +10%',
+        '/images/axe.png',
+        1
     ),
     (
-        'Roads',
-        'Extensive network of roads built by the Romans',
-        'roads.jpg'
+        'pioche',
+        'Outil utilisé pour miner de la pierre, Bonus : génération de pierre +10%',
+        '/images/pickaxe.png',
+        1
     ),
     (
-        'Aqueducts',
-        'Engineering marvels to supply water',
-        'aqueducts.jpg'
+        "Mine d'or",
+        'Permet la création de mine d\'or',
+        '/images/goldMine.png',
+        1
     ),
     (
-        'Arches',
-        'Architectural innovation allowing strong structures',
-        'arches.jpg'
+        'elevage',
+        'Permet d\'avoir un élevage de bétail pour générer de la viande',
+        '/images/elevage.png',
+        1
     ),
     (
-        'Roman Numerals',
-        'Numerical system used in ancient Rome',
-        'roman_numerals.jpg'
+        'Fourche',
+        'Outil permettant de travailler la terre, Bonus',
+        '/images/fork.png',
+        1
     ),
     (
-        'Sewers',
-        'Advanced sanitation system',
-        'sewers.jpg'
+        'Arc',
+        'Permet la formation d\'archer',
+        '/images/bow.png',
+        2
+    ),
+    (
+        'cheval',
+        'Permet la formation de cavalier',
+        '/images/horse.png',
+        2
+    ),
+    (
+        'lance',
+        'Permet la formation de lancier',
+        '/images/lance.png',
+        2
+    ),
+    (
+        'Epée',
+        'Permet la formation de légionnaire',
+        '/images/sword.png',
+        3
     );
 
+-- Insérer des données dans la table role
 INSERT INTO
     role (name, status, description, image)
 VALUES
@@ -157,39 +149,29 @@ VALUES
         'Legionary',
         'Active',
         'A Roman soldier',
-        'legionary.jpg'
-    ),
-    (
-        'Senator',
+        'legionary.jpg'),
+       ('Senator',
         'Active',
         'A member of the Roman Senate',
-        'senator.jpg'
-    ),
-    (
-        'Emperor',
+        'senator.jpg'),
+       ('Emperor',
         'Active',
         'The ruler of the Roman Empire',
-        'emperor.jpg'
-    ),
-    (
-        'Gladiator',
+        'emperor.jpg'),
+       ('Gladiator',
         'Active',
         'A combatant in the arena',
-        'gladiator.jpg'
-    ),
-    (
-        'Praetorian Guard',
+        'gladiator.jpg'),
+       ('Praetorian Guard',
         'Active',
         'Elite unit of the Imperial Roman army',
-        'praetorian_guard.jpg'
-    ),
-    (
-        'Merchant',
+        'praetorian_guard.jpg'),
+       ('Merchant',
         'Active',
         'A trader and businessman',
-        'merchant.jpg'
-    );
+        'merchant.jpg');
 
+-- Insérer des données dans la table user_alliance
 INSERT INTO
     user_alliance (user_id, alliance_id)
 VALUES
@@ -200,6 +182,7 @@ VALUES
     (5, 5),
     (6, 6);
 
+-- Insérer des données dans la table battle
 INSERT INTO
     battle (
         resume,
@@ -216,18 +199,14 @@ VALUES
         '31-09-02',
         1,
         3,
-        1
-    ),
-    (
-        'Battle of Philippi',
+        1),
+       ('Battle of Philippi',
         '42-10-03',
         '42-10-23',
         2,
         1,
-        2
-    ),
-    (
-        'Battle of Milvian Bridge',
+        2),
+       ('Battle of Milvian Bridge',
         '312-10-28',
         '312-10-28',
         4,
@@ -236,21 +215,19 @@ VALUES
     ),
     (
         'Battle of the Teutoburg Forest',
-        '9-09-09',
-        '9-09-11',
+        '09-09-09',
+        '09-09-11',
         6,
         4,
-        6
-    ),
-    (
-        'Battle of Zama',
+        6),
+       ('Battle of Zama',
         '202-10-19',
         '202-10-19',
         5,
         6,
-        5
-    );
+        5);
 
+-- Insérer des données dans la table province
 INSERT INTO
     province (
         name,
@@ -269,54 +246,44 @@ VALUES
         1,
         1,
         1,
-        1
-    ),
-    (
-        'Egypt',
+        1),
+       ('Egypt',
         'Region in North Africa',
         'egypt.jpg',
         2,
         3,
         1,
-        3
-    ),
-    (
-        'Britannia',
+        3),
+       ('Britannia',
         'Region in Northern Europe',
         'britannia.jpg',
         3,
         2,
         2,
-        2
-    ),
-    (
-        'Hispania',
+        2),
+       ('Hispania',
         'Region in the Iberian Peninsula',
         'hispania.jpg',
-        4,
+        1,
         4,
         3,
-        4
-    ),
-    (
-        'Dacia',
+        4),
+       ('Dacia',
         'Region in Eastern Europe',
         'dacia.jpg',
-        5,
+        2,
         5,
         2,
-        5
-    ),
-    (
-        'Asia',
+        5),
+       ('Asia',
         'Region in Asia Minor',
         'asia.jpg',
-        6,
+        3,
         6,
         1,
-        6
-    );
+        6);
 
+-- Insérer des données dans la table inhabitant
 INSERT INTO
     inhabitant (
         health,
@@ -335,7 +302,7 @@ VALUES
     (100, 50, 55, 'merchant.jpg', 6, 6);
 
 INSERT INTO
-    ressource_technology (technology_id, province_id)
+    province_technology (technology_id, province_id)
 VALUES
     (1, 1),
     (2, 2),
