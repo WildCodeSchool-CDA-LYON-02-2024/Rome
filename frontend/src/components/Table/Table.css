@@ -12,6 +12,10 @@ table > thead {
     vertical-align: bottom;
 }
 
+.tHeadRow {
+    justify-content: center;
+}
+
 th, td {
     border: 1px solid #ddd;
     padding: 8px;

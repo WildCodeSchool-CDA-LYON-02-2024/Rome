@@ -6,7 +6,7 @@ export default function Table({ buildings }) {
     <>
       <table>
         <thead>
-          <tr>
+          <tr className="tHeadRow">
             <th scope="col">Nom</th>
             <th scope="col">Image</th>
             <th scope="col">Description</th>
