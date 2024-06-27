@@ -5,21 +5,19 @@ import GenericCard from "../GenericCard/GenericCard";
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
-  const [quantities, setQuantities] = useState([]);
-  const [ressourceIDs, setRessourceIDs] = useState([]);
+
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
   const navigate = useNavigate();
 
   useEffect(() => {
+    //récupération de la liste des technologie
     fetch(`http://localhost:3310/technology/${technologyID}`)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.length > 0) {
           setTechnology(data);
-          setQuantities(data.map((item) => item.ressource_cost));
-          setRessourceIDs(data.map((item) => item.ressource_id));
         }
       })
       .catch((err) => {
@@ -28,7 +26,7 @@ export default function TechnologyById() {
           err
         );
       });
-
+    //récupération des ressources totales
     fetch(`http://localhost:3310/province/${provinceID}/ressource`)
       .then((response) => response.json())
       .then((data) => {
@@ -41,24 +39,27 @@ export default function TechnologyById() {
 
   const handleAdd = (event) => {
     event.preventDefault();
+    //ajout de la techologie dans la province correspondante (achat)
+    fetch(`http://localhost:3310/technology/${technologyID}`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ provinceID }),
+    })
+      .then((response) => {
+        if (response.status === 201) {
+          console.info(
+            "La recherche de la technologie a été lancée avec succès."
+          );
+          navigate("/technology");
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        console.error("Erreur lors du lancement de la recherche :", err);
+      });
 
-        // fetch(`http://localhost:3310/technology/${technologyID}`, {
-    //   method: "POST",
-    //   credentials: "include",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ provinceID }),
-    // })
-    //   .then((response) => {
-    //     if (response.status === 201) {
-    //       console.info("La recherche de la technologie a été lancée avec succès.");
-    //       navigate(-1);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error("Erreur lors du lancement de la recherche :", err);
-    //   });
-
-    // Subtract resource costs from quantities if IDs match
+    // soustrait du total des ressources si des id correspondent
     const updatedQuantities = ressource.map((resourceItem) => {
       const technologyItem = technology.find(
         (techItem) => techItem.ressource_id === resourceItem.id
@@ -75,21 +76,21 @@ export default function TechnologyById() {
     const quantitiesToUpdate = updatedQuantities.map((item) => item.quantity);
     const idsToUpdate = updatedQuantities.map((item) => item.id);
 
-    console.log(
-      `PUT request to /province/${provinceID}/ressource with quantities: ${quantitiesToUpdate}, ressourceIDs: ${idsToUpdate}`
-    );
-
+    //mise à jour des ressources totale suite à lancement de la recherche de la techno
     fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
       method: "PUT",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ quantities: quantitiesToUpdate, ressourceIDs: idsToUpdate, provinceID }),
+      body: JSON.stringify({
+        quantities: quantitiesToUpdate,
+        ressourceIDs: idsToUpdate,
+        provinceID,
+      }),
     })
       .then((response) => {
         if (response.status === 201) {
           console.info("Les ressources sont suffisantes.");
-          navigate(-1);
-          window.location.reload();
+          navigate("/technology");
         } else {
           console.error(
             "Erreur lors de la mise à jour des ressources :",

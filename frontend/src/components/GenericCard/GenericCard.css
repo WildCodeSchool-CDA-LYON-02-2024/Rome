@@ -11,12 +11,17 @@
 
 .container {
   height: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+
   gap: 1rem;
+}
+
+.topContainer{
+  display: flex;
 }
 
 .imageContainer {
@@ -53,12 +58,12 @@
 
 .informationContainer {
   height: auto;
-  width: 65%;
   padding: 1rem;
   box-shadow: inset 0 0 10px lightgray;
   border-radius: 2rem;
   font-size: 1.5rem;
   backdrop-filter: blur(10px);
+  min-width: 10rem;
 } 
 
 .description {

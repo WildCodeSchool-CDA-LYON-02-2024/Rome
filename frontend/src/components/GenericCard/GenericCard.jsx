@@ -10,7 +10,7 @@ export default function GenericCard({
   description,
   resourceImages,
   costs,
-    handleButton,
+  handleButton,
 }) {
   const navigate = useNavigate();
 
@@ -23,29 +23,33 @@ export default function GenericCard({
     <section className="globalContainer">
       <h2>{title}</h2>
       <div className="container">
-      <button className="buttonX" onClick={handlePrev}>
+        <button className="buttonX" onClick={handlePrev}>
           X
         </button>
-        <div className="imageContainer">
-          <img src={image} alt={name} className="image" />
-        </div>
-        <div className="informationContainer">
-          <p className="description">{description}</p>
-          <div className="costsContainer">
-            {costs.map((cost, index) => (
-              <p className="cost" key={index}>{cost}</p>
-            ))}
+        <div className="topContainer">
+          <div className="imageContainer">
+            <img src={image} alt={name} className="image" />
           </div>
-          <div className="resourceImagesContainer">
-            <div className="imageGallery">
-              {resourceImages.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Ressource ${index + 1}`}
-                  className="resourceImage"
-                />
+          <div className="informationContainer">
+            <p className="description">{description}</p>
+            <div className="costsContainer">
+              {costs.map((cost, index) => (
+                <p className="cost" key={index}>
+                  {cost}
+                </p>
               ))}
+            </div>
+            <div className="resourceImagesContainer">
+              <div className="imageGallery">
+                {resourceImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Ressource ${index + 1}`}
+                    className="resourceImage"
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
