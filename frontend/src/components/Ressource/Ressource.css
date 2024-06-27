@@ -1,0 +1,25 @@
+.ressourceGlobal {
+  position: absolute;
+  display: flex;
+  gap: 1.5rem;
+  right: 0;
+  margin-right: 2rem;
+}
+
+.ressourceContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ressourceName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ressourceIcon {
+  width: 30px;
+}

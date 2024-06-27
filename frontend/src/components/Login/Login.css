@@ -1,0 +1,97 @@
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/images/ROME.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.generalContainer {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.841);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(12, 1, 1, 0.3);
+  position: relative;
+}
+
+.generalContainer h2 {
+  margin-bottom: 20px;
+  color: #4d2600;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginContainer label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #4d2600;
+  font-size: 18px;
+}
+
+.loginContainer input {
+  width: calc(100% - 24px);
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #0cb834;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+}
+
+.loginContainer input:focus {
+  outline: none;
+  border-color: #8b0000;
+  width: calc(100% - 40px);
+}
+
+.loginContainer button {
+  width: 100%;
+  padding: 12px;
+  background-color: #db0e22;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginContainer button:hover {
+  background-color: #0ede2a;
+}
+
+.loginContainer div {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #4d2600;
+}
+
+.loginContainer div a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.loginContainer div a:hover {
+  text-decoration: underline;
+}
