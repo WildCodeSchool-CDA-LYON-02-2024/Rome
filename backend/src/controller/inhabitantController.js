@@ -20,6 +20,22 @@ const getInhabitantByProvinceId = (req, res) => {
     })
 };
 
+const getAllInhabitantsByProvinceIdAndUserId = (req,res) => {
+  const provinceId = parseInt(req.params.province_id, 10);
+  const userId = parseInt(req.params.user_id, 10);
+  inhabitantModel.selectByProvinceIdandByUserId(provinceId, userId)
+    .then((data) => {
+      res.status(200);
+      res.json(data);
+    }).catch((error) => {
+      if (res.status(404)) { 
+        res.json({message: 'Province not found'});
+      } else {
+        res.json({ message: error });
+      }
+     })
+}
+
 export default  {
-  getInhabitantByProvinceId
+  getInhabitantByProvinceId, getAllInhabitantsByProvinceIdAndUserId
 }
