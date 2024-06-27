@@ -3,10 +3,13 @@ import building from '../services/buildings';
 import Button from '../components/Button';
 import ProgressBar from '../components/ProgressBar';
 
+
 import Test from '../components/Test';
+import { useNavigate } from 'react-router-dom';
 
 function Map2({ handleClick }) {
   const [clickedButton, setClickedButton] = useState(null);
+  const navigate = useNavigate();
 
 
   const buildings = building.batiments;
@@ -16,8 +19,11 @@ function Map2({ handleClick }) {
 
   function handleClick(button) {
     setClickedButton(button);
+    
+    if (clickedButton === 'populations') {
+      navigate('/users/:user_id/provinces/:province_id/inhabitants');
+    }
   }
-
   function handleClickedMenu(building) {
     alert(`${building.name}`);
   }
@@ -44,7 +50,7 @@ function Map2({ handleClick }) {
         <Button onClick={() => handleClick('provinces')}>BATIMENTS</Button>
         <Button onClick={() => handleClick('allies')}>ALLIES</Button>
 
-        {clickedButton === 'populations' && (<Test/>)}
+      
       </div>
 
       <div

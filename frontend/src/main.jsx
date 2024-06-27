@@ -31,7 +31,10 @@ const router = createBrowserRouter([
         path: '/technology/:id',
         element: <TechnologyById />,
       },
-    
+      {
+        path: '/users/:user_id/provinces/:province_id/inhabitants',
+        element: <Test />,
+      },
     ],
   },
 ]);

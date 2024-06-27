@@ -8,6 +8,6 @@ export default function useApi() {
       baseURL: import.meta.env.VITE_BACKEND_URL, 
     });
   }
-console.dir(apiSingleton)
+
   return apiSingleton;
 }
