@@ -90,52 +90,52 @@ VALUES
     (
         'Colosseum',
         'A large amphitheatre in Rome',
-        'colosseum1.jpg'
+        '/images/buildings/colosseum1.jpg'
     ),
     (
         'Pantheon',
         'A former Roman temple, now a church',
-        'pantheon1.jpg'
+        '/images/buildings/pantheon1.jpg'
     ),
     (
         'Aqueduct',
         'A structure to convey water',
-        'aqueduct.jpg'
+        '/images/buildings/aqueduct.jpg'
     ),
     (
         'Circus Maximus',
         'A large chariot racing stadium',
-        'circus_maximus.jpg'
+        '/images/buildings/circus_maximus.jpg'
     ),
     (
         'Roman Forum',
         'The center of public life in Rome',
-        'forum1.png'
+        '/images/buildings/forum1.png'
     ),
     (
         'Baths of Caracalla',
         'Large public baths in Rome',
-        'baths_of_caracalla.jpg'
+        '/images/buildings/baths_of_caracalla.jpg'
     ),
     (
         'Barracks',
         'Military housing and training facility',
-        'barracks1.png'
+        '/images/buildings/barracks1.png'
     ),
     (
         'Racecourse',
         'A track for racing, particularly chariots',
-        'racecourse.png'
+        '/images/buildings/racecourse.png'
     ),
     (
         'Temple',
         'A building dedicated to worshipping gods',
-        'temple.png'
+        '/images/buildings/temple.png'
     ),
     (
         'House',
         'Residential building for citizens',
-        'house1.png'
+        '/images/buildings/house1.png'
     );
 
 -- Inserer des donnees dans la table technology
