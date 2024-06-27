@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
+import Ressource from "../Ressource/Ressource.jsx";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
@@ -106,6 +107,7 @@ export default function TechnologyById() {
   return (
     <section>
       <div>
+        <Ressource />
         {technology && (
           <GenericCard
             title={`Création de la technologie : ${technology[0].name}`}

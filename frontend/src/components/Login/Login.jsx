@@ -43,7 +43,7 @@ export default function Login() {
       .then((data) => {
         console.log(data);
 
-        navigate("/");
+        navigate("/province");
       })
       .catch(() => {
         console.error(error);
