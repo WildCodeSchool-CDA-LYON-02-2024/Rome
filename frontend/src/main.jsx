@@ -11,7 +11,6 @@ import TechnologyById from "./components/Technology/TechnologyById";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,28 +19,26 @@ const router = createBrowserRouter([
       {
         path: "/", // Shouldn't this be /province/:id ?
         element: <Home />,
-        children: [
-          {
-            path: "/buildings",
-            element: <Buildings />,
-          },
-          {
-            path: "/technology",
-            element: <TechnologyPage />,
-          },
-          {
-            path: "/technology/:id",
-            element: <TechnologyById />,
-          },
-        ],
       },
       {
-        path:"/user/login",
-        element:<Login/>,
+        path: "/buildings",
+        element: <Buildings />,
       },
       {
-        path:"/user/register",
-        element:<Register/>
+        path: "/technology",
+        element: <TechnologyPage />,
+      },
+      {
+        path: "/technology/:id",
+        element: <TechnologyById />,
+      },
+      {
+        path: "/user/login",
+        element: <Login />,
+      },
+      {
+        path: "/user/register",
+        element: <Register />,
       },
     ],
   },
