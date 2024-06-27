@@ -1,0 +1,62 @@
+.card-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+
+
+  gap: 2rem;
+  background-image: url("/images/background_map.png");
+}
+
+
+.card-container{
+  background-color: #e4e9feda;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 30%;
+  height: fit-content;
+  box-shadow: 1rem 1rem #1d2131;
+  border: 0.15rem solid #1d2131;
+}
+
+.card-img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0.65rem;
+}
+
+h1{
+  font-size: 2.5rem;
+}
+
+.description-container > p{
+  font-size: 1.45rem;
+  font-weight: 400;
+}
+
+ul{
+  display: flex;
+  gap: 20px;
+}
+li{
+  font-size: 1rem;
+  text-transform: uppercase;
+  list-style-type: none;
+}
+
+.button-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-button{
+  background-color: red;
+  color: black;
+  border-radius: 0.75rem;
+  border-style: none;
+  padding: 0.5rem 1rem;
+
+}
+

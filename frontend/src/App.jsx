@@ -6,6 +6,7 @@ import './App2.css'
 
 
 
+
 function App() {
 
   // let myScreenOrientation = window.screen.orientation;
@@ -19,6 +20,7 @@ function App() {
       </div>
 
       <Map2 />
+     
     </>
   );
 }

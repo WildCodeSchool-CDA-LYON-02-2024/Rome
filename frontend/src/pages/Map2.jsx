@@ -1,43 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react';
 import building from '../services/buildings';
 import Button from '../components/Button';
 import ProgressBar from '../components/ProgressBar';
 
+import Test from '../components/Test';
 
-function Map2({handleClick}) {
+function Map2({ handleClick }) {
+  const [clickedButton, setClickedButton] = useState(null);
+
+
   const buildings = building.batiments;
+  const buildingsToDisplay = buildings.filter(
+    (building) => building.state === 'enable'
+  );
 
-  const buildingsToDisplay = buildings.filter(building => building.state === "enable")
-  
-   function handleClick() {
-    alert('Clicked')
-   }
-  
-  function handleClickedMenu(building) {
-    alert(`${building.name}`)
+  function handleClick(button) {
+    setClickedButton(button);
   }
 
-  const goldPercentage = building.ressources.filter((ressource) => ressource.name === 'gold')
-  const foodPercentage = building.ressources.filter(
-      (ressource) => ressource.name === 'food'
-    );
+  function handleClickedMenu(building) {
+    alert(`${building.name}`);
+  }
 
-    const widthGold = (120 * parseInt(goldPercentage[0].count)) / 100;
-  const widthFood= (140 * parseInt(foodPercentage[0].count)) / 100;
-  
-  
+  const goldPercentage = building.ressources.filter(
+    (ressource) => ressource.name === 'gold'
+  );
+  const foodPercentage = building.ressources.filter(
+    (ressource) => ressource.name === 'food'
+  );
+
+  const widthGold = (120 * parseInt(goldPercentage[0].count)) / 100;
+  const widthFood = (140 * parseInt(foodPercentage[0].count)) / 100;
 
   return (
     <section className='section-building'>
       {buildingsToDisplay.map((building, index) => (
         <button key={index} onClick={() => handleClickedMenu(building)}>
-          <img className='building-img' src={building.image} alt='' />
+          <img className='building-img' src={building.image} alt="" />
         </button>
       ))}
       <div className='menu-icons'>
-        <Button onClick={handleClick}>ARMEE</Button>
-        <Button onClick={handleClick}>BATIMENTS</Button>
-        <Button onClick={handleClick}>ALLIES</Button>
+        <Button onClick={() => handleClick('populations')}>ARMEE</Button>
+        <Button onClick={() => handleClick('provinces')}>BATIMENTS</Button>
+        <Button onClick={() => handleClick('allies')}>ALLIES</Button>
+
+        {clickedButton === 'populations' && (<Test/>)}
       </div>
 
       <div
@@ -63,4 +70,4 @@ function Map2({handleClick}) {
   );
 }
 
-export default Map2
+export default Map2;
