@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import ceasar from "../../public/videos/ceasar.mp4";
-import ceasar2 from "../../public/videos/ceasar2.mp4";
-import ceasar3 from "../../public/videos/ceasar3.mp4";
-import ceasar4 from "../../public/videos/ceasar4.mp4";
-import ceasar5 from "../../public/videos/ceasar5.mp4";
+import ceasar from "/videos/ceasar.mp4";
+import ceasar2 from "/videos/ceasar2.mp4";
+import ceasar3 from "/videos/ceasar3.mp4";
+import ceasar4 from "/videos/ceasar4.mp4";
+import ceasar5 from "/videos/ceasar5.mp4";
 
 function Home() {
   const videos = [ceasar, ceasar2, ceasar3, ceasar4, ceasar5];
