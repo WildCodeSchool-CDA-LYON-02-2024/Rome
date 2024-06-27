@@ -76,7 +76,7 @@ body::before {
   width: calc(100% - 24px); /* Initial width minus padding */
   padding: 12px;
   margin-bottom: 20px;
-  border: 2px solid #ff0000; /* Red border color */
+  border: 2px solid #15e869; /* Red border color */
   border-radius: 5px;
   font-size: 16px;
   background-color: rgba(255, 255, 255, 0.9); /* Light background color */
@@ -108,7 +108,7 @@ body::before {
 }
 
 .registerContainer button:hover {
-  background-color: #b30000; /* Darker red on hover */
+  background-color: #08c922; /* Darker red on hover */
 }
 
 /* Link styling for login link */
