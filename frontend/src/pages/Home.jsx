@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import ceasar from "../../public/videos/ceasar.mp4";
 import ceasar2 from "../../public/videos/ceasar2.mp4";
@@ -30,7 +31,9 @@ function Home() {
       </video>
       <div className="content">
         <h1>Rome Antique</h1>
-        <button className="homeButton">Commencez votre aventure </button>
+        <Link to={"/user/login"}>
+          <button className="homeButton">Commencez votre aventure </button>
+        </Link>
       </div>
     </div>
   );
