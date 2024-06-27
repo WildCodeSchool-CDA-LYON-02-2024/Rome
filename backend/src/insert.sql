@@ -40,7 +40,7 @@ VALUES
         'caligula.jpg'
     );
 
--- Insérer des données dans la table period
+-- Inserer des donnees dans la table period
 INSERT INTO
     period (name)
 VALUES
@@ -48,7 +48,7 @@ VALUES
     ('Age de bronze'),
     ('Age de fer');
 
--- Insérer des données dans la table alliance
+-- Inserer des donnees dans la table alliance
 INSERT INTO
     alliance (name, description, image)
 VALUES
@@ -83,7 +83,7 @@ VALUES
         'nerva_antonine.jpg'
     );
 
--- Insérer des données dans la table building
+-- Inserer des donnees dans la table building
 INSERT INTO
     building (name, description, image)
 VALUES
@@ -118,31 +118,31 @@ VALUES
         'baths_of_caracalla.jpg'
     );
 
--- Insérer des données dans la table technology
+-- Inserer des donnees dans la table technology
 INSERT INTO
     technology (name, description, image, category)
 VALUES
     (
         'Hache',
-        'Outil utilisé pour couper du bois, Bonus : génération de bois +10%',
+        'Outil utilise pour couper du bois, Bonus : generation de bois +10%',
         '/images/axe.png',
         1
     ),
     (
         'pioche',
-        'Outil utilisé pour miner de la pierre, Bonus : génération de pierre +10%',
+        'Outil utilise pour miner de la pierre, Bonus : generation de pierre +10%',
         '/images/pickaxe.png',
         1
     ),
     (
         "Mine d'or",
-        'Permet la création de mine d\'or',
+        'Permet la creation de mine d\'or',
         '/images/goldMine.png',
         1
     ),
     (
         'elevage',
-        'Permet d\'avoir un élevage de bétail pour générer de la viande',
+        'Permet d\'avoir un elevage de betail pour generer de la viande',
         '/images/elevage.png',
         1
     ),
@@ -171,13 +171,13 @@ VALUES
         2
     ),
     (
-        'Epée',
-        'Permet la formation de légionnaire',
+        'Epee',
+        'Permet la formation de legionnaire',
         '/images/sword.png',
         3
     );
 
--- Insérer des données dans la table role
+-- Inserer des donnees dans la table role
 INSERT INTO
     role (name, status, description, image)
 VALUES
@@ -218,7 +218,7 @@ VALUES
         'merchant.jpg'
     );
 
--- Insérer des données dans la table resource
+-- Inserer des donnees dans la table resource
 INSERT INTO
     ressource (name, description, image)
 VALUES
@@ -234,21 +234,21 @@ VALUES
     ),
     (
         'Or',
-        'Métal précieux utilisé pour le commerce et la fabrication de bijoux',
+        'Metal precieux utilise pour le commerce et la fabrication de bijoux',
         '/images/gold.png'
     ),
     (
         'Viande',
-        "Ressource alimentaire obtenue par l'élevage",
+        "Ressource alimentaire obtenue par l'elevage",
         '/images/meat.png'
     ),
     (
         'Fer',
-        'Métal utilisé pour fabriquer des outils et des armes',
+        'Metal utilise pour fabriquer des outils et des armes',
         '/images/iron.png'
     );
 
--- Insérer des données dans la table user_alliance
+-- Inserer des donnees dans la table user_alliance
 INSERT INTO
     user_alliance (user_id, alliance_id)
 VALUES
@@ -259,7 +259,7 @@ VALUES
     (5, 5),
     (6, 6);
 
--- Insérer des données dans la table battle
+-- Inserer des donnees dans la table battle
 INSERT INTO
     battle (
         resume,
@@ -311,7 +311,7 @@ VALUES
         5
     );
 
--- Insérer des données dans la table province
+-- Inserer des donnees dans la table province
 INSERT INTO
     province (
         name,
@@ -378,7 +378,7 @@ VALUES
         6
     );
 
--- Insérer des données dans la table inhabitant
+-- Inserer des donnees dans la table inhabitant
 INSERT INTO
     inhabitant (
         health,
@@ -416,7 +416,7 @@ VALUES
     (5, 5, 5),
     (6, 6, 6);
 
--- Insérer des données dans la table province_ressource
+-- Inserer des donnees dans la table province_ressource
 INSERT INTO
     province_ressource (quantity, province_id, ressource_id)
 VALUES
