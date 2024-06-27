@@ -17,13 +17,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Cinzel', serif; /* Classical serif font */
+  font-family: "Cinzel", serif; /* Classical serif font */
   position: relative; /* Ensure relative positioning for child elements */
 }
 
 /* Transparent shadow effect */
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

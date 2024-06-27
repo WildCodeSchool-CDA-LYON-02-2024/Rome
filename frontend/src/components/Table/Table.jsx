@@ -10,6 +10,7 @@ export default function Table({ buildings }) {
             <th scope="col">Nom</th>
             <th scope="col">Image</th>
             <th scope="col">Description</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>

@@ -6,7 +6,7 @@
 
 :root {
   --fill-width: 30px;
-  --bgColor:grey;
+  --bgColor: grey;
 }
 
 .cinzel-decorative-regular {
@@ -27,13 +27,11 @@
   font-style: normal;
 }
 
-
-#root{
-      display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: url("./assets/background_map.png");
-
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("./assets/background_map.png");
 }
 
 .section-building {
@@ -45,7 +43,7 @@
   /* width:95%; */
   margin: auto;
 
-   /* height: 100px;
+  /* height: 100px;
    line-height: 100px; */
 }
 
@@ -58,7 +56,6 @@
   width: 100px;
   height: 50px;
   border-radius: 50px;
-
 }
 
 .menu-icons {
@@ -69,7 +66,7 @@
   left: 30px;
 }
 
-.progressBar{
+.progressBar {
   width: 140px;
   height: 15px;
   border-radius: 5px;
@@ -77,11 +74,11 @@
   position: absolute;
   right: 10px;
   /* top: 40px; */
-  top:80px;
-  background-color: #e0e0de,
+  top: 80px;
+  background-color: #e0e0de;
 }
 
-.progressBar-or{
+.progressBar-or {
   width: 120px;
   height: 15px;
   border-radius: 5px;
@@ -89,27 +86,26 @@
   position: absolute;
   right: 10px;
   /* top: 80px; */
-  top:110px;
-  background-color: #e0e0de,
+  top: 110px;
+  background-color: #e0e0de;
 }
 
-
-.progressBar-icon{
+.progressBar-icon {
   position: absolute;
   right: -9px;
- font-size: 25px;
- top: -10px;
- z-index: 1;
+  font-size: 25px;
+  top: -10px;
+  z-index: 1;
 }
 
-.text-progressBar{
+.text-progressBar {
   position: absolute;
   left: -40px;
-  top:-3px;
+  top: -3px;
   font-weight: bold;
 }
 
-.building-img{
+.building-img {
   width: 75px;
   height: 75px;
 }
@@ -120,11 +116,9 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color:var(--bgColor);
-  width:var(--fill-width);
-   transition: width 0.5s ease;
-
-
+  background-color: var(--bgColor);
+  width: var(--fill-width);
+  transition: width 0.5s ease;
 }
 
 .title-app {
@@ -134,13 +128,11 @@
   font-weight: 700;
   font-style: normal;
   padding: 16px;
-
 }
 
 .title-app-container {
   background-color: red;
 }
-
 
 @media only screen and (min-width: 800px) {
   /* Styles pour les écrans plus larges, en mode paysage */
@@ -168,11 +160,10 @@
 
 @media (orientation: portrait) {
   /* Styles spécifiques pour le mode portrait */
-  .menu-icons{
-display: flex;
-flex-direction: row;
-position: absolute;
-bottom: 0;
-
-}
+  .menu-icons {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+  }
 }

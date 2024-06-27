@@ -10,8 +10,10 @@ export default function Buildings() {
   const [error, setError] = useState(null);
 
   // Import provinceId dynamically with the :id in the route
+  const provinceID = 1;
+
   const fetchData = () => {
-    fetch("http://localhost:3310/province/1/building", {
+    fetch(`http://localhost:3310/province/${provinceID}/building`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,14 +40,15 @@ export default function Buildings() {
 
   return (
     <>
-      <h1>This is Buildings.jsx</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error: {error}</p>
-      ) : (
-        <Table buildings={buildings} />
-      )}
+      <section className="section-building">
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : (
+          <Table buildings={buildings} />
+        )}
+      </section>
     </>
   );
 }

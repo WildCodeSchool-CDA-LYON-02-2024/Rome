@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Register.css'
+import "./Register.css";
 
 export default function Register() {
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("");
-  
+
   const navigate = useNavigate();
 
-  
   const handleChangeUserName = (e) => {
     setUserName(e.target.value);
   };
@@ -40,7 +39,7 @@ export default function Register() {
         image,
       }),
     })
-    .then((response) => {
+      .then((response) => {
         if (response.status === 201) {
           navigate("/user/login");
         } else {
@@ -53,7 +52,7 @@ export default function Register() {
         console.error(err);
       });
   };
-  
+
   return (
     <section className="generalContainer">
       <h2>Enregistrement</h2>
@@ -66,7 +65,6 @@ export default function Register() {
             value={username}
             onChange={handleChangeUserName}
           />
-      
         </label>
         <label htmlFor="email">
           Email Address

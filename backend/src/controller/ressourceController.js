@@ -43,7 +43,11 @@ const update = (req, res) => {
   const provinceID = parseInt(id);
   const { quantities, ressourceIDs } = req.body;
 
-  if (!Array.isArray(quantities) || !Array.isArray(ressourceIDs) || quantities.length !== ressourceIDs.length) {
+  if (
+    !Array.isArray(quantities) ||
+    !Array.isArray(ressourceIDs) ||
+    quantities.length !== ressourceIDs.length
+  ) {
     return res.status(400).json({ message: "Invalid request data" });
   }
 
@@ -61,7 +65,6 @@ const update = (req, res) => {
       res.status(500).json({ message: "Failed to update resources" });
     });
 };
-
 
 export default {
   read,

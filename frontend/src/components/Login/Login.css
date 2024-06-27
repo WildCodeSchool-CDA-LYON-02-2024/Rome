@@ -14,12 +14,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Cinzel', serif; 
-  position: relative; 
+  font-family: "Cinzel", serif;
+  position: relative;
 }
 
 body::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
