@@ -1,143 +1,143 @@
-import image1 from "../assets/province1.png";
-import image2 from "../assets/province2.png";
-import image3 from "../assets/province3.png";
-import image4 from "../assets/province4.png";
-import image5 from "../assets/province5.png";
-import image6 from "../assets/province6.png";
-import image7 from "../assets/province7.png";
-import image8 from "../assets/province8.png";
-import image9 from "../assets/province9.png";
-import image10 from "../assets/province10.png";
-import image11 from "../assets/province11.png";
-import image12 from "../assets/province12.png";
-import image13 from "../assets/province13.png";
-import image14 from "../assets/province14.png";
+import barracks1 from "../../public/images/buildings/barracks1.png";
+import barracks2 from "../../public/images/buildings/barracks2.png";
+import barracks3 from "../../public/images/buildings/barracks3.png";
+import barracks4 from "../../public/images/buildings/barracks4.png";
+import forum1 from "../../public/images/buildings/forum1.png";
+import forum2 from "../../public/images/buildings/forum2.png";
+import forum3 from "../../public/images/buildings/forum3.png";
+import forum4 from "../../public/images/buildings/forum4.png";
+import house1 from "../../public/images/buildings/house1.png";
+import house2 from "../../public/images/buildings/house2.png";
+import house3 from "../../public/images/buildings/house3.png";
+import house4 from "../../public/images/buildings/house4.png";
+import racecourse from "../../public/images/buildings/racecourse.png";
+import temple from "../../public/images/buildings/temple.png";
 
 const building = {
   batiments: [
     {
-      name: "Batiment 1",
+      name: "Temple",
       positionX: 150,
       positionY: 150,
       state: "enable",
-      image: `${image1}`,
+      image: `${temple}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 2",
+      name: "House2",
       positionX: 200,
       positionY: 50,
       state: "enable",
-      image: `${image2}`,
+      image: `${house2}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 3",
+      name: "House3",
       positionX: 20,
       positionY: 150,
       state: "enable",
-      image: `${image3}`,
+      image: `${house3}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 4",
+      name: "House1",
       positionX: 30,
       positionY: 50,
       state: "enable",
-      image: `${image4}`,
+      image: `${house1}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 5",
+      name: "Racecourse",
       positionX: 30,
       positionY: 250,
       state: "enable",
-      image: `${image5}`,
+      image: `${racecourse}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 6",
+      name: "Forum2",
       positionX: 200,
       positionY: 350,
       state: "enable",
-      image: `${image6}`,
+      image: `${forum2}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 7",
+      name: "Forum3",
       positionX: 150,
       positionY: 250,
       state: "enable",
-      image: `${image7}`,
+      image: `${forum3}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 8",
+      name: "House4",
       positionX: 100,
       positionY: 400,
       state: "enable",
-      image: `${image8}`,
+      image: `${house4}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 9",
+      name: "Barracks1",
       positionX: 90,
       positionY: 310,
       state: "enable",
-      image: `${image9}`,
+      image: `${barracks1}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 10",
+      name: "Barracks2",
       positionX: 200,
       positionY: 450,
       state: "enable",
-      image: `${image10}`,
+      image: `${barracks2}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 11",
+      name: "Forum4",
       positionX: 250,
       positionY: 150,
       state: "enable",
-      image: `${image11}`,
+      image: `${forum4}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 12",
+      name: "Forum1",
       positionX: 100,
       positionY: 90,
       state: "enable",
-      image: `${image12}`,
+      image: `${forum1}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 13",
+      name: "Barracks3",
       positionX: 150,
       positionY: 150,
       state: "enable",
-      image: `${image13}`,
+      image: `${barracks3}`,
       width: "150",
       height: "150",
     },
     {
-      name: "Batiment 14",
+      name: "Barracks4",
       positionX: 30,
       positionY: 450,
       state: "enable",
-      image: `${image14}`,
+      image: `${barracks4}`,
       width: "150",
       height: "150",
     },
