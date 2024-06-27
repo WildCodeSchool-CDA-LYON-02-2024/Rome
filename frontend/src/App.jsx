@@ -4,6 +4,7 @@ import Map2 from "./pages/Map2";
 import "./App2.css";
 import Ressource from "./components/Ressource/Ressource";
 
+
 function App() {
   // let myScreenOrientation = window.screen.orientation;
   // myScreenOrientation.lock('landscape');
@@ -17,6 +18,7 @@ function App() {
       </div>
       <Ressource className='ressourceHome' />
       <Map2 />
+     
     </>
   );
 }
