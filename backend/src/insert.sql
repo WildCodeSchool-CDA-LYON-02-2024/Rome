@@ -90,12 +90,12 @@ VALUES
     (
         'Colosseum',
         'A large amphitheatre in Rome',
-        'colosseum.jpg'
+        'colosseum1.jpg'
     ),
     (
         'Pantheon',
         'A former Roman temple, now a church',
-        'pantheon.jpg'
+        'pantheon1.jpg'
     ),
     (
         'Aqueduct',
@@ -110,12 +110,32 @@ VALUES
     (
         'Roman Forum',
         'The center of public life in Rome',
-        'roman_forum.jpg'
+        'forum1.png'
     ),
     (
         'Baths of Caracalla',
         'Large public baths in Rome',
         'baths_of_caracalla.jpg'
+    ),
+    (
+        'Barracks',
+        'Military housing and training facility',
+        'barracks1.png'
+    ),
+    (
+        'Racecourse',
+        'A track for racing, particularly chariots',
+        'racecourse.png'
+    ),
+    (
+        'Temple',
+        'A building dedicated to worshipping gods',
+        'temple.png'
+    ),
+    (
+        'House',
+        'Residential building for citizens',
+        'house1.png'
     );
 
 -- Inserer des donnees dans la table technology
@@ -410,6 +430,15 @@ INSERT INTO
     province_building (level, province_id, building_id)
 VALUES
     (1, 1, 1),
+    (1, 1, 2),
+    (1, 1, 3),
+    (1, 1, 4),
+    (1, 1, 5),
+    (1, 1, 6),
+    (1, 1, 7),
+    (1, 1, 8),
+    (1, 1, 9),
+    (1, 1, 10),
     (2, 2, 2),
     (3, 3, 3),
     (4, 4, 4),
