@@ -47,17 +47,17 @@ export default function Technology() {
     <div className="allTech">
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(1)}</h3>
+          <h3 className="periodTechno">{getAgeName(1)}</h3>
         </div>
         <div className="technologyContainer">
           {stone.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
                 <div className="buttonContainer">
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
+                    (userTech) => userTech.name === tech.name,
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
@@ -75,17 +75,17 @@ export default function Technology() {
       </div>
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(2)}</h3>
+          <h3 className="periodTechno">{getAgeName(2)}</h3>
         </div>
         <div className="technologyContainer">
           {bronze.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
                 <div className="buttonContainer">
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
+                    (userTech) => userTech.name === tech.name,
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
@@ -103,17 +103,17 @@ export default function Technology() {
       </div>
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(3)}</h3>
+          <h3 className="periodTechno">{getAgeName(3)}</h3>
         </div>
         <div className="technologyContainer">
           {iron.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
                 <div className="buttonContainer">
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
+                    (userTech) => userTech.name === tech.name,
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (

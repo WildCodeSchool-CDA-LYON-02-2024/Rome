@@ -40,9 +40,9 @@
   backdrop-filter: blur(10px);
 }
 
-.description{
-    padding: 1rem;
-    width: 90%;
+.description {
+  padding: 1rem;
+  width: 90%;
 }
 
 .button {
@@ -56,26 +56,26 @@
   font-size: 1rem;
   cursor: pointer;
   color: goldenrod;
-  border:2px solid goldenrod ;
+  border: 2px solid goldenrod;
   font-weight: bold;
 }
 
-.buttonXContainer{
-width: 80%;
-display: flex;
-justify-content: flex-end;
+.buttonXContainer {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
 }
-.buttonX{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: darkred;
-    height: 2rem;
-    padding: 1rem;
-    border-radius: 2rem;
-    font-size: 1rem;
-    cursor: pointer;
-    color: goldenrod;
-    border:2px solid goldenrod ;
-    font-weight: bold;
+.buttonX {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darkred;
+  height: 2rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: goldenrod;
+  border: 2px solid goldenrod;
+  font-weight: bold;
 }

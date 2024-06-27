@@ -59,18 +59,31 @@ export class userModel {
     });
   }
 
+  update(username, email, password, image, id) {
+    return new Promise((resolve, reject) => {
+      bcrypt
+        .hash(password, 10)
+        .then((passwordHash) => {
+          const query = `UPDATE user SET username=?, email=?, password=?, image=? WHERE id=?`;
+          const values = [username, email, passwordHash, image, id];
+          this.connection.execute(query, values, (err, result) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          });
+        })
+        .catch((err) => {
+          reject(err); // Handle bcrypt hashing error
+        });
+    });
+  }
 
-update( username, email, password, image,id) {
-  return new Promise((resolve, reject) => {
-    bcrypt.hash(password, 10).then((passwordHash) => {
-      const query = `UPDATE user SET username=?, email=?, password=?, image=? WHERE id=?`;
-      const values = [
-        username,
-        email,
-        passwordHash,
-        image,
-        id,
-      ];
+  readById(id) {
+    return new Promise((resolve, reject) => {
+      const query = "select * from user where id = ?;";
+      const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
           reject(err);
@@ -78,28 +91,6 @@ update( username, email, password, image,id) {
           resolve(result);
         }
       });
-    }).catch((err) => {
-      reject(err); // Handle bcrypt hashing error
     });
-  });
+  }
 }
-
-readById(id) {
-  return new Promise((resolve, reject) => {
-    const query = "select * from user where id = ?;";
-    const values = [id];
-    this.connection.execute(query, values, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
-    });
-  });
-}
-
-}
-
-
-
-

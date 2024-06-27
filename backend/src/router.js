@@ -15,11 +15,11 @@ router.delete("/ouvrage/:id");
 
 // user
 
-router.post("/user/login",userController.login) // pour obtenir toute les information des users
-router.get("/user/:id",verifyToken,userController.readById)// pour obtenir toute les information d'un user en particulier via son id
-router.post("/user/register",userController.register) //pour créer un nouvel utilisateur
-router.put("/user/:id",userController.update) //pour mettre à jour le profil d'un utilisateur en particulier via son id  /// we should use the token here after the test in the dfront end //
-router.delete("/user/:id",verifyToken,userController.deleteById) // pour supprimer un user en particulier via son id  // everthing work corrctly 
+router.post("/user/login", userController.login); // pour obtenir toute les information des users
+router.get("/user/:id", verifyToken, userController.readById); // pour obtenir toute les information d'un user en particulier via son id
+router.post("/user/register", userController.register); //pour créer un nouvel utilisateur
+router.put("/user/:id", userController.update); //pour mettre à jour le profil d'un utilisateur en particulier via son id  /// we should use the token here after the test in the dfront end //
+router.delete("/user/:id", verifyToken, userController.deleteById); // pour supprimer un user en particulier via son id  // everthing work corrctly
 
 // Province
 router.get("/province"); //pour obtenir la liste complète des provinces, avec leurs informations
@@ -30,11 +30,10 @@ router.post("/province"); //pour créer une nouvelle province
 router.delete("/province/:id"); //pour supprimer une province en particulier via son id
 
 //  technology
-router.get("/technology", technologyController.read) //pour obtenir la liste complète des R&D possibles
-router.get("/technology/:id", technologyController.readById) //pour obtenir une R&D en particulier via son id
-router.get("/province/:id/technology", technologyController.readByProvince) //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
-router.post("/technology/:id", technologyController.add) //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
-
+router.get("/technology", technologyController.read); //pour obtenir la liste complète des R&D possibles
+router.get("/technology/:id", technologyController.readById); //pour obtenir une R&D en particulier via son id
+router.get("/province/:id/technology", technologyController.readByProvince); //pour obtenir la liste complète des R&D possibles pour une province //  JOIN avec province à faire
+router.post("/technology/:id", technologyController.add); //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
 
 // Building
 router.get(
@@ -70,7 +69,6 @@ router.get("/province/:id/battle"); // avoit la liste des battle pour une provin
 router.get("/province/:id/inhabitant"); //avoir l'information sur la population d'une province en particulier
 router.post("/province/:id/inhabitant"); //pour créer un nouvel habitant dans une province en particulier
 router.put("/province/:id/inhabitant/:id"); //pour modifier un habitant en particulier (role)
-
 
 // Ressource
 router.get("/ressource", ressourceController.read); //pour obtenir la liste des ressources en général

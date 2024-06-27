@@ -14,7 +14,7 @@ export default function GenericCard({
 
   const handlePrev = (event) => {
     event.preventDefault();
-    navigate((-1));
+    navigate(-1);
   };
 
   return (
