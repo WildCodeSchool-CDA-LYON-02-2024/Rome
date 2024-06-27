@@ -1,11 +1,9 @@
-import { json, useNavigate } from "react-router-dom";
+import Map2 from "./Map2";
 
 function Home() {
-  const navigate = useNavigate();
-
   return (
     <>
-      <h1>This is Home.jsx</h1>
+      <Map2 />
     </>
   );
 }

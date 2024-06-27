@@ -14,21 +14,23 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      // {
-      //   path: "/", // Shouldn't this be /province/:id ?
-      //   element: <Home />,
-      // },
       {
-        path: "/buildings",
-        element: <Buildings />,
-      },
-      {
-        path: "/technology",
-        element: <TechnologyPage />,
-      },
-      {
-        path: "/technology/:id",
-        element: <TechnologyById />,
+        path: "/", // Shouldn't this be /province/:id ?
+        element: <Home />,
+        children: [
+          {
+            path: "/buildings",
+            element: <Buildings />,
+          },
+          {
+            path: "/technology",
+            element: <TechnologyPage />,
+          },
+          {
+            path: "/technology/:id",
+            element: <TechnologyById />,
+          },
+        ],
       },
     ],
   },

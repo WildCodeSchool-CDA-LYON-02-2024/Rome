@@ -2,10 +2,8 @@ import React from "react";
 import buildingService from "../services/buildings";
 import Button from "../components/Button";
 import ProgressBar from "../components/ProgressBar";
-import { useNavigate } from "react-router-dom";
 
 function Map2({ handleClick }) {
-  const navigate = useNavigate();
   const buildings = buildingService.batiments;
 
   const buildingsToDisplay = buildings.filter(

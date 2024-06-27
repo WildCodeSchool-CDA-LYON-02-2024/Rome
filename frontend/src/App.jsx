@@ -1,6 +1,5 @@
 // import './App.css'
 
-import Map2 from "./pages/Map2";
 import { Outlet } from "react-router-dom";
 import "./App2.css";
 
@@ -14,8 +13,6 @@ function App() {
         <h1 className="title-app">ROME ANTIQUE</h1>
       </div>
       <Outlet />
-
-      <Map2 />
     </>
   );
 }
