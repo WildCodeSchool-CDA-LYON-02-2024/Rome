@@ -1,44 +1,52 @@
-
-/* Transparent shadow effect */
-body::before {
-  content: '';
-  position: absolute;
+/* Background overlay for the entire page */
+.page-background {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Cover the entire body */
+  width: 100%;
   height: 100%;
-  background-image: url("/images/ROME.jpg"); /* Path to your image */
+  background-image: url("/images/ROME.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0.2; /* Adjust opacity for desired effect */
-  z-index: 0; /* Place behind other content */
+  opacity: 0.2;
+  z-index: -1; /* Ensure the background is behind other content */
 }
 
 /* Container for registration section */
 .generalContainer {
   width: 100%;
-  max-width: 400px; /* Adjust the width as per your design */
+  max-width: 400px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  background: rgba(255, 255, 255, 0.841);
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
-  position: relative; /* Ensure relative positioning for child elements */
+  box-shadow: 0 0 10px rgba(12, 1, 1, 0.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Title styling */
 .generalContainer h2 {
   margin-bottom: 20px;
-  color: #4d2600; /* Dark brown text color */
+  color: #4d2600;
   font-size: 28px;
-  text-transform: uppercase; /* Uppercase text */
+  text-transform: uppercase;
 }
 
 /* Styling for registration form container */
 .registerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  margin: auto;
+  margin-top: 20px;
 }
 
 /* Label and input styling */
@@ -46,58 +54,55 @@ body::before {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #4d2600; /* Dark brown text color */
+  color: #4d2600;
   font-size: 18px;
 }
 
 .registerContainer input {
-  width: calc(100% - 24px); /* Initial width minus padding */
+  width: calc(100% - 24px);
   padding: 12px;
   margin-bottom: 20px;
-  border: 2px solid #15e869; /* Red border color */
+  border: 2px solid #15e869;
   border-radius: 5px;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.9); /* Light background color */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: width 0.3s ease; /* Transition width change */
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
 }
 
-/* Input border color change on focus */
 .registerContainer input:focus {
   outline: none;
-  border-color: #8b0000; /* Dark red border on focus */
-  width: calc(100% - 40px); /* Expanded width on focus */
+  border-color: #8b0000;
+  width: calc(100% - 40px);
 }
 
-/* Button styling */
 .registerContainer button {
   width: 100%;
   padding: 12px;
-  background-color: #8b0000; /* Dark red similar to Roman insignia */
+  background-color: #8b0000;
   border: none;
-  color: #fff; /* White text color */
-  font-size: 18px; /* Increased font size */
-  font-weight: bold; /* Bold font */
-  text-transform: uppercase; /* Uppercase text */
-  letter-spacing: 1px; /* Increased letter spacing */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .registerContainer button:hover {
-  background-color: #08c922; /* Darker red on hover */
+  background-color: #08c922;
 }
 
-/* Link styling for login link */
 .registerContainer div {
   margin-top: 10px;
   font-size: 14px;
-  color: #4d2600; /* Dark brown text color */
+  color: #4d2600;
 }
 
 .registerContainer div a {
-  color: #007bff; /* Blue link color */
+  color: #007bff;
   text-decoration: none;
 }
 

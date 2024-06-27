@@ -1,4 +1,5 @@
-body::before {
+/* Apply background image to the container using ::before */
+.generalContainer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -9,7 +10,7 @@ body::before {
   background-size: cover;
   background-position: center;
   opacity: 0.2;
-  z-index: 0;
+  z-index: -1; /* Ensure the background is behind the container */
 }
 
 .generalContainer {
@@ -20,7 +21,10 @@ body::before {
   text-align: center;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(12, 1, 1, 0.3);
-  position: relative;
+  position: absolute;
+  top: 50%; /* Positioning in the center vertically */
+  left: 50%; /* Positioning in the center horizontally */
+  transform: translate(-50%, -50%); /* Centering trick */
 }
 
 .generalContainer h2 {
