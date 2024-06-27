@@ -78,7 +78,7 @@ export default function Login() {
         <div>
           Vous n'avez pas encore de compte ?{" "}
           <span>
-            <Link to="/register">Enregistrez-vous</Link>
+            <Link to="/user/register">Enregistrez-vous</Link>
           </span>
         </div>
       </div>
