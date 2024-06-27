@@ -38,23 +38,30 @@ const readByProvince = (req, res) => {
       res.json(error);
     });
 };
-
 const update = (req, res) => {
-  // Extract the item data from the request body
   const id = req.params.id;
   const provinceID = parseInt(id);
-  const { quantity, ressourceID } = req.body;
+  const { quantities, ressourceIDs } = req.body;
 
-  ressourceModel
-    .updateByProvince(quantity, provinceID, ressourceID)
+  if (!Array.isArray(quantities) || !Array.isArray(ressourceIDs) || quantities.length !== ressourceIDs.length) {
+    return res.status(400).json({ message: "Invalid request data" });
+  }
+
+  const updatePromises = quantities.map((quantity, index) => {
+    const ressourceID = ressourceIDs[index];
+    return ressourceModel.updateByProvince(quantity, provinceID, ressourceID);
+  });
+
+  Promise.all(updatePromises)
     .then(() => {
-      res.status(201).json({ message: "ressource updated successfully" });
+      res.status(201).json({ message: "Resources updated successfully" });
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ message: "Failed to update ressource" });
+      res.status(500).json({ message: "Failed to update resources" });
     });
 };
+
 
 export default {
   read,

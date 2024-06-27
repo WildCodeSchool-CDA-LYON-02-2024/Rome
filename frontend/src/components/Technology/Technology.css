@@ -1,66 +1,68 @@
-.technologyContainer {
-  display: flex;
-  width: 100%;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+.technologyContainer{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.imageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.5rem;
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
 }
 
-.allTech {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 1.5rem;
-  background-image: url("/images/background_map.png");
-  width: 100%;
+.allTech{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background-image: url("/images/background_map.png");
+    width: 100%;
 }
 
-.age {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
+.age{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 2rem;
+
 }
 
-.periodTechno {
-  width: 10rem;
+.periodTechno{
+    width: 8rem;
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 1rem;
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
-.techAcquise {
-  color: green;
+.techAcquise{
+color: green;
 }
 
-.rechercheTech {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: darkred;
-  height: 2rem;
-  padding: 1rem;
-  border-radius: 2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  color: goldenrod;
-  border: 2px solid goldenrod;
-  font-weight: bold;
+.rechercheTech{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkred;
+    height: 2rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    color: goldenrod;
+    border:2px solid goldenrod ;
+    font-weight: bold;
 }
