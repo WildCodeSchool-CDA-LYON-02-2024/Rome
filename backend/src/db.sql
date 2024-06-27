@@ -162,12 +162,25 @@ CREATE TABLE
     );
 
 -- Créer la table province_ressource
-CREATE TABLE province_ressource (
-    id INT NOT NULL AUTO_INCREMENT,
-    quantity INT NOT NULL,
-    province_id INT NOT NULL,
-    ressource_id INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (province_id) REFERENCES province (id),
-    FOREIGN KEY (ressource_id) REFERENCES ressource (id)
-);
+CREATE TABLE
+    province_ressource (
+        id INT NOT NULL AUTO_INCREMENT,
+        quantity INT NOT NULL,
+        province_id INT NOT NULL,
+        ressource_id INT NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (province_id) REFERENCES province (id),
+        FOREIGN KEY (ressource_id) REFERENCES ressource (id)
+    );
+
+-- Create the technology_ressource table
+CREATE TABLE
+    technology_ressource (
+        id INT NOT NULL AUTO_INCREMENT,
+        technology_id INT NOT NULL,
+        ressource_id INT NOT NULL,
+        cost INT NOT NULL,
+        PRIMARY KEY (id),
+        FOREIGN KEY (technology_id) REFERENCES technology (id),
+        FOREIGN KEY (ressource_id) REFERENCES ressource (id)
+    );

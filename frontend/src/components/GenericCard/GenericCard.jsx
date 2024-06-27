@@ -8,29 +8,50 @@ export default function GenericCard({
   image,
   name,
   description,
+  resourceImages,
+  costs,
   handleButton,
 }) {
   const navigate = useNavigate();
 
   const handlePrev = (event) => {
     event.preventDefault();
-    navigate((-1));
+    navigate(-1);
   };
 
   return (
     <section className="globalContainer">
-      <div className="buttonXContainer">
+      <h2>{title}</h2>
+      <div className="container">
         <button className="buttonX" onClick={handlePrev}>
           X
         </button>
-      </div>
-      <h2>{title}</h2>
-      <div className="container">
-        <div className="imageContainer">
-          <img src={image} alt={name} className="image" />
-        </div>
-        <div className="informationContainer">
-          <p className="description">{description}</p>
+        <div className="topContainer">
+          <div className="imageContainer">
+            <img src={image} alt={name} className="image" />
+          </div>
+          <div className="informationContainer">
+            <p className="description">{description}</p>
+            <div className="costsContainer">
+              {costs.map((cost, index) => (
+                <p className="cost" key={index}>
+                  {cost}
+                </p>
+              ))}
+            </div>
+            <div className="resourceImagesContainer">
+              <div className="imageGallery">
+                {resourceImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Ressource ${index + 1}`}
+                    className="resourceImage"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div>
           <button className="button" onClick={handleButton}>
