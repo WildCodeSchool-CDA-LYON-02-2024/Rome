@@ -12,7 +12,7 @@ import TechnologyById from "./components/Technology/TechnologyById";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     children: [
       // {
       //   path: "/", // Shouldn't this be /province/:id ?
