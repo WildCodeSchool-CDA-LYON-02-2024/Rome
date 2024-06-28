@@ -104,10 +104,13 @@ export default function TechnologyById() {
       });
   };
 
+ 
+
   return (
     <section>
+     
       <div>
-        <Ressource/>
+        <Ressource />
         {technology && (
           <GenericCard
             title={`Création de la technologie : ${technology[0].name}`}
