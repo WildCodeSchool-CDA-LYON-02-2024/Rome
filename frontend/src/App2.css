@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Cinzel Decorative", serif;
 }
 
 :root {
@@ -56,18 +57,26 @@
 }
 
 .icons{
-  width:100px;
+  width:127px;
   height: 50px;
-  border-radius: 50px;
- 
+  /* border-radius: 50px; */
+  border:none;
+  background-color: black;
+  color: white;
+ font-family: "Cinzel Decorative", serif;
+  cursor: pointer;
+  border-radius: 5px;
 }
+
+
 
 .menu-icons{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 25px;
   position: absolute;
   left: 30px;
+  top: 5px;
 }
 
 .building-img{
