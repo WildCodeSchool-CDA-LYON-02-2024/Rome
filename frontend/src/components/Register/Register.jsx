@@ -54,6 +54,7 @@ export default function Register() {
   };
 
   return (
+    <div className="generalContainer-wrapper">
     <section className="generalContainer">
       <h2>Enregistrement</h2>
       <div className="registerContainer">
@@ -98,6 +99,7 @@ export default function Register() {
 
         <button onClick={handleSubmit}>Confirmer</button>
       </div>
-    </section>
+      </section>
+      </div>
   );
 }

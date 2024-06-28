@@ -50,6 +50,7 @@ export default function Login() {
       });
   };
   return (
+    <div className="generalContainer-wrapper">
     <section className="generalContainer">
       <h2>Connectez-vous</h2>
       <div className="loginContainer">
@@ -81,6 +82,7 @@ export default function Login() {
           </span>
         </div>
       </div>
-    </section>
+      </section>
+      </div>
   );
 }
