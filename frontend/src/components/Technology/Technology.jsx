@@ -48,7 +48,7 @@ export default function Technology() {
       event.preventDefault();
       navigate('/province');
     };
-  
+
   return (
     <div className='allTech'>
       <button className='buttonX' onClick={handlePrev}>

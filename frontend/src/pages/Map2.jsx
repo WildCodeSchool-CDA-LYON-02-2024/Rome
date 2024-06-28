@@ -19,7 +19,7 @@ function Map2({ handleClick }) {
 
   // function handleClick(button) {
   //   setClickedButton(button);
-    
+
   //   if (clickedButton === 'populations') {
   //     navigate('/users/:user_id/provinces/:province_id/inhabitants');
   //   }
@@ -39,7 +39,7 @@ function Map2({ handleClick }) {
          break;
        default:return navigate('/province')
  }
-    
+
    }
   function handleClickedMenu(building) {
     alert(`${building.name}`);
@@ -59,10 +59,10 @@ function Map2({ handleClick }) {
         <Button onClick={() => handleClick('provinces')}>BATIMENTS</Button>
         <Button onClick={() => handleClick('technologies')}>TECHNOLOGIES</Button>
 
-      
+
       </div>
 
-     
+
     </section>
   );
 }

@@ -1,14 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Button({ children, onClick }) {
-  
-
- 
   return (
-    <button className='icons'onClick={onClick}>
+    <button className="icons" onClick={onClick}>
       {children}
     </button>
-  )
+  );
 }
 
-export default Button
+export default Button;

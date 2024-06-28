@@ -19,7 +19,6 @@ export default function Ressource() {
       })
       .catch((err) => {
         console.error("Erreur lors de la récupération des ressources :", err);
-
       });
   }, [provinceID]);
 
@@ -30,7 +29,7 @@ export default function Ressource() {
         prevRessource.map((res) => ({
           ...res,
           quantity: res.quantity + 1,
-        }))
+        })),
       );
     }, 1000); // 1000ms = 1 second
 
@@ -54,11 +53,10 @@ export default function Ressource() {
       })
         .then((response) => {
           if (response.status === 201) {
-
           } else {
             console.error(
               "Erreur lors de la mise à jour des ressources :",
-              response.statusText
+              response.statusText,
             );
           }
         })
@@ -72,7 +70,11 @@ export default function Ressource() {
     <div className="ressourceGlobal">
       {ressource.map((ressources) => (
         <div className="ressourceContainer" key={ressources.id}>
-          <img className="ressourceIcon" src={ressources.image} alt={ressources.name} />
+          <img
+            className="ressourceIcon"
+            src={ressources.image}
+            alt={ressources.name}
+          />
           <div className="ressourceName">
             <p>{ressources.name}</p>
             <p>{ressources.quantity}</p>

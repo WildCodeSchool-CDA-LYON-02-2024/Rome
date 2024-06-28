@@ -8,7 +8,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
- 
   const navigate = useNavigate();
 
   // Gestionnaire de changement de l'email
@@ -35,7 +34,7 @@ export default function Login() {
     })
       .then((response) => {
         if (response.status === 201) {
-          return response.json()
+          return response.json();
         } else {
           setError("Email ou mot de passe incorrect");
           navigate("/login");
@@ -43,7 +42,7 @@ export default function Login() {
       })
       .then((data) => {
         console.log(data);
-        
+
         navigate("/province");
       })
       .catch(() => {

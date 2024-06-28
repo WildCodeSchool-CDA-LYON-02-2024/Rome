@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
-import Ressource from "../Ressource/Ressource.jsx"
+import Ressource from "../Ressource/Ressource.jsx";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
@@ -24,7 +24,7 @@ export default function TechnologyById() {
       .catch((err) => {
         console.error(
           "Erreur lors de la récupération des données de technologie :",
-          err
+          err,
         );
       });
     //récupération des ressources totales
@@ -50,7 +50,7 @@ export default function TechnologyById() {
       .then((response) => {
         if (response.status === 201) {
           console.info(
-            "La recherche de la technologie a été lancée avec succès."
+            "La recherche de la technologie a été lancée avec succès.",
           );
           navigate("/technology");
           window.location.reload();
@@ -63,7 +63,7 @@ export default function TechnologyById() {
     // soustrait du total des ressources si des id correspondent
     const updatedQuantities = ressource.map((resourceItem) => {
       const technologyItem = technology.find(
-        (techItem) => techItem.ressource_id === resourceItem.id
+        (techItem) => techItem.ressource_id === resourceItem.id,
       );
       if (technologyItem) {
         return {
@@ -95,7 +95,7 @@ export default function TechnologyById() {
         } else {
           console.error(
             "Erreur lors de la mise à jour des ressources :",
-            response.statusText
+            response.statusText,
           );
         }
       })
@@ -120,7 +120,7 @@ export default function TechnologyById() {
             description={technology[0].description}
             costs={technology.map((ressource) => ressource.ressource_cost)}
             resourceImages={technology.map(
-              (ressource) => ressource.ressource_image
+              (ressource) => ressource.ressource_image,
             )}
             technologyID={technologyID}
             handleButton={handleAdd}

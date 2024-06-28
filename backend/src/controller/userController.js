@@ -12,7 +12,7 @@ const register = (req, res) => {
     req.body.username,
     req.body.email,
     req.body.password,
-    req.body.image
+    req.body.image,
   )
     .then(() => {
       res.status(201).json({
@@ -44,46 +44,38 @@ const login = (req, res) => {
     });
 };
 const deleteById = (req, res) => {
-   
-      const id = req.params.id;
-      UserModel
-        .delete(id)
-        .then(() => {
-          res.status(201).json({ message: "User deleted successfully" });
-        })
-        .catch((error) => {
-          console.error(error);
-          res.status(500).json({ message: "Failed to delete user" });
-        });
-    } 
+  const id = req.params.id;
+  UserModel.delete(id)
+    .then(() => {
+      res.status(201).json({ message: "User deleted successfully" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: "Failed to delete user" });
+    });
+};
 
-    const update = (req, res) => {
-       
-          const id = req.params.id;
-          const { username, email, password, image } = req.body;
-          UserModel
-            .update(username, email, password, image, id)
-            .then(() => {
-              res.status(201).json({ message: "User updated successfully" });
-            })
-            .catch((error) => {
-              console.error(error);
-              res.status(500).json({ message: "Failed to update user" });
-            });
-        }
-        const readById = (req, res) => {
-            
-              const id = req.params.id;
-              UserModel
-                .readById(id)
-                .then((user) => {
-                  res.json(user);
-                })
-                .catch((error) => {
-                  res.json(error);
-                });
-            }
-          
-      
- 
-export default { register, login,deleteById,update,readById };
+const update = (req, res) => {
+  const id = req.params.id;
+  const { username, email, password, image } = req.body;
+  UserModel.update(username, email, password, image, id)
+    .then(() => {
+      res.status(201).json({ message: "User updated successfully" });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ message: "Failed to update user" });
+    });
+};
+const readById = (req, res) => {
+  const id = req.params.id;
+  UserModel.readById(id)
+    .then((user) => {
+      res.json(user);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+};
+
+export default { register, login, deleteById, update, readById };

@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-function ProgressBar({children}) {
-  return (
-   
-      <div >{children}</div>
-    
-  );
+function ProgressBar({ children }) {
+  return <div>{children}</div>;
 }
 
 export default ProgressBar;
