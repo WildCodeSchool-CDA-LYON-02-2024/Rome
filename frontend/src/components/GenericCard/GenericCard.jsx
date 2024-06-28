@@ -1,6 +1,8 @@
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
+import button2 from "/sons/button2.mp3";
 
 export default function GenericCard({
   id,
@@ -13,14 +15,30 @@ export default function GenericCard({
   handleButton,
 }) {
   const navigate = useNavigate();
+  const audioRef1 = useRef(null);
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    if (redirect) {
+      const timer = setTimeout(() => {
+        navigate("/technology");
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [redirect, navigate]);
 
   const handlePrev = (event) => {
     event.preventDefault();
-    navigate(-1);
+    if (audioRef1.current) {
+      audioRef1.current.play();
+    }
+    setRedirect(true);
   };
 
   return (
     <section className="globalContainer">
+      <audio ref={audioRef1} src={button2} />
       <h2>{title}</h2>
       <div className="container">
         <button className="buttonX" onClick={handlePrev}>

@@ -8,6 +8,7 @@ import ceasar4 from "/videos/ceasar4.mp4";
 import ceasar5 from "/videos/ceasar5.mp4";
 import intro from "/sons/intro.mp3";
 import button from "/sons/button.mp3";
+import button2 from "/sons/button2.mp3";
 
 function Home() {
   const videos = [ceasar, ceasar2, ceasar3, ceasar4, ceasar5];
@@ -48,7 +49,7 @@ function Home() {
   return (
     <div className="background-video-container">
       <audio ref={audioRef} src={intro} />
-      <audio ref={audioRef1} src={button} />
+      <audio ref={audioRef1} src={button2} />
       <video
         ref={videoRef}
         autoPlay

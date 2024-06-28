@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Technology.css";
+import button2 from "/sons/button2.mp3";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
   const [stone, setStone] = useState([]);
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
+  const audioRef = useRef(null);
+  const [redirectTech, setRedirectTech] = useState(null);
+  const [prev, setPrev] = useState(null);
+  const navigate = useNavigate();
 
   const provinceID = 1;
   const provinceAgeID = 1;
@@ -15,6 +20,26 @@ export default function Technology() {
     { id: 2, name: "Âge de bronze" },
     { id: 3, name: "Âge de fer" },
   ];
+
+  useEffect(() => {
+    if (redirectTech) {
+      const timer = setTimeout(() => {
+        navigate(`/technology/${redirectTech.id}`);
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [redirectTech, navigate]);
+
+  useEffect(() => {
+    if (prev) {
+      const timer = setTimeout(() => {
+        navigate("/province");
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [prev, navigate]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/technology`)
@@ -32,7 +57,9 @@ export default function Technology() {
   useEffect(() => {
     fetch(`http://localhost:3310/province/${provinceID}/technology`)
       .then((response) => response.json())
-      .then((data) => setUserTechnology(data))
+      .then((data) => {
+        setUserTechnology(data);
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -43,15 +70,34 @@ export default function Technology() {
     return age ? age.name : "";
   };
 
+  const handlePlaySoundAndRedirect = (tech) => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+    setRedirectTech(tech);
+  };
+
+  const handlePrev = (event) => {
+    event.preventDefault();
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+    setPrev(true);
+  };
+
   return (
     <div className="allTech">
+      <button className="buttonX" onClick={handlePrev}>
+        X
+      </button>
+      <audio ref={audioRef} src={button2} />
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(1)}</h3>
+          <h3 className="periodTechno">{getAgeName(1)}</h3>
         </div>
         <div className="technologyContainer">
           {stone.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
@@ -61,9 +107,12 @@ export default function Technology() {
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
-                    </Link>
+                    <button
+                      onClick={() => handlePlaySoundAndRedirect(tech)}
+                      className="rechercheTech"
+                    >
+                      Rechercher
+                    </button>
                   ) : (
                     <p>Veuillez développer votre province</p>
                   )}
@@ -75,11 +124,11 @@ export default function Technology() {
       </div>
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(2)}</h3>
+          <h3 className="periodTechno">{getAgeName(2)}</h3>
         </div>
         <div className="technologyContainer">
           {bronze.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
@@ -89,9 +138,12 @@ export default function Technology() {
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
-                    </Link>
+                    <button
+                      onClick={() => handlePlaySoundAndRedirect(tech)}
+                      className="rechercheTech"
+                    >
+                      Rechercher
+                    </button>
                   ) : (
                     <p>Veuillez développer votre province</p>
                   )}
@@ -103,11 +155,11 @@ export default function Technology() {
       </div>
       <div className="age">
         <div>
-        <h3 className="periodTechno">{getAgeName(3)}</h3>
+          <h3 className="periodTechno">{getAgeName(3)}</h3>
         </div>
         <div className="technologyContainer">
           {iron.map((tech) => (
-            <div key={tech.id} >
+            <div key={tech.id}>
               <div className="imageContainer">
                 <img className="image" src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
@@ -117,9 +169,12 @@ export default function Technology() {
                   ) ? (
                     <p className="techAcquise">Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
-                    </Link>
+                    <button
+                      onClick={() => handlePlaySoundAndRedirect(tech)}
+                      className="rechercheTech"
+                    >
+                      Rechercher
+                    </button>
                   ) : (
                     <p>Veuillez développer votre province</p>
                   )}

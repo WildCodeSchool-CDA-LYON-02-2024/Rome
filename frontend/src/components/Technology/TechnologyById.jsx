@@ -1,16 +1,29 @@
-import { useEffect, useState } from "react";
+import { useRef,useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
 import Ressource from "../Ressource/Ressource.jsx"
+import button2 from "/sons/button2.mp3";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
-
+  const audioRef = useRef(null);
+  const [redirect, setRedirect] = useState(false);
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (redirect) {
+      const timer = setTimeout(() => {
+        navigate("/technology");
+        
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [redirect, navigate]);
 
   useEffect(() => {
     //récupération de la liste des technologie
@@ -40,6 +53,9 @@ export default function TechnologyById() {
 
   const handleAdd = (event) => {
     event.preventDefault();
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
     //ajout de la techologie dans la province correspondante (achat)
     fetch(`http://localhost:3310/technology/${technologyID}`, {
       method: "POST",
@@ -52,8 +68,7 @@ export default function TechnologyById() {
           console.info(
             "La recherche de la technologie a été lancée avec succès."
           );
-          navigate("/technology");
-          window.location.reload();
+          
         }
       })
       .catch((err) => {
@@ -91,7 +106,7 @@ export default function TechnologyById() {
       .then((response) => {
         if (response.status === 201) {
           console.info("Les ressources sont suffisantes.");
-          navigate("/technology");
+          setRedirect(true);
         } else {
           console.error(
             "Erreur lors de la mise à jour des ressources :",
@@ -103,9 +118,11 @@ export default function TechnologyById() {
         console.error("Erreur lors de la mise à jour des ressources :", err);
       });
   };
+  
 
   return (
     <section>
+       <audio ref={audioRef} src={button2} />
       <div>
         <Ressource/>
         {technology && (
