@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Technology.css";
 
 export default function Technology() {
@@ -7,6 +7,7 @@ export default function Technology() {
   const [stone, setStone] = useState([]);
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
+  const navigate = useNavigate();
 
   const provinceID = 1;
   const provinceAgeID = 1;
@@ -43,26 +44,34 @@ export default function Technology() {
     return age ? age.name : "";
   };
 
+    const handlePrev = (event) => {
+      event.preventDefault();
+      navigate('/province');
+    };
+
   return (
-    <div className="allTech">
-      <div className="age">
+    <div className='allTech'>
+      <button className='buttonX' onClick={handlePrev}>
+        X
+      </button>
+      <div className='age'>
         <div>
-          <h3 className="periodTechno">{getAgeName(1)}</h3>
+          <h3 className='periodTechno'>{getAgeName(1)}</h3>
         </div>
-        <div className="technologyContainer">
+        <div className='technologyContainer'>
           {stone.map((tech) => (
             <div key={tech.id}>
-              <div className="imageContainer">
-                <img className="image" src={tech.image} alt={tech.name} />
+              <div className='imageContainer'>
+                <img className='image' src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
-                <div className="buttonContainer">
+                <div className='buttonContainer'>
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name,
+                    (userTech) => userTech.name === tech.name
                   ) ? (
-                    <p className="techAcquise">Déjà acquis</p>
+                    <p className='techAcquise'>Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
                     <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
+                      <button className='rechercheTech'>Rechercher</button>
                     </Link>
                   ) : (
                     <p>Veuillez développer votre province</p>
@@ -73,24 +82,24 @@ export default function Technology() {
           ))}
         </div>
       </div>
-      <div className="age">
+      <div className='age'>
         <div>
-          <h3 className="periodTechno">{getAgeName(2)}</h3>
+          <h3 className='periodTechno'>{getAgeName(2)}</h3>
         </div>
-        <div className="technologyContainer">
+        <div className='technologyContainer'>
           {bronze.map((tech) => (
             <div key={tech.id}>
-              <div className="imageContainer">
-                <img className="image" src={tech.image} alt={tech.name} />
+              <div className='imageContainer'>
+                <img className='image' src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
-                <div className="buttonContainer">
+                <div className='buttonContainer'>
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name,
+                    (userTech) => userTech.name === tech.name
                   ) ? (
-                    <p className="techAcquise">Déjà acquis</p>
+                    <p className='techAcquise'>Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
                     <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
+                      <button className='rechercheTech'>Rechercher</button>
                     </Link>
                   ) : (
                     <p>Veuillez développer votre province</p>
@@ -101,24 +110,24 @@ export default function Technology() {
           ))}
         </div>
       </div>
-      <div className="age">
+      <div className='age'>
         <div>
-          <h3 className="periodTechno">{getAgeName(3)}</h3>
+          <h3 className='periodTechno'>{getAgeName(3)}</h3>
         </div>
-        <div className="technologyContainer">
+        <div className='technologyContainer'>
           {iron.map((tech) => (
             <div key={tech.id}>
-              <div className="imageContainer">
-                <img className="image" src={tech.image} alt={tech.name} />
+              <div className='imageContainer'>
+                <img className='image' src={tech.image} alt={tech.name} />
                 <p>{tech.name}</p>
-                <div className="buttonContainer">
+                <div className='buttonContainer'>
                   {userTechnology.some(
-                    (userTech) => userTech.name === tech.name,
+                    (userTech) => userTech.name === tech.name
                   ) ? (
-                    <p className="techAcquise">Déjà acquis</p>
+                    <p className='techAcquise'>Déjà acquis</p>
                   ) : provinceAgeID >= tech.category ? (
                     <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
+                      <button className='rechercheTech'>Rechercher</button>
                     </Link>
                   ) : (
                     <p>Veuillez développer votre province</p>

@@ -49,7 +49,7 @@ function Test() {
 
 
 function handleClick() {
-  navigate('/');
+  navigate('/province');
 }
 
   return (

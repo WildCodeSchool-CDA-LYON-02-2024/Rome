@@ -17,13 +17,30 @@ function Map2({ handleClick }) {
     (building) => building.state === 'enable'
   );
 
-  function handleClick(button) {
-    setClickedButton(button);
+  // function handleClick(button) {
+  //   setClickedButton(button);
 
-    if (clickedButton === 'populations') {
-      navigate('/users/:user_id/provinces/:province_id/inhabitants');
-    }
-  }
+  //   if (clickedButton === 'populations') {
+  //     navigate('/users/:user_id/provinces/:province_id/inhabitants');
+  //   }
+  //   if (clickedButton === 'technologies') {
+  //     navigate('/technology');
+  //   }
+  // }
+
+   function handleClick(button) {
+     setClickedButton(button);
+     switch (button) {
+       case "populations":
+         navigate('/users/:user_id/provinces/:province_id/inhabitants');
+         break;
+       case "technologies":
+         navigate('/technology');
+         break;
+       default:return navigate('/province')
+ }
+
+   }
   function handleClickedMenu(building) {
     alert(`${building.name}`);
   }
@@ -38,9 +55,9 @@ function Map2({ handleClick }) {
         </button>
       ))}
       <div className='menu-icons'>
-        <Button onClick={() => handleClick('populations')}>ARMEE</Button>
+        <Button onClick={() => handleClick('populations')}>POPULATION</Button>
         <Button onClick={() => handleClick('provinces')}>BATIMENTS</Button>
-        <Button onClick={() => handleClick('allies')}>ALLIES</Button>
+        <Button onClick={() => handleClick('technologies')}>TECHNOLOGIES</Button>
 
 
       </div>

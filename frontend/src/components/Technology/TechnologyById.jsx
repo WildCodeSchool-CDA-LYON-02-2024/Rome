@@ -104,8 +104,11 @@ export default function TechnologyById() {
       });
   };
 
+ 
+
   return (
     <section>
+     
       <div>
         <Ressource />
         {technology && (
