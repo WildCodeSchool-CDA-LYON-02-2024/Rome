@@ -1,8 +1,7 @@
 // import './App.css'
 import Map2 from "./pages/Map2";
-
+import Ressource from "./components/Ressource/Ressource";
 import "./App2.css";
-
 
 function App() {
   // let myScreenOrientation = window.screen.orientation;
@@ -10,12 +9,9 @@ function App() {
 
   return (
     <>
-      <div className="title-app-container">
-        <h1 className="title-app">ROME ANTIQUE</h1>
-      </div>
-
+      <div className="title-app-container"></div>
+      <Ressource />
       <Map2 />
-     
     </>
   );
 }
