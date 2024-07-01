@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 export class userModel {
   constructor(db /* CLASS DATABASE */) {
@@ -24,20 +24,26 @@ export class userModel {
 
   login(email, password) {
     return new Promise((resolve, reject) => {
-      const query = `select user.id, username, email, password, image from user  where email = ?
-    `;
+      //   const query = `select user.id, username, email, password, image from user  where email = ?
+      // `;
+      const query = ` select user.id as userId, username, email, password, user.image, province.id as provinceId from user inner join province on user.id = province.user_id  where email = ?`;
       const values = [email];
       this.connection.execute(query, values, (err, result) => {
         if (err) return reject(err);
         const hashPassword = result[0].password;
+        const userId = result[0].userId;
+        const provinceId = result[0].provinceId;
+        console.log(userId);
+        console.log(provinceId);
         bcrypt.compare(password, hashPassword).then((isValid) => {
           resolve({
             isAuthentificated: isValid,
             user: {
-              id: result[0].id,
+              id: result[0].userId,
               username: result[0].username,
               email: result[0].email,
               image: result[0].image,
+              province: result[0].provinceId,
             },
           });
         });
@@ -82,7 +88,7 @@ export class userModel {
 
   readById(id) {
     return new Promise((resolve, reject) => {
-      const query = "select * from user where id = ?;";
+      const query = 'select * from user where id = ?;';
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
