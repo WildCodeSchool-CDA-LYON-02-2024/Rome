@@ -26,9 +26,12 @@ export class userModel {
     return new Promise((resolve, reject) => {
       //   const query = `select user.id, username, email, password, image from user  where email = ?
       // `;
-      const query = ` select user.id as userId, username, email, password, user.image, province.id as provinceId from user inner join province on user.id = province.user_id  where email = ?`;
+      const query = ` select user.id as userId, username, email, password, user.image, province.id as provinceId from user left join province on user.id = province.user_id  where email = ?`;
+     
       const values = [email];
       this.connection.execute(query, values, (err, result) => {
+       
+        console.log(result,"resultat login")
         if (err) return reject(err);
         const hashPassword = result[0].password;
         const userId = result[0].userId;

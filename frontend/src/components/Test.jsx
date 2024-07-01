@@ -17,9 +17,11 @@ function Test() {
  
 
   function getInhabitantsByProvinceIdandUserId(provinceId, userId) {
+    console.log(provinceId,userId)
     api.get(`/users/${userId}/provinces/${provinceId}/inhabitants`)
       .then((response) => {
         const data = response.data;
+        console.log(data,"donnée");
         setInhabitant(data);
       }).catch((error) => {
         console.error(error);
@@ -31,6 +33,7 @@ function Test() {
     getInhabitantsByProvinceIdandUserId(authUser.province_id , authUser.id )
   }, [])
   
+  console.log(inhabitant,"inhabitant")
 
 
 
@@ -46,24 +49,24 @@ function handleClick() {
             Fermer
           </Button>
         </div>
-        {inhabitant.map((inhabitant,index) => (
+        {inhabitant.map((item,index) => (
           <div key={index} className='card-container'>
             <div className='img-container'>
               <img
-                src={`${import.meta.env.VITE_APP_API_IMG_URL}${inhabitant.image}`}
+                src={`${import.meta.env.VITE_APP_API_IMG_URL}${item.image}`}
                 alt=''
                 className='card-img'
               />
             </div>
 
-            <h1>{inhabitant.role}</h1>
+            <h1>{item.role}</h1>
             <article className='description-container'>
-              <p>{inhabitant.description}</p>
+              <p>{item.description}</p>
             </article>
             <ul className='description-container'>
-              <li>Santé : {inhabitant.health}</li>
-              <li>Défense : {inhabitant.defense}</li>
-              <li>Attaque : {inhabitant.attack}</li>
+              <li>Santé : {item.health}</li>
+              <li>Défense : {item.defense}</li>
+              <li>Attaque : {item.attack}</li>
             </ul>
             <div className='button-container'>
               <button className='card-button'>Améliorer</button>

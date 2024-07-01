@@ -37,6 +37,7 @@ const login = (req, res) => {
         message: "Authentification successful",
         token: generateToken(user),
       });
+      
     })
     .catch((err) => {
       console.error(err);
