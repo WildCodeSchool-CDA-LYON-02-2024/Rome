@@ -11,7 +11,7 @@ function Map2({ handleClick }) {
 
   const buildings = building.batiments;
   const buildingsToDisplay = buildings.filter(
-    (building) => building.state === "enable"
+    (building) => building.state === "enable",
   );
 
   // function handleClick(button) {
