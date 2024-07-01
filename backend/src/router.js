@@ -37,6 +37,7 @@ router.get("/province/:id/technology", technologyController.readByProvince); //p
 router.post("/technology/:id", technologyController.add); //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
 
 // Building
+router.post("/province/:provinceId/building/:buildingId/construct"); // TODO: add buildingController.constructBuilding
 router.get(
   "/province/:provinceId/building",
   buildingController.getBuildingsByProvince,

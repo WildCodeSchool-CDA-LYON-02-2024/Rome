@@ -1,6 +1,6 @@
 import Button from "../Button";
 
-export default function TableRow({ name, image, description }) {
+export default function TableRow({ id, name, image, description }) {
   return (
     <>
       <tr className="tableRow">
