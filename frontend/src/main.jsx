@@ -11,6 +11,7 @@ import TechnologyById from "./components/Technology/TechnologyById";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Test from './components/Test.jsx';
+import {AuthProvider} from './context/AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>
 );

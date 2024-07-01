@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../../context/AuthProvider.jsx';
+import { jwtDecode} from 'jwt-decode'
 
 import "./Login.css";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { setIsLoggedIn, setAuthUser, setToken } = useAuth();
 
   const navigate = useNavigate();
 
@@ -26,7 +30,8 @@ export default function Login() {
     fetch(`http://localhost:3310/user/login`, {
       method: "post",
       credentials: "include",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization" :"Bearer {user.token}" },
+     
       body: JSON.stringify({
         email,
         password,
@@ -34,6 +39,8 @@ export default function Login() {
     })
       .then((response) => {
         if (response.status === 201) {
+          console.log(response)
+          setIsLoggedIn(true);
           return response.json();
         } else {
           setError("Email ou mot de passe incorrect");
@@ -41,11 +48,21 @@ export default function Login() {
         }
       })
       .then((data) => {
-        console.log(data);
+        console.log(data, "donnée");
+        const token = data.token;
+        setToken(token);
+        const decodedToken = jwtDecode(token);
+        setAuthUser({
+          id: decodedToken.id,
+          username: decodedToken.username,
+          province_id:decodedToken.province
+          
+        })
 
+     
         navigate("/province");
       })
-      .catch(() => {
+      .catch((error) => {
         console.error(error);
       });
   };
