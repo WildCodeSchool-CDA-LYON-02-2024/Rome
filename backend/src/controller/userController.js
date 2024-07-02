@@ -29,7 +29,7 @@ const login = (req, res) => {
   const { email, password } = req.body;
   UserModel.login(email, password)
     .then(({ isAuthentificated, user }) => {
-      if (!isAuthentificated) {
+        if (!isAuthentificated) {
         return res.status(401).json({ message: "invalid to login" });
       }
       return res.status(201).json({
@@ -37,6 +37,7 @@ const login = (req, res) => {
         message: "Authentification successful",
         token: generateToken(user),
       });
+      
     })
     .catch((err) => {
       console.error(err);
