@@ -67,38 +67,38 @@ export default function Login() {
   };
   return (
     <div className="generalContainer-wrapper">
-    <section className="generalContainer">
-      <h2>Connectez-vous</h2>
-      <div className="loginContainer">
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleMailChange}
-          />
-        </label>
+      <section className="generalContainer">
+        <h2>Connectez-vous</h2>
+        <div className="loginContainer">
+          <label htmlFor="email">
+            Email
+            <input
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleMailChange}
+            />
+          </label>
 
-        <label htmlFor="password">
-          Password
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </label>
-        <button onClick={handleSubmit}>se connecter</button>
-        <div>
-          Vous n'avez pas encore de compte ?{" "}
-          <span>
-            <Link to="/user/register">Enregistrez-vous</Link>
-          </span>
+          <label htmlFor="password">
+            Password
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </label>
+          <button onClick={handleSubmit}>se connecter</button>
+          <div>
+            Vous n'avez pas encore de compte ?{" "}
+            <span>
+              <Link to="/user/register">Enregistrez-vous</Link>
+            </span>
+          </div>
         </div>
-      </div>
       </section>
-      </div>
+    </div>
   );
 }

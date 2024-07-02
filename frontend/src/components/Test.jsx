@@ -30,8 +30,8 @@ function Test() {
         setInhabitant(data);
       }).catch((error) => {
         console.error(error);
-       })
-   }
+      });
+  }
 
 
   useEffect(() => {
@@ -40,17 +40,15 @@ function Test() {
   
   console.log(inhabitant,"inhabitant")
 
-
-
-function handleClick() {
-  navigate('/province');
-}
+  function handleClick() {
+    navigate("/province");
+  }
 
   return (
     <div>
       <section className='card-wrapper'>
         <div>
-          <Button className='close-btn' onClick={handleClick}>
+          <Button className="close-btn" onClick={handleClick}>
             Fermer
           </Button>
         </div>
