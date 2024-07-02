@@ -140,61 +140,76 @@ VALUES
 
 -- Inserer des donnees dans la table technology
 INSERT INTO
-    technology (name, description, image, category)
+    technology (
+        name,
+        description,
+        image,
+        category,
+        construction_time
+    )
 VALUES
     (
         'Hache',
         'Outil utilise pour couper du bois, Bonus : generation de bois +10%',
         '/images/axe.png',
-        1
+        1,
+        10
     ),
     (
         'pioche',
         'Outil utilise pour miner de la pierre, Bonus : generation de pierre +10%',
         '/images/pickaxe.png',
-        1
+        1,
+        15
     ),
     (
         "Mine d'or",
         'Permet la creation de mine d\'or',
         '/images/goldMine.png',
-        1
+        1,
+        20
     ),
     (
         'elevage',
         'Permet d\'avoir un elevage de betail pour generer de la viande',
         '/images/elevage.png',
-        1
+        1,
+        25
     ),
     (
         'Fourche',
         'Outil permettant de travailler la terre, Bonus',
         '/images/fork.png',
-        1
+        1,
+        12
     ),
     (
         'Arc',
         "Permet la formation d'archer",
         '/images/bow.png',
-        2
+        2,
+        30
     ),
     (
         'cheval',
         'Permet la formation de cavalier',
         '/images/horse.png',
-        2
+        2,
+        35
     ),
     (
         'lance',
         'Permet la formation de lancier',
         '/images/lance.png',
-        2
+        2,
+        40
     ),
     (
         'Epee',
         'Permet la formation de legionnaire',
         '/images/sword.png',
-        3
+        3,
+        45
     );
 
 -- Inserer des donnees dans la table role

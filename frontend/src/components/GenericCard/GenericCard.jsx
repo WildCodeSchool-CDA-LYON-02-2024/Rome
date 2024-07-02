@@ -8,6 +8,7 @@ export default function GenericCard({
   image,
   name,
   description,
+  time,
   resourceImages,
   costs,
   handleButton,
@@ -32,13 +33,7 @@ export default function GenericCard({
           </div>
           <div className="informationContainer">
             <p className="description">{description}</p>
-            <div className="costsContainer">
-              {costs.map((cost, index) => (
-                <p className="cost" key={index}>
-                  {cost}
-                </p>
-              ))}
-            </div>
+            <p className="time">{time}</p>
             <div className="resourceImagesContainer">
               <div className="imageGallery">
                 {resourceImages.map((image, index) => (
@@ -50,6 +45,13 @@ export default function GenericCard({
                   />
                 ))}
               </div>
+            </div>
+            <div className="costsContainer">
+              {costs.map((cost, index) => (
+                <p className="cost" key={index}>
+                  {cost}
+                </p>
+              ))}
             </div>
           </div>
         </div>

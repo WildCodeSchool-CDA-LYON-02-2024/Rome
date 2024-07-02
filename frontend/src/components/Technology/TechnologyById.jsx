@@ -116,6 +116,7 @@ export default function TechnologyById() {
             image={technology[0].image}
             name={technology[0].name}
             description={technology[0].description}
+            time={`Temps de création : ${technology[0].construction_time} secondes`}
             costs={technology.map((ressource) => ressource.ressource_cost)}
             resourceImages={technology.map(
               (ressource) => ressource.ressource_image,
