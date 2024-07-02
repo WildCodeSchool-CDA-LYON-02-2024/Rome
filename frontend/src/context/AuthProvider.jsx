@@ -7,7 +7,7 @@ function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
 
-  console.log(authUser, 'user');
+
 
   const value = {
     authUser,

@@ -39,7 +39,7 @@ export default function Login() {
     })
       .then((response) => {
         if (response.status === 201) {
-          console.log(response)
+         
           setIsLoggedIn(true);
           return response.json();
         } else {
@@ -48,8 +48,7 @@ export default function Login() {
         }
       })
       .then((data) => {
-        console.log(data, "donnée");
-        const token = data.token;
+         const token = data.token;
         setToken(token);
         const decodedToken = jwtDecode(token);
         setAuthUser({
