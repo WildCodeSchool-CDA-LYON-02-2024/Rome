@@ -39,4 +39,16 @@ export default class ProvinceBuildingModel {
       });
     });
   }
+
+  startConstruction(level, provinceId, buildingId) {
+    return new Promise((resolve, reject) => {
+      const query = `INSERT INTO province_building (level, province_id, building_id)
+                           VALUES (?, ?, ?)`;
+      const values = [provinceId, buildingId];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) reject(err);
+        resolve(result);
+      });
+    });
+  }
 }
