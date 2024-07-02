@@ -12,16 +12,21 @@ function Test() {
   const api = useApi();
   const [inhabitant, setInhabitant] = useState([]);
   const navigate = useNavigate();
-  const { authUser } = useAuth();
+  const { authUser, token } = useAuth();
 
  
 
   function getInhabitantsByProvinceIdandUserId(provinceId, userId) {
     console.log(provinceId,userId)
-    api.get(`/users/${userId}/provinces/${provinceId}/inhabitants`)
+    api.get(`/users/${userId}/provinces/${provinceId}/inhabitants`, {
+      headers: {
+        Authorization :`Bearer ${token}`
+      }
+    })
       .then((response) => {
         const data = response.data;
-        console.log(data,"donnée");
+      
+        
         setInhabitant(data);
       }).catch((error) => {
         console.error(error);
