@@ -2,6 +2,8 @@ import {useState, useContext, createContext, useEffect} from 'react'
 
 const AuthContext = createContext();
 
+ 
+
 function AuthProvider({children}) {
 
   const [authUser, setAuthUser] = useState({});
@@ -20,6 +22,11 @@ function AuthProvider({children}) {
     setToken
   }
 
+  useEffect(() => {
+    console.log(isLoggedIn,"la valeur a changé")
+  },[isLoggedIn])
+
+
   return (
     <AuthContext.Provider value={value}>{children}
       
@@ -27,8 +34,8 @@ function AuthProvider({children}) {
   )
 }
 
-function useAuth() {
-  return useContext(AuthContext);
-}
+ function useAuth() {
+   return useContext(AuthContext);
+ }
 
 export {AuthProvider, useAuth, AuthContext}
