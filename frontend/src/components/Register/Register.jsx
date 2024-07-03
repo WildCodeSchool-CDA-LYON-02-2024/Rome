@@ -55,51 +55,51 @@ export default function Register() {
 
   return (
     <div className="generalContainer-wrapper">
-    <section className="generalContainer">
-      <h2>Enregistrement</h2>
-      <div className="registerContainer">
-        <label htmlFor="prénom">
-          username
-          <input
-            id="prénom"
-            name="prénom"
-            value={username}
-            onChange={handleChangeUserName}
-          />
-        </label>
-        <label htmlFor="email">
-          Email Address
-          <input
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleChangeEmail}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            name="password"
-            type="password"
-            id="password"
-            value={password}
-            onChange={handleChangePassword}
-          />
-        </label>
-        <label htmlFor="image">
-          image
-          <input
-            name="image"
-            type="text"
-            id="image"
-            value={image}
-            onChange={handleChangeImage}
-          />
-        </label>
+      <section className="generalContainer">
+        <h2>Enregistrement</h2>
+        <div className="registerContainer">
+          <label htmlFor="prénom">
+            username
+            <input
+              id="prénom"
+              name="prénom"
+              value={username}
+              onChange={handleChangeUserName}
+            />
+          </label>
+          <label htmlFor="email">
+            Email Address
+            <input
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChangeEmail}
+            />
+          </label>
+          <label htmlFor="password">
+            Password
+            <input
+              name="password"
+              type="password"
+              id="password"
+              value={password}
+              onChange={handleChangePassword}
+            />
+          </label>
+          <label htmlFor="image">
+            image
+            <input
+              name="image"
+              type="text"
+              id="image"
+              value={image}
+              onChange={handleChangeImage}
+            />
+          </label>
 
-        <button onClick={handleSubmit}>Confirmer</button>
-      </div>
+          <button onClick={handleSubmit}>Confirmer</button>
+        </div>
       </section>
-      </div>
+    </div>
   );
 }

@@ -55,7 +55,8 @@ export default class BuildingModel {
       const query = `UPDATE building b
                 JOIN province_building pb ON b.id = pb.building_id
                            SET ${fields}
-                           WHERE pb.province_id = ? AND b.id = ?`; // Add JOIN ?
+                           WHERE pb.province_id = ?
+                             AND b.id = ?`; // Add JOIN ?
       this.connection.query(query, values, (err, result) => {
         if (err) reject(err);
         resolve(result);
