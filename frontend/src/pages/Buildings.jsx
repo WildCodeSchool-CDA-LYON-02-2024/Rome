@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
+import Button from "../components/Button";
+import "../pages/Buildings.css";
 
 export default function Buildings() {
   const navigate = useNavigate();
@@ -38,8 +40,18 @@ export default function Buildings() {
     fetchData();
   }, []);
 
+  function handleClick() {
+    navigate("/province");
+  }
+
   return (
     <>
+      <div className="h1-title">
+        <h1>Bâtiments</h1>
+        <Button className="close-btn" onClick={handleClick}>
+          Fermer
+        </Button>
+      </div>
       <section className="section-building">
         {loading ? (
           <p>Loading...</p>
