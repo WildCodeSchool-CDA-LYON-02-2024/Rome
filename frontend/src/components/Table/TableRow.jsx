@@ -5,6 +5,8 @@ export default function TableRow({ id, name, image, description }) {
   const [isConstructing, setIsConstructing] = useState(false);
   const [constructMsg, setConstructMsg] = useState("");
 
+  console.log(id, name, image, description);
+
   const handleConstruction = () => {
     setIsConstructing(true);
     setConstructMsg("Construction en cours...");
@@ -18,22 +20,25 @@ export default function TableRow({ id, name, image, description }) {
         headers: {
           "Content-Type": "application/json",
         },
-        // Ajouter des informations supplémentaires si nécessaire, par exemple, les ressources utilisées
+        // Add additional information if needed, e.g., the resources used
         body: JSON.stringify({}),
       },
     )
       .then((res) => {
-        if (!res.ok) throw new Error("Construction failed");
+        console.log("res", res);
+        if (!res.ok) throw new Error(`Construction failed: ${res.status}`);
         return res.json();
       })
       .then((data) => {
         setIsConstructing(false);
-        setConstructMsg("Construction démarrée avec succès !");
+        setConstructMsg(`Construction démarrée avec succès ! ${data}`);
       })
       .catch((err) => {
         console.error("Error :", err);
         setIsConstructing(false);
-        setConstructMsg("Erreur lors du démarrage de la construction");
+        setConstructMsg(
+          `Erreur lors du démarrage de la construction: ${err.message}`,
+        );
       });
   };
 
