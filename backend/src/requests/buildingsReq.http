@@ -1,8 +1,12 @@
 ### BUILDING ROUTES
 
-### GET All Buildings of a province
-GET http://localhost:3310/province/1/building
+### POST Building construction
+POST http://localhost:3310/province/1/building/2/construct
 Content-Type: application/json
+
+### GET All Buildings of a province
+#GET http://localhost:3310/province/1/building
+#Content-Type: application/json
 
 ### GET A Building in a province
 #GET http://localhost:3310/province/1/building/1

@@ -5,13 +5,12 @@ export default function TableRow({ id, name, image, description }) {
   const [isConstructing, setIsConstructing] = useState(false);
   const [constructMsg, setConstructMsg] = useState("");
 
-  console.log(id, name, image, description);
-
   const handleConstruction = () => {
     setIsConstructing(true);
     setConstructMsg("Construction en cours...");
 
     const provinceID = 1;
+    console.log("id: ", id);
 
     fetch(
       `http://localhost:3310/province/${provinceID}/building/${id}/construct`,
@@ -25,8 +24,11 @@ export default function TableRow({ id, name, image, description }) {
       },
     )
       .then((res) => {
-        console.log("res", res);
-        if (!res.ok) throw new Error(`Construction failed: ${res.status}`);
+        console.log("res: ", res);
+        if (!res.ok)
+          throw new Error(
+            `Construction failed: ${res.status} ${res.statusMessage}`,
+          );
         return res.json();
       })
       .then((data) => {
@@ -34,7 +36,6 @@ export default function TableRow({ id, name, image, description }) {
         setConstructMsg(`Construction démarrée avec succès ! ${data}`);
       })
       .catch((err) => {
-        console.error("Error :", err);
         setIsConstructing(false);
         setConstructMsg(
           `Erreur lors du démarrage de la construction: ${err.message}`,

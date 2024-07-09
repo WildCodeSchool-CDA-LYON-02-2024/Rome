@@ -9,17 +9,25 @@ export const buildingModel = new BuildingModel(db);
  * Construct a building
  */
 const constructBuilding = (req, res) => {
-  const { level, provinceId, buildingId } = req.params;
-  //   Vérification ressources disponibles du joueur
-  //   En attendant, simulation de la vérif
-  const hasResources = true;
+  const { provinceId, buildingId } = req.params;
+
+  const hasResources = true; // TODO: Verify resourcesAvaibility
 
   if (!hasResources)
     return res.status(400).json({ message: "Ressources insuffisantes" });
 
+  provinceBuildingModel.getLevel(provinceId, buildingId).then((dataLevel) => {
+    if (dataLevel.length === 0) {
+      // TODO: insert
+    } else {
+      // TODO: update (= startConstruction + rename)
+    }
+  });
+
   provinceBuildingModel
-    .startConstruction(level, provinceId, buildingId)
+    .startConstruction(provinceId, buildingId)
     .then((result) => {
+      console.log(result);
       if (result.affectedRows > 0)
         return res.status(200).json({
           message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
