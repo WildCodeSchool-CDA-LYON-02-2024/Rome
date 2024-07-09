@@ -1,6 +1,7 @@
-import { Database } from "../model/Database.js";
-import { userModel } from "../model/userModel.js";
-import generateToken from "../model/service/generateToken.js";
+import { Database } from '../model/Database.js';
+import { userModel } from '../model/userModel.js';
+import generateToken from '../model/service/generateToken.js';
+import { provinceModel } from './provinceController.js';
 
 const db = new Database();
 const UserModel = new userModel(db);
@@ -12,12 +13,23 @@ const register = (req, res) => {
     req.body.username,
     req.body.email,
     req.body.password,
-    req.body.image,
+    req.body.image
+    
   )
-    .then(() => {
-      res.status(201).json({
-        message: "user created",
-      });
+    .then((newUser) => {
+      console.log(newUser.insertId, 'new user');
+      provinceModel.createByUser(req.body.name, newUser.insertId)
+        .then((newProvince) => {
+          //TODO: create all I need 
+
+          res.status(201).json({
+            message: 'user created',
+          });
+        }).catch((err) => { 
+          //TODO: IN THIS CASE REMOVE USER CREATED
+          res.status(500).json({message: err.message});
+        })
+     
     })
     .catch((err) => {
       res.status(500).json({ err });
@@ -29,30 +41,29 @@ const login = (req, res) => {
   const { email, password } = req.body;
   UserModel.login(email, password)
     .then(({ isAuthentificated, user }) => {
-        if (!isAuthentificated) {
-        return res.status(401).json({ message: "invalid to login" });
+      if (!isAuthentificated) {
+        return res.status(401).json({ message: 'invalid to login' });
       }
       return res.status(201).json({
         user,
-        message: "Authentification successful",
+        message: 'Authentification successful',
         token: generateToken(user),
       });
-      
     })
     .catch((err) => {
       console.error(err);
-      return res.status(500).json({ message: "Failed to login" });
+      return res.status(500).json({ message: 'Failed to login' });
     });
 };
 const deleteById = (req, res) => {
   const id = req.params.id;
   UserModel.delete(id)
     .then(() => {
-      res.status(201).json({ message: "User deleted successfully" });
+      res.status(201).json({ message: 'User deleted successfully' });
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ message: "Failed to delete user" });
+      res.status(500).json({ message: 'Failed to delete user' });
     });
 };
 
@@ -61,11 +72,11 @@ const update = (req, res) => {
   const { username, email, password, image } = req.body;
   UserModel.update(username, email, password, image, id)
     .then(() => {
-      res.status(201).json({ message: "User updated successfully" });
+      res.status(201).json({ message: 'User updated successfully' });
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ message: "Failed to update user" });
+      res.status(500).json({ message: 'Failed to update user' });
     });
 };
 const readById = (req, res) => {

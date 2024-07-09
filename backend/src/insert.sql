@@ -398,20 +398,7 @@ VALUES
         6
     );
 
-Insertion d'une nouvelle ligne dans la table provinces
-INSERT INTO
- province (
- id,
- name,
- description,
- image,
- periode_id,
- user_id,
-  battle_id,
-  alliance_id
-  ) 
-  VALUES
-   (7,'Palatine Heights', 'Region in Summit Lands', 'palatineHeights.jpg',2,7,2,3);
+
    
 -- Inserer des donnees dans la table inhabitant
 INSERT INTO

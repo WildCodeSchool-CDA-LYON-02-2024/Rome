@@ -3,11 +3,11 @@ export default class ProvinceModel{
     this.connection = db.connection;
   }
 
-  createByUser(name,description,image,userId) {
+  createByUser(name,userId) {
     return new Promise((resolve, reject) => {
       const query =
-        'INSERT INTO province (name, description,image,period_id, user_id,battle_id, alliance_id ) VALUES (?,?,?,1,?,1,1) ;';
-      const values = [name, description, image, userId];
+        'INSERT INTO province (name,period_id, user_id ) VALUES (?,1,?) ;';
+      const values = [name, userId];
       this.connection.query(query, values, (err, result) => {
        
         if (err) { 

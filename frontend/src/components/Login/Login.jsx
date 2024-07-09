@@ -9,10 +9,11 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const { setIsLoggedIn, setAuthUser, setToken, authUser, isLoggedIn, token } = useAuth();
+  // const [name, setName] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [image, setImage] = useState('');
+  const { setIsLoggedIn, setAuthUser, setToken, authUser, isLoggedIn, token } =
+    useAuth();
 
   const navigate = useNavigate();
 
@@ -26,30 +27,27 @@ export default function Login() {
     setPassword(event.target.value);
   };
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+  // const handleNameChange = (event) => {
+  //   setName(event.target.value);
+  // };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-  };
-  const handleImageChange = (event) => {
-    setImage(event.target.value);
-  };
-
-
+  // const handleDescriptionChange = (event) => {
+  //   setDescription(event.target.value);
+  // };
+  // const handleImageChange = (event) => {
+  //   setImage(event.target.value);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(name, description, image, 'formulaire');
+    // console.log(name, description, image, 'formulaire');
 
     fetch(`http://localhost:3310/user/login`, {
       method: 'post',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer {user.token}',
       },
 
       body: JSON.stringify({
@@ -59,6 +57,7 @@ export default function Login() {
     })
       .then((response) => {
         if (response.status === 201) {
+          console.log("je suis connectée")
           setIsLoggedIn(true);
           return response.json();
         } else {
@@ -75,43 +74,42 @@ export default function Login() {
           username: decodedToken.username,
           province_id: decodedToken.province,
         });
+         navigate('/province');
       });
-
-  
+   
   };
 
-  useEffect(() => {
-      
-    if (isLoggedIn && token) {
-  
-    fetch(`http://localhost:3310/user/${authUser.id}/province`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        name,
-        description,
-        image,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 201) {
-          response.json();
-          navigate('/province');
-        } else {
-          setError('province non cree');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
- }
-     
-  }, [isLoggedIn,token])
-  
+  //   useEffect(() => {
+
+  //     if (isLoggedIn && token) {
+
+  //     fetch(`http://localhost:3310/user/${authUser.id}/province`, {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         name,
+  //         description,
+  //         image,
+  //       }),
+  //     })
+  //       .then((response) => {
+  //         if (response.status === 201) {
+  //           response.json();
+  //           navigate('/province');
+  //         } else {
+  //           setError('province non cree');
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+  //  }
+
+  //   }, [isLoggedIn,token])
 
   return (
     <div className='generalContainer-wrapper'>
@@ -138,7 +136,7 @@ export default function Login() {
               onChange={handlePasswordChange}
             />
           </label>
-          <label htmlFor='province'>
+          {/* <label htmlFor='province'>
             Name of your province
             <input
               id='province'
@@ -167,7 +165,7 @@ export default function Login() {
               value={image}
               onChange={handleImageChange}
             />
-          </label>
+          </label> */}
           <button onClick={handleSubmit}>se connecter</button>
           <div>
             Vous n'avez pas encore de compte ?{' '}

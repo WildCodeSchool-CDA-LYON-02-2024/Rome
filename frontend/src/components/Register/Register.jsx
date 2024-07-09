@@ -7,7 +7,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [image, setImage] = useState('');
-
+  const [name, setName] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,25 +27,27 @@ export default function Register() {
     setImage(e.target.value);
   };
 
-
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch(`http://localhost:3310/user/register`, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         username,
         email,
         password,
         image,
-
+        name
       }),
     })
       .then((response) => {
         if (response.status === 201) {
-          navigate("/user/login");
+          navigate('/user/login');
         } else {
           return response.json().then((data) => {
             console.info(data);
@@ -56,8 +58,6 @@ export default function Register() {
         console.error(err);
       });
   };
-
-
 
   return (
     <div className='generalContainer-wrapper'>
@@ -102,7 +102,17 @@ export default function Register() {
               onChange={handleChangeImage}
             />
           </label>
-       
+
+          <label htmlFor='province_name'>
+            Province name
+            <input
+              name='name'
+              type='text'
+              id='name'
+              value={name}
+              onChange={handleChangeName}
+            />
+          </label>
 
           <button onClick={handleSubmit}>Confirmer</button>
         </div>
