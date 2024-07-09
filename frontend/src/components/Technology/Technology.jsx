@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useTechnology } from "./TechnologyContext";
+import { useNavigate } from "react-router-dom";
+import { useTechnology } from "../../context/TechnologyContext";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
 import ButtonSound from "../Sound/ButtonSound";

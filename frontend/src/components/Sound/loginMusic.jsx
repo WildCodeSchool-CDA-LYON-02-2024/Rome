@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import music from "/sound/intro.mp3";
 
 const LoginMusic = () => {

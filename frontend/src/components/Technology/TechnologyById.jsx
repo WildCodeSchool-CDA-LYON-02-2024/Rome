@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
 import Ressource from "../Ressource/Ressource";
-import { useTechnology } from "./TechnologyContext";
+import { useTechnology } from "../../context/TechnologyContext";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
-  const { addTechnology, setProgress } = useTechnology();
+  const { addTechnology } = useTechnology();
 
   const { id } = useParams();
   const technologyID = parseInt(id);

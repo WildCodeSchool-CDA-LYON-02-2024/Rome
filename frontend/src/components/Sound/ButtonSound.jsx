@@ -10,12 +10,12 @@ const ButtonSound = ({ playSound, text, className, navigateTo, onClick }) => {
   useEffect(() => {
     if (redirect) {
       const timer = setTimeout(() => {
-        navigate(navigateTo); // Correctly navigate to the given path
+        navigate(navigateTo); 
       }, 300); // 0.3 seconds delay
 
       return () => clearTimeout(timer);
     }
-  }, [redirect, navigate, navigateTo]); // Added navigateTo to dependency array
+  }, [redirect, navigate, navigateTo]);
 
   const handlePlaySound = () => {
     if (audioRef.current) {
@@ -26,7 +26,7 @@ const ButtonSound = ({ playSound, text, className, navigateTo, onClick }) => {
       playSound();
     }
     if (onClick) {
-      onClick(); // Call the additional click handler
+      onClick();
     }
   };
 
