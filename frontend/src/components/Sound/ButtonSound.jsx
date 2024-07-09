@@ -11,7 +11,7 @@ const ButtonSound = ({ playSound, text, className, navigateTo, onClick }) => {
     if (redirect) {
       const timer = setTimeout(() => {
         navigate(navigateTo); // Correctly navigate to the given path
-      }, 500); // 0.5 seconds delay
+      }, 300); // 0.3 seconds delay
 
       return () => clearTimeout(timer);
     }

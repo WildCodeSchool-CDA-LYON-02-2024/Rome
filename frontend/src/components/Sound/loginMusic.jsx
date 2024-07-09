@@ -9,7 +9,9 @@ const LoginMusic = () => {
     audioElement.play().catch((error) => {
       console.error("Failed to play audio:", error);
     });
+    audioElement.volume = 0.5;
     return () => {
+      
       audioElement.pause();
     };
   }, []);
