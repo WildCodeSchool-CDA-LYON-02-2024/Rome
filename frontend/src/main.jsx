@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { TechnologyProvider } from "./components/Technology/TechnologyContext.jsx";
 
@@ -12,6 +11,8 @@ import TechnologyById from "./components/Technology/TechnologyById";
 import Login from "./components/Login/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Test from "./components/Test.jsx";
+import { AuthProvider } from "./context/AuthProvider.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/province",
-    element: <App />,
+    element: <HomePage />,
   },
   {
     path: "/buildings",
@@ -50,8 +51,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <TechnologyProvider>
-      <RouterProvider router={router} />
-    </TechnologyProvider>
+    <AuthProvider>
+      <TechnologyProvider>
+        <RouterProvider router={router} />
+      </TechnologyProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
+
+export default main;
