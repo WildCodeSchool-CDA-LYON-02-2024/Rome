@@ -5,6 +5,7 @@ import technologyController from "./controller/technologyController.js";
 import buildingController from "./controller/buildingController.js";
 import ressourceController from "./controller/ressourceController.js";
 import inhabitantController from "./controller/inhabitantController.js";
+import provinceBuildingController from "./controller/provinceBuildingController.js";
 
 const router = express.Router();
 
@@ -39,7 +40,7 @@ router.post("/technology/:id", technologyController.add); //pour ajouter une R&D
 // Building
 router.post(
   "/province/:provinceId/building/:buildingId/construct",
-  buildingController.constructBuilding,
+  provinceBuildingController.constructBuilding,
 );
 router.get(
   "/province/:provinceId/building",

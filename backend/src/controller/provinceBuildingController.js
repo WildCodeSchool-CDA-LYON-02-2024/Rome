@@ -52,7 +52,17 @@ const constructBuilding = (req, res) => {
     .getLevel(provinceId, buildingId)
     .then((dataLevel) => {
       if (dataLevel.length === 0) {
-        // TODO: startConstruction (insertion)
+        provinceBuildingModel
+          .createLevel(1, provinceId, buildingId)
+          .then((result) => {
+            if (result.affectedRows > 0)
+              return res.status(200).json({
+                message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+              });
+            else
+              return res.status(404).json({ message: "Bâtiment non trouvé" });
+          })
+          .catch((err) => res.status(500).json(err));
       } else {
         provinceBuildingModel
           .updateLevel(provinceId, buildingId)
@@ -60,17 +70,15 @@ const constructBuilding = (req, res) => {
             console.log(result);
             if (result.affectedRows > 0)
               return res.status(200).json({
-                message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+                message: `Amélioration du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
               });
             else
               return res.status(404).json({ message: "Bâtiment non trouvé" });
-          });
+          })
+          .catch((err) => res.status(500).json(err));
       }
     })
     .catch((err) => res.status(500).json(err));
-
-  // .
-  //     catch((err) => res.status(500).json(err));
 };
 
 // const updateLevel = (req, res) => {
