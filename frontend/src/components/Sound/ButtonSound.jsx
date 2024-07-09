@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import button2 from "/sound/button2.mp3";
 
-const ButtonSound = ({ playSound, text, className, navigateTo }) => {
+const ButtonSound = ({ playSound, text, className, navigateTo, onClick }) => {
   const [redirect, setRedirect] = useState(false);
   const audioRef = useRef(null);
   const navigate = useNavigate();
@@ -24,6 +24,9 @@ const ButtonSound = ({ playSound, text, className, navigateTo }) => {
     setRedirect(true);
     if (playSound) {
       playSound();
+    }
+    if (onClick) {
+      onClick(); // Call the additional click handler
     }
   };
 

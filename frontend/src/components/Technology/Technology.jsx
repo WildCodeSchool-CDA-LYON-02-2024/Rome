@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTechnology } from "./TechnologyContext";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
+import ButtonSound from "../Sound/ButtonSound";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
@@ -115,9 +116,11 @@ export default function Technology() {
                       <p className="techAcquise">Déjà acquis</p>
                     )
                   ) : (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
-                    </Link>
+                    <ButtonSound
+                      text="Rechercher"
+                      className="rechercheTech"
+                      navigateTo={`/technology/${tech.id}`}
+                    />
                   )}
                 </div>
               </div>
@@ -130,9 +133,7 @@ export default function Technology() {
 
   return (
     <div className="allTech">
-      <button className="buttonX" onClick={handlePrev}>
-        X
-      </button>
+      <ButtonSound text="X" className="buttonX" navigateTo={"/province"} />
       <TechnologySection technologies={stone} ageId={1} />
       <TechnologySection technologies={bronze} ageId={2} />
       <TechnologySection technologies={iron} ageId={3} />

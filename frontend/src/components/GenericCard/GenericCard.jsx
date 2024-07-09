@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
+import ButtonSound from "../Sound/ButtonSound";
 
 export default function GenericCard({
   id,
@@ -24,9 +25,7 @@ export default function GenericCard({
     <section className="globalContainer">
       <h2>{title}</h2>
       <div className="container">
-        <button className="buttonX" onClick={handlePrev}>
-          X
-        </button>
+        <ButtonSound text="X" className="buttonX" navigateTo={-1} />
         <div className="topContainer">
           <div className="imageContainer">
             <img src={image} alt={name} className="image" />
