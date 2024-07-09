@@ -33,7 +33,7 @@ export default function TableRow({ id, name, image, description }) {
       })
       .then((data) => {
         setIsConstructing(false);
-        setConstructMsg(`Construction démarrée avec succès ! ${data}`);
+        setConstructMsg(`Construction démarrée avec succès !`);
       })
       .catch((err) => {
         setIsConstructing(false);

@@ -6,38 +6,6 @@ const db = new Database();
 export const buildingModel = new BuildingModel(db);
 
 /**
- * Construct a building
- */
-const constructBuilding = (req, res) => {
-  const { provinceId, buildingId } = req.params;
-
-  const hasResources = true; // TODO: Verify resourcesAvaibility
-
-  if (!hasResources)
-    return res.status(400).json({ message: "Ressources insuffisantes" });
-
-  provinceBuildingModel.getLevel(provinceId, buildingId).then((dataLevel) => {
-    if (dataLevel.length === 0) {
-      // TODO: insert
-    } else {
-      // TODO: update (= startConstruction + rename)
-    }
-  });
-
-  provinceBuildingModel
-    .startConstruction(provinceId, buildingId)
-    .then((result) => {
-      console.log(result);
-      if (result.affectedRows > 0)
-        return res.status(200).json({
-          message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
-        });
-      else return res.status(404).json({ message: "Bâtiment non trouvé" });
-    })
-    .catch((err) => res.status(500).json(err));
-};
-
-/**
  * Get all buildings by province
  * @param {Object} req - Express request object
  * @param {Object} res - Express response object
@@ -118,7 +86,6 @@ const deleteBuilding = (req, res) => {
 };
 
 export default {
-  constructBuilding,
   getBuildingsByProvince,
   getBuildingById,
   updateBuilding,

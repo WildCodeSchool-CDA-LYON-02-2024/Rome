@@ -15,19 +15,6 @@ export default class ProvinceBuildingModel {
     });
   }
 
-  updateLevel(level, buildingId) {
-    return new Promise((resolve, reject) => {
-      const query = `UPDATE province_building
-                           SET level = ?
-                           WHERE id = ?`;
-      const values = [level, buildingId];
-      this.connection.query(query, values, (err, result) => {
-        if (err) reject(err);
-        else resolve(result);
-      });
-    });
-  }
-
   deleteConstraint(provinceId, buildingId) {
     return new Promise((resolve, reject) => {
       const query = `DELETE
@@ -42,24 +29,33 @@ export default class ProvinceBuildingModel {
     });
   }
 
+  createLevel(level, provinceId, buildingId) {
+    return new Promise((resolve, reject) => {
+      const query = `INSERT INTO province_building (level, province_id, building_id)
+                           VALUES (?, ?, ?);`;
+      const values = [provinceId, buildingId];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
+    });
+  }
+
   getLevel(provinceId, buildingId) {
     return new Promise((resolve, reject) => {
       const query = `SELECT level
                            FROM province_building
                            WHERE province_id = ?
                              AND building_id = ?`;
-      this.connection.execute(
-        query,
-        [provinceId, buildingId],
-        (err, result) => {
-          if (err) reject(err);
-          else resolve(result);
-        },
-      );
+      const values = [provinceId, buildingId];
+      this.connection.execute(query, values, (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
     });
   }
 
-  startConstruction(provinceId, buildingId) {
+  updateLevel(provinceId, buildingId) {
     return new Promise((resolve, reject) => {
       this.getLevel(provinceId, buildingId)
         .then((levelData) => {
@@ -77,4 +73,17 @@ export default class ProvinceBuildingModel {
         .catch((err) => reject(err));
     });
   }
+
+  // updateLevel(level, buildingId) {
+  //   return new Promise((resolve, reject) => {
+  //     const query = `UPDATE province_building
+  //                          SET level = ?
+  //                          WHERE id = ?`;
+  //     const values = [level, buildingId];
+  //     this.connection.query(query, values, (err, result) => {
+  //       if (err) reject(err);
+  //       else resolve(result);
+  //     });
+  //   });
+  // }
 }
