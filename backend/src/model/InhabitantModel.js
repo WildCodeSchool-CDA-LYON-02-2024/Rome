@@ -32,6 +32,7 @@ export default class InhabitantModel {
       });
     });
   }
+  
   initPopulation(provinceId) {
     return new Promise((resolve, reject) => {
       const query =
