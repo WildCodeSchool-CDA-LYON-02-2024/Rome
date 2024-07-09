@@ -2,6 +2,7 @@ import { Database } from '../model/Database.js';
 import { userModel } from '../model/userModel.js';
 import generateToken from '../model/service/generateToken.js';
 import { provinceModel } from './provinceController.js';
+import { inhabitantModel } from './inhabitantController.js';
 
 const db = new Database();
 const UserModel = new userModel(db);
@@ -21,10 +22,18 @@ const register = (req, res) => {
       provinceModel.createByUser(req.body.name, newUser.insertId)
         .then((newProvince) => {
           //TODO: create all I need 
+          inhabitantModel
+            .initPopulation(newProvince.insertId)
+            .then(() => {
+              res.status(201).json({
+                message: 'user created',
+              });
+            })
+            .catch((err) => {
+              res.status(500).json({ err });
+            });
 
-          res.status(201).json({
-            message: 'user created',
-          });
+        
         }).catch((err) => { 
           //TODO: IN THIS CASE REMOVE USER CREATED
           res.status(500).json({message: err.message});
