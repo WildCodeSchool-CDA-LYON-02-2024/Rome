@@ -14,15 +14,18 @@ import Test from './components/Test.jsx';
 import { AuthProvider } from './context/AuthProvider.jsx';
 import HomePage from './pages/HomePage.jsx';
 import LoginMusic from "./components/Sound/loginMusic.jsx";
+import GeneralMusic from "./components/Sound/GeneralMusic.jsx";
 
 const MainRouter = () => {
   const location = useLocation();
 
+  const isAuthPage = location.pathname === "/user/login" || location.pathname === "/user/register";
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
-      {(location.pathname === "/user/login" || location.pathname === "/user/register") && (
-        <LoginMusic />
-      )}
+      {isAuthPage && <LoginMusic />}
+      {!isAuthPage && !isHomePage && <GeneralMusic />}
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/" element={<Home />} />
