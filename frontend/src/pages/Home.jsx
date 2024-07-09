@@ -27,7 +27,6 @@ function Home() {
   return (
     <div className="background-video-container">
       <audio ref={audioRef} src={intro} loop />{" "}
-      {/* Ensure background music loops */}
       <video
         ref={videoRef}
         autoPlay
@@ -35,14 +34,12 @@ function Home() {
         muted
         className="background-video"
         onEnded={handleEnded}
-        key={videos[currentVideoIndex]} // Remount the video element to reset play state
+        key={videos[currentVideoIndex]}
       >
         <source src={videos[currentVideoIndex]} type="video/mp4" />
       </video>
       <div className="content">
         <h1>Rome Antique</h1>
-
-        {/* Updated ButtonSound to include link */}
         <ButtonSound
           text="Commencez votre aventure"
           className="homeButton"
