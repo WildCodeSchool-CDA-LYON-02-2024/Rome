@@ -71,3 +71,14 @@ color: green;
     border:2px solid goldenrod ;
     font-weight: bold;
 }
+
+
+
+  .barCompleted {
+    background-color: red;
+    width: 100%;
+  }
+  
+  .label {
+display: none;
+  }

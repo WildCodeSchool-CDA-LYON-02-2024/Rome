@@ -10,10 +10,12 @@ export default function Technology() {
   const [stone, setStone] = useState([]);
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
+  const [progress, setProgress] = useState(0);
+
   const navigate = useNavigate();
 
   const provinceID = 1;
-  const provinceAgeID = 1;  // Assuming this is the age level of the current province
+  const provinceAgeID = 1; // Assuming this is the age level of the current province
 
   const ages = [
     { id: 1, name: "Âge de pierre" },
@@ -44,14 +46,12 @@ export default function Technology() {
   }, [provinceID]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Force update to recalculate progress bars
-      setUserTechnology(prevState => [...prevState]);
-    }, 1000); // Update every second
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => prevProgress + 1);
+    }, 1000);
 
-    // Clean up interval on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => clearInterval(interval);
+  }, []); //
 
   const getAgeName = (categoryId) => {
     const age = ages.find((age) => age.id === categoryId);
@@ -63,21 +63,20 @@ export default function Technology() {
     navigate("/province");
   };
 
-  // Calculer le pourcentage de progression basé sur le temps écoulé
   const getProgress = (tech) => {
-    const techProgress = userByIDTechnology.find(t => t.id === tech.id);
+    const techProgress = userByIDTechnology.find((t) => t.id === tech.id);
 
     if (techProgress) {
-      const { constructionStart } = techProgress;
-      const constructionTime = tech.construction_time * 1000; // Convert seconds to milliseconds
-      if (!constructionStart || !constructionTime) return 0; // Ensure that we have valid data
-
-      const elapsedTime = Date.now() - new Date(constructionStart).getTime();
-      const progressPercentage = Math.min((elapsedTime / constructionTime) * 100, 100);
+      if (progress >= tech.construction_time) {
+        location.reload();
+        return 100;
+      }
+      const constructionTime = tech.construction_time;
+      const progressPercentage = Math.ceil((100 / constructionTime) * progress);
       return progressPercentage;
     }
 
-    return 0; // Default to 0% if no progress data is found
+    return 0;
   };
 
   const TechnologySection = ({ technologies, ageId }) => (
@@ -92,15 +91,22 @@ export default function Technology() {
               <img className="image" src={tech.image} alt={tech.name} />
               <p>{tech.name}</p>
               <div className="buttonContainer">
-                {userTechnology.some((userTech) => userTech.name === tech.name) ? (
-                  userByIDTechnology.some((techById) => techById.id === tech.id) ? (
+                {userTechnology.some(
+                  (userTech) => userTech.name === tech.name
+                ) ? (
+                  userByIDTechnology.some(
+                    (techById) => techById.id === tech.id
+                  ) ? (
                     <div className="progressContainer">
                       <ProgressBar
                         completed={getProgress(tech)}
                         className="progress-bar"
-
+                        labelClassName="label"
+                      width="5rem"
                       />
-                      <p className="progressText">{Math.round(getProgress(tech))}%</p>
+                      <p className="progressText">
+                        {Math.round(getProgress(tech))}%
+                      </p>
                     </div>
                   ) : (
                     <p className="techAcquise">Déjà acquis</p>
