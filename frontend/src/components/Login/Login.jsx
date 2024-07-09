@@ -37,46 +37,7 @@ export default function Login() {
     setImage(event.target.value);
   };
 
-  // // Gestionnaire de soumission du formulaire
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   fetch(`http://localhost:3310/user/login`, {
-  //     method: 'post',
-  //     credentials: 'include',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: 'Bearer {user.token}',
-  //     },
 
-  //     body: JSON.stringify({
-  //       email,
-  //       password,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       if (response.status === 201) {
-  //         setIsLoggedIn(true);
-  //         return response.json();
-  //       } else {
-  //         setError('Email ou mot de passe incorrect');
-  //         navigate('/login');
-  //       }
-  //     })
-  //     .then((data) => {
-  //       const token = data.token;
-  //       setToken(token);
-  //       const decodedToken = jwtDecode(token);
-  //       setAuthUser({
-  //         id: decodedToken.id,
-  //         username: decodedToken.username,
-  //         province_id: decodedToken.province,
-  //       });
-
-  //       navigate('/province');
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
 
   const handleSubmit = (event) => {
     event.preventDefault();
