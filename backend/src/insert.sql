@@ -398,7 +398,7 @@ VALUES
         6
     );
 
--- Insertion d'une nouvelle ligne dans la table provinces
+Insertion d'une nouvelle ligne dans la table provinces
 INSERT INTO
  province (
  id,
