@@ -5,6 +5,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ramonak/react-progress-bar": "^5.2.0",
     "axios": "^1.7.2",
     "jwt-decode": "^4.0.0",
     "prop-types": "^15.8.1",
