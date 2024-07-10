@@ -79,3 +79,8 @@
   .label {
 display: none;
   }
+
+  .blurred {
+    filter: blur(5px) grayscale(100%);;
+    pointer-events: none;
+  }
