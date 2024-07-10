@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import "./Ressource.css";
+import { useEffect, useState } from 'react';
+import './Ressource.css';
+import { useAuth } from '../../context/AuthProvider';
 
 export default function Ressource() {
   const [ressource, setRessource] = useState([]);
+  const { authUser } = useAuth();
 
-  const provinceID = 1;
+  // const provinceID = 1;
+  const provinceID = authUser.province_id;
 
   useEffect(() => {
     fetch(`http://localhost:3310/province/${provinceID}/ressource`)
@@ -18,7 +21,7 @@ export default function Ressource() {
         setRessource(data);
       })
       .catch((err) => {
-        console.error("Erreur lors de la récupération des ressources :", err);
+        console.error('Erreur lors de la récupération des ressources :', err);
       });
   }, [provinceID]);
 
@@ -29,7 +32,7 @@ export default function Ressource() {
         prevRessource.map((res) => ({
           ...res,
           quantity: res.quantity + 1,
-        })),
+        }))
       );
     }, 1000); // 1000ms = 1 second
 
@@ -42,9 +45,9 @@ export default function Ressource() {
       const idsToUpdate = ressource.map((res) => res.id);
 
       fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
-        method: "PUT",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           quantities: quantitiesToUpdate,
           ressourceIDs: idsToUpdate,
@@ -55,27 +58,27 @@ export default function Ressource() {
           if (response.status === 201) {
           } else {
             console.error(
-              "Erreur lors de la mise à jour des ressources :",
-              response.statusText,
+              'Erreur lors de la mise à jour des ressources :',
+              response.statusText
             );
           }
         })
         .catch((err) => {
-          console.error("Erreur lors de la mise à jour des ressources :", err);
+          console.error('Erreur lors de la mise à jour des ressources :', err);
         });
     }
   }, [ressource, provinceID]);
 
   return (
-    <div className="ressourceGlobal">
+    <div className='ressourceGlobal'>
       {ressource.map((ressources) => (
-        <div className="ressourceContainer" key={ressources.id}>
+        <div className='ressourceContainer' key={ressources.id}>
           <img
-            className="ressourceIcon"
+            className='ressourceIcon'
             src={ressources.image}
             alt={ressources.name}
           />
-          <div className="ressourceName">
+          <div className='ressourceName'>
             <p>{ressources.name}</p>
             <p>{ressources.quantity}</p>
           </div>

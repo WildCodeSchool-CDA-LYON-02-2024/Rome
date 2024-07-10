@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTechnology } from "./TechnologyContext";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
+import { useAuth } from "../../context/AuthProvider";
+
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
@@ -11,10 +13,13 @@ export default function Technology() {
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
   const [progress, setProgress] = useState(0);
+   const {  authUser } =
+     useAuth();
 
   const navigate = useNavigate();
 
-  const provinceID = 1;
+  // const provinceID = 1;
+    const provinceID = authUser.province_id;
   const provinceAgeID = 1;
 
   const ages = [
