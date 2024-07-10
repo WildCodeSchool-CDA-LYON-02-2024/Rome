@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 export default function Register() {
-  const [username, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState("");
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export default function Register() {
   };
 
   const handleChangeImage = (e) => {
-    setImage(e.target.value);
+    setImage(e.target.files[0]);
   };
 
   const handleChangeName = (e) => {
@@ -33,21 +33,21 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("userImage", image);
+    formData.append("name", name);
+
     fetch(`http://localhost:3310/user/register`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        image,
-        name
-      }),
+      method: "POST",
+      credentials: "include",
+      body: formData,
     })
       .then((response) => {
         if (response.status === 201) {
-          navigate('/user/login');
+          navigate("/user/login");
         } else {
           return response.json().then((data) => {
             console.info(data);
@@ -60,61 +60,64 @@ export default function Register() {
   };
 
   return (
-    <div className='generalContainer-wrapper'>
-      <section className='generalContainer'>
+    <div className="generalContainer-wrapper">
+      <section className="generalContainer">
         <h2>Enregistrement</h2>
-        <div className='registerContainer'>
-          <label htmlFor='prénom'>
-            username
-            <input
-              id='prénom'
-              name='prénom'
-              value={username}
-              onChange={handleChangeUserName}
-            />
-          </label>
-          <label htmlFor='email'>
-            Email Address
-            <input
-              id='email'
-              name='email'
-              value={email}
-              onChange={handleChangeEmail}
-            />
-          </label>
-          <label htmlFor='password'>
-            Password
-            <input
-              name='password'
-              type='password'
-              id='password'
-              value={password}
-              onChange={handleChangePassword}
-            />
-          </label>
-          <label htmlFor='image'>
-            image
-            <input
-              name='image'
-              type='text'
-              id='image'
-              value={image}
-              onChange={handleChangeImage}
-            />
-          </label>
-
-          <label htmlFor='province_name'>
-            Province name
-            <input
-              name='name'
-              type='text'
-              id='name'
-              value={name}
-              onChange={handleChangeName}
-            />
-          </label>
-
-          <button onClick={handleSubmit}>Confirmer</button>
+        <div className="registerContainer">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">
+              Username
+              <input
+                id="username"
+                name="username"
+                value={username}
+                onChange={handleChangeUserName}
+                required
+              />
+            </label>
+            <label htmlFor="email">
+              Email Address
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={handleChangeEmail}
+                required
+              />
+            </label>
+            <label htmlFor="password">
+              Password
+              <input
+                name="password"
+                type="password"
+                id="password"
+                value={password}
+                onChange={handleChangePassword}
+                required
+              />
+            </label>
+            <label htmlFor="image">
+              Image
+              <input
+                name="image"
+                type="file"
+                id="image"
+                onChange={handleChangeImage}
+              />
+            </label>
+            <label htmlFor="province_name">
+              Province Name
+              <input
+                name="name"
+                type="text"
+                id="name"
+                value={name}
+                onChange={handleChangeName}
+              />
+            </label>
+            <button type="submit">Confirmer</button>
+          </form>
         </div>
       </section>
     </div>
