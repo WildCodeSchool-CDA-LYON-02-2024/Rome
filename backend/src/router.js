@@ -5,6 +5,7 @@ import technologyController from "./controller/technologyController.js";
 import buildingController from "./controller/buildingController.js";
 import ressourceController from "./controller/ressourceController.js";
 import inhabitantController from "./controller/inhabitantController.js";
+import provinceController from "./controller/provinceController.js";
 
 const router = express.Router();
 
@@ -28,7 +29,9 @@ router.get("/province/:id"); //pour obtenir les informations d'une province en p
 
 // Admin ?
 router.post("/province"); //pour créer une nouvelle province
+router.post("/user/:userId/province",verifyToken,provinceController.addProvinceByUser)// pour créer une province pour un user via son id
 router.delete("/province/:id"); //pour supprimer une province en particulier via son id
+
 
 //  technology
 router.get("/technology", technologyController.read); //pour obtenir la liste complète des R&D possibles
