@@ -80,7 +80,7 @@ export default function Technology() {
         const notificationTimeout = setTimeout(() => {
           setShowNotification(false);
         }, 3000); 
-        location.reload();
+        //location.reload();
         return 100 &&  clearTimeout(notificationTimeout);
       }
       const constructionTime = tech.construction_time;
