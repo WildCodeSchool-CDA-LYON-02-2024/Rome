@@ -7,6 +7,7 @@ export default function Technology() {
   const [stone, setStone] = useState([]);
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
+  const [showNotification, setShowNotification] = useState(false); // State for notification
   const navigate = useNavigate();
 
   const provinceID = 1;
@@ -39,18 +40,32 @@ export default function Technology() {
       });
   }, [provinceID]);
 
+  useEffect(() => {
+    // Display the notification when component mounts
+    setShowNotification(true);
+
+    // Hide the notification after a delay (optional)
+    const notificationTimeout = setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // Adjust the delay as needed
+
+    // Clean up timeout to avoid memory leaks
+    return () => clearTimeout(notificationTimeout);
+  }, []);
+
   const getAgeName = (categoryId) => {
     const age = ages.find((age) => age.id === categoryId);
     return age ? age.name : "";
   };
 
-    const handlePrev = (event) => {
-      event.preventDefault();
-      navigate('/province');
-    };
+  const handlePrev = (event) => {
+    event.preventDefault();
+    navigate('/province');
+  };
 
   return (
     <div className='allTech'>
+      {showNotification && <div className='notification'>⚔️We are ready⚔️</div>}
       <button className='buttonX' onClick={handlePrev}>
         X
       </button>
