@@ -18,8 +18,8 @@ export default function Technology() {
 
   const navigate = useNavigate();
 
-  // const provinceID = 1;
-    const provinceID = authUser.province_id;
+  const provinceID = 1;
+    // const provinceID = authUser.province_id;
   const provinceAgeID = 1;
 
   const ages = [
@@ -86,6 +86,8 @@ export default function Technology() {
 
   const TechnologySection = ({ technologies, ageId }) => {
     const isBlurred = ageId > provinceAgeID;
+
+    console.log(technologies,"technologies")
 
     return (
       <div className={`age ${isBlurred ? "blurred" : ""}`}>
