@@ -46,7 +46,7 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
--- Create the technology table
+-- Create the technology table with construction_time column
 CREATE TABLE
     technology (
         id INT NOT NULL AUTO_INCREMENT,
@@ -54,6 +54,7 @@ CREATE TABLE
         description VARCHAR(255) NOT NULL,
         image VARCHAR(255) NOT NULL,
         category INT NOT NULL,
+        construction_time INT NOT NULL, -- Adding construction time column
         PRIMARY KEY (id)
     );
 
@@ -68,7 +69,7 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
--- create the ressources table
+-- Create the ressources table
 CREATE TABLE
     ressource (
         id INT AUTO_INCREMENT,
@@ -78,7 +79,7 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
--- Create the User_alliance table
+-- Create the user_alliance table
 CREATE TABLE
     user_alliance (
         id INT NOT NULL AUTO_INCREMENT,
@@ -138,7 +139,7 @@ CREATE TABLE
         FOREIGN KEY (province_id) REFERENCES province (id)
     );
 
--- Create the ressource_technology table
+-- Create the province_technology table
 CREATE TABLE
     province_technology (
         id INT NOT NULL AUTO_INCREMENT,
@@ -161,7 +162,7 @@ CREATE TABLE
         FOREIGN KEY (building_id) REFERENCES building (id)
     );
 
--- Créer la table province_ressource
+-- Create the province_ressource table
 CREATE TABLE
     province_ressource (
         id INT NOT NULL AUTO_INCREMENT,
