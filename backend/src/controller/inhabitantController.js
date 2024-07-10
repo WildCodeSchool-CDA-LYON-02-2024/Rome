@@ -39,6 +39,9 @@ const getAllInhabitantsByProvinceIdAndUserId = (req, res) => {
     });
 };
 
+
+
+
 export default {
   getInhabitantByProvinceId,
   getAllInhabitantsByProvinceIdAndUserId,

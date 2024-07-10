@@ -32,4 +32,22 @@ export default class InhabitantModel {
       });
     });
   }
+  
+  initPopulation(provinceId) {
+    return new Promise((resolve, reject) => {
+      const query =
+        'INSERT INTO inhabitant(health, attack, defense, image, province_id, role_id) VALUES (100, 75, 50, "legionary.jpg", ?, 1), (80, 50, 60, "senator.jpg", ?, 2), (120, 90, 70, "emperor.jpg", ?, 3), (110, 80, 60, "gladiator.jpg", ?, 4), (90, 70, 65, "praetorian_guard.jpg", ?, 5), (100, 50, 55, "merchant.jpg", ?, 6)';
+      
+      const values = [provinceId,provinceId,provinceId,provinceId,provinceId,provinceId];
+      this.connection.execute(query, values, (error, result, fields) => {
+        console.log(query,"requete")
+        if (error) {
+          reject(error);
+        } else {
+          console.log(result, "resultat init population");
+          resolve(result);
+        }
+      })
+    })
+  }
 }
