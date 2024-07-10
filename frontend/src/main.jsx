@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
+import { TechnologyProvider } from "./components/Technology/TechnologyContext.jsx";
+import App from './App.jsx'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
@@ -18,8 +19,8 @@ import HomePage from './pages/HomePage.jsx';
 
 
 function main() {
-  
-  
+
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -64,21 +65,16 @@ function main() {
 
   return router;
 }
-  
-  
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
+      <TechnologyProvider>
       <RouterProvider router={main()}  />
+      </TechnologyProvider>
     </AuthProvider>
   </React.StrictMode>
 );
- 
 
-
-export default main
-
-  
-
-
-
+export default main;
