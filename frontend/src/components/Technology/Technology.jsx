@@ -15,7 +15,7 @@ export default function Technology() {
   const navigate = useNavigate();
 
   const provinceID = 1;
-  const provinceAgeID = 1; // Assuming this is the age level of the current province
+  const provinceAgeID = 1;
 
   const ages = [
     { id: 1, name: "Âge de pierre" },
@@ -79,52 +79,54 @@ export default function Technology() {
     return 0;
   };
 
-  const TechnologySection = ({ technologies, ageId }) => (
-    <div className="age">
-      <div>
-        <h3 className="periodTechno">{getAgeName(ageId)}</h3>
-      </div>
-      <div className="technologyContainer">
-        {technologies.map((tech) => (
-          <div key={tech.id} className="technologyCard">
-            <div className="imageContainer">
-              <img className="image" src={tech.image} alt={tech.name} />
-              <p>{tech.name}</p>
-              <div className="buttonContainer">
-                {userTechnology.some(
-                  (userTech) => userTech.name === tech.name
-                ) ? (
-                  userByIDTechnology.some(
-                    (techById) => techById.id === tech.id
+  const TechnologySection = ({ technologies, ageId }) => {
+    const isBlurred = ageId > provinceAgeID;
+
+    return (
+      <div className={`age ${isBlurred ? "blurred" : ""}`}>
+        <div>
+          <h3 className="periodTechno">{getAgeName(ageId)}</h3>
+        </div>
+        <div className="technologyContainer">
+          {technologies.map((tech) => (
+            <div key={tech.id} className="technologyCard">
+              <div className="imageContainer">
+                <img className="image" src={tech.image} alt={tech.name} />
+                <p>{tech.name}</p>
+                <div className="buttonContainer">
+                  {userTechnology.some(
+                    (userTech) => userTech.name === tech.name
                   ) ? (
-                    <div className="progressContainer">
-                      <ProgressBar
-                        completed={getProgress(tech)}
-                        className="progress-bar"
-                        labelClassName="label"
-                      width="5rem"
-                      />
-                      <p className="progressText">
-                        {Math.round(getProgress(tech))}%
-                      </p>
-                    </div>
+                    userByIDTechnology.some(
+                      (techById) => techById.id === tech.id
+                    ) ? (
+                      <div className="progressContainer">
+                        <ProgressBar
+                          completed={getProgress(tech)}
+                          className="progress-bar"
+                          labelClassName="label"
+                          width="5rem"
+                        />
+                        <p className="progressText">
+                          {Math.round(getProgress(tech))}%
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="techAcquise">Déjà acquis</p>
+                    )
                   ) : (
-                    <p className="techAcquise">Déjà acquis</p>
-                  )
-                ) : provinceAgeID >= tech.category ? (
-                  <Link to={`/technology/${tech.id}`}>
-                    <button className="rechercheTech">Rechercher</button>
-                  </Link>
-                ) : (
-                  <p>Veuillez développer votre province</p>
-                )}
+                    <Link to={`/technology/${tech.id}`}>
+                      <button className="rechercheTech">Rechercher</button>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="allTech">
