@@ -15,6 +15,7 @@ export class userModel {
           if (err) {
             reject(err);
           } else {
+           
             resolve(result);
           }
         });
