@@ -14,12 +14,6 @@ export default function GenericCard({
   costs,
   handleButton,
 }) {
-  const navigate = useNavigate();
-
-  const handlePrev = (event) => {
-    event.preventDefault();
-    navigate(-1);
-  };
 
   return (
     <section className="globalContainer">

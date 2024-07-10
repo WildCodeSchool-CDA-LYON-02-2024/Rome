@@ -23,3 +23,13 @@
 .ressourceIcon {
   width: 30px;
 }
+
+@media screen and (width < 900px) {
+  .ressourceGlobal {
+flex-direction: column;
+  }
+  .ressourceName {
+    text-align: center;
+    width: 100%;
+  }
+}

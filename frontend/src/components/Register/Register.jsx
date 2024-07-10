@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef,useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import ButtonSound from "../Sound/ButtonSound";
+import button from "/sound/button2.mp3";
 
 export default function Register() {
   const [username, setUserName] = useState('');
@@ -9,8 +9,21 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
+  const audioRef = useRef(null);
+  const [redirect, setRedirect] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (redirect) {
+      const timer = setTimeout(() => {
+        navigate("/user/login");
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [redirect, navigate]);
+
 
   const handleChangeUserName = (e) => {
     setUserName(e.target.value);
@@ -33,6 +46,9 @@ export default function Register() {
   };
 
   const handleSubmit = (event) => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
     event.preventDefault();
     fetch(`http://localhost:3310/user/register`, {
       method: 'POST',
@@ -48,7 +64,7 @@ export default function Register() {
     })
       .then((response) => {
         if (response.status === 201) {
-          navigate('/user/login');
+          setRedirect(true);
         } else {
           return response.json().then((data) => {
             console.info(data);
@@ -62,6 +78,7 @@ export default function Register() {
 
   return (
     <div className='generalContainer-wrapper'>
+       <audio ref={audioRef} src={button} />
       <section className='generalContainer'>
         <h2>Enregistrement</h2>
         <div className='registerContainer'>

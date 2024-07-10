@@ -1,19 +1,32 @@
 // TechnologyById.js
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
 import Ressource from "../Ressource/Ressource";
 import { useTechnology } from "../../context/TechnologyContext";
+import button from "/sound/button2.mp3";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
   const { addTechnology } = useTechnology();
+  const audioRef = useRef(null);
+  const [redirect, setRedirect] = useState(false);
 
   const { id } = useParams();
   const technologyID = parseInt(id);
   const provinceID = 1;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (redirect) {
+      const timer = setTimeout(() => {
+        navigate("/technology");
+      }, 500); // 0.5 seconds delay
+
+      return () => clearTimeout(timer);
+    }
+  }, [redirect, navigate]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/technology/${technologyID}`)
@@ -54,7 +67,7 @@ export default function TechnologyById() {
             "La recherche de la technologie a été lancée avec succès."
           );
           addTechnology(technology[0]); // Ajouter la technologie au contexte
-          navigate("/technology");
+          setRedirect(true);
         }
       })
       .catch((err) => {
@@ -104,6 +117,7 @@ export default function TechnologyById() {
 
   return (
     <section>
+          <audio ref={audioRef} src={button} />
       <div>
         <Ressource />
         {technology && (
@@ -121,6 +135,7 @@ export default function TechnologyById() {
             handleButton={handleAdd}
           />
         )}
+    
       </div>
     </section>
   );

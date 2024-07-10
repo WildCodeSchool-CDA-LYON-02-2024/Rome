@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthProvider.jsx';
 import { jwtDecode } from 'jwt-decode';
+import button from "/sound/button2.mp3";
 
 import './Login.css';
 
@@ -14,8 +15,20 @@ export default function Login() {
   // const [image, setImage] = useState('');
   const { setIsLoggedIn, setAuthUser, setToken, authUser, isLoggedIn, token } =
     useAuth();
+    const audioRef = useRef(null);
+    const [redirect, setRedirect] = useState(false);
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if (redirect) {
+        const timer = setTimeout(() => {
+          navigate("/province");
+        }, 500); // 0.5 seconds delay
+  
+        return () => clearTimeout(timer);
+      }
+    }, [redirect, navigate]);
 
   // Gestionnaire de changement de l'email
 
@@ -39,6 +52,9 @@ export default function Login() {
   // };
 
   const handleSubmit = (event) => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
     event.preventDefault();
 
     // console.log(name, description, image, 'formulaire');
@@ -67,6 +83,7 @@ export default function Login() {
       })
       .then((data) => {
         const token = data.token;
+        setRedirect(true);
         setToken(token);
         const decodedToken = jwtDecode(token);
         setAuthUser({
@@ -113,6 +130,7 @@ export default function Login() {
 
   return (
     <div className='generalContainer-wrapper'>
+       <audio ref={audioRef} src={button} />
       <section className='generalContainer'>
         <h2>Connectez-vous</h2>
         <div className='loginContainer'>
