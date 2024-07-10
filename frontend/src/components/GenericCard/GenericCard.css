@@ -44,12 +44,14 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+
 }
 
 .imageGallery {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  padding-top: 1rem;
 }
 
 .image {
@@ -69,6 +71,11 @@
 .description {
   padding: 1rem;
   width: 90%;
+}
+
+.time{
+font-size: 1rem;
+padding: 0 1rem;
 }
 
 .button {

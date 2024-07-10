@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useTechnology } from "../../context/TechnologyContext";
+import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
+import ButtonSound from "../Sound/ButtonSound";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
+  const { userByIDTechnology } = useTechnology();
   const [stone, setStone] = useState([]);
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
-  const [showNotification, setShowNotification] = useState(false); // State for notification
-  const navigate = useNavigate();
+  const [progress, setProgress] = useState(0);
+  const [showNotification, setShowNotification] = useState(false); // State for notification;
 
   const provinceID = 1;
   const provinceAgeID = 1;
+
   const ages = [
     { id: 1, name: "Âge de pierre" },
     { id: 2, name: "Âge de bronze" },
@@ -40,119 +44,112 @@ export default function Technology() {
       });
   }, [provinceID]);
 
+  // useEffect(() => {
+  //   // Display the notification when component mounts
+  //   setShowNotification(true);
+
+  //   // Hide the notification after a delay (optional)
+  //   const notificationTimeout = setTimeout(() => {
+  //     setShowNotification(false);
+  //   }, 3000); // Adjust the delay as needed
+
+  //   // Clean up timeout to avoid memory leaks
+  //   return () => clearTimeout(notificationTimeout);
+  // }, []);
+
   useEffect(() => {
-    // Display the notification when component mounts
-    setShowNotification(true);
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => prevProgress + 1);
+    }, 1000);
 
-    // Hide the notification after a delay (optional)
-    const notificationTimeout = setTimeout(() => {
-      setShowNotification(false);
-    }, 3000); // Adjust the delay as needed
-
-    // Clean up timeout to avoid memory leaks
-    return () => clearTimeout(notificationTimeout);
-  }, []);
+    return () => clearInterval(interval);
+  }, []); //
 
   const getAgeName = (categoryId) => {
     const age = ages.find((age) => age.id === categoryId);
     return age ? age.name : "";
   };
 
-  const handlePrev = (event) => {
-    event.preventDefault();
-    navigate('/province');
+  const getProgress = (tech) => {
+    const techProgress = userByIDTechnology.find((t) => t.id === tech.id);
+
+    if (techProgress) {
+      if (progress >= tech.construction_time) {
+        
+        setShowNotification(true);
+        const notificationTimeout = setTimeout(() => {
+          setShowNotification(false);
+        }, 3000); 
+        location.reload();
+        return 100 &&  clearTimeout(notificationTimeout);
+      }
+      const constructionTime = tech.construction_time;
+      const progressPercentage = Math.ceil((100 / constructionTime) * progress);
+      return progressPercentage;
+    }
+
+    return 0;
+  };
+
+  const TechnologySection = ({ technologies, ageId }) => {
+    const isBlurred = ageId > provinceAgeID;
+
+    return (
+      <div className={`age ${isBlurred ? "blurred" : ""}`}>
+        <div>
+          <h3 className="periodTechno">{getAgeName(ageId)}</h3>
+        </div>
+        <div className="technologyContainer">
+          {technologies.map((tech) => (
+            <div key={tech.id} className="technologyCard">
+              <div className="imageContainer">
+                <img className="image" src={tech.image} alt={tech.name} />
+                <p>{tech.name}</p>
+                <div className="buttonContainer">
+                  {userTechnology.some(
+                    (userTech) => userTech.name === tech.name
+                  ) ? (
+                    userByIDTechnology.some(
+                      (techById) => techById.id === tech.id
+                    ) ? (
+                      <div className="progressContainer">
+                        <ProgressBar
+                          completed={getProgress(tech)}
+                          className="progress-bar"
+                          labelClassName="label"
+                          width="5rem"
+                        />
+                        <p className="progressText">
+                          {Math.round(getProgress(tech))}%
+                        </p>
+                      </div>
+                    ) : (
+                      <p className="techAcquise">Déjà acquis</p>
+                    )
+                  ) : (
+                    <ButtonSound
+                      text="Rechercher"
+                      className="rechercheTech"
+                      navigateTo={`/technology/${tech.id}`}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div className='allTech'>
-      {showNotification && <div className='notification'>⚔️We are ready⚔️</div>}
-      <button className='buttonX' onClick={handlePrev}>
-        X
-      </button>
-      <div className='age'>
-        <div>
-          <h3 className='periodTechno'>{getAgeName(1)}</h3>
-        </div>
-        <div className='technologyContainer'>
-          {stone.map((tech) => (
-            <div key={tech.id}>
-              <div className='imageContainer'>
-                <img className='image' src={tech.image} alt={tech.name} />
-                <p>{tech.name}</p>
-                <div className='buttonContainer'>
-                  {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
-                  ) ? (
-                    <p className='techAcquise'>Déjà acquis</p>
-                  ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className='rechercheTech'>Rechercher</button>
-                    </Link>
-                  ) : (
-                    <p>Veuillez développer votre province</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className='age'>
-        <div>
-          <h3 className='periodTechno'>{getAgeName(2)}</h3>
-        </div>
-        <div className='technologyContainer'>
-          {bronze.map((tech) => (
-            <div key={tech.id}>
-              <div className='imageContainer'>
-                <img className='image' src={tech.image} alt={tech.name} />
-                <p>{tech.name}</p>
-                <div className='buttonContainer'>
-                  {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
-                  ) ? (
-                    <p className='techAcquise'>Déjà acquis</p>
-                  ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className='rechercheTech'>Rechercher</button>
-                    </Link>
-                  ) : (
-                    <p>Veuillez développer votre province</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className='age'>
-        <div>
-          <h3 className='periodTechno'>{getAgeName(3)}</h3>
-        </div>
-        <div className='technologyContainer'>
-          {iron.map((tech) => (
-            <div key={tech.id}>
-              <div className='imageContainer'>
-                <img className='image' src={tech.image} alt={tech.name} />
-                <p>{tech.name}</p>
-                <div className='buttonContainer'>
-                  {userTechnology.some(
-                    (userTech) => userTech.name === tech.name
-                  ) ? (
-                    <p className='techAcquise'>Déjà acquis</p>
-                  ) : provinceAgeID >= tech.category ? (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className='rechercheTech'>Rechercher</button>
-                    </Link>
-                  ) : (
-                    <p>Veuillez développer votre province</p>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="allTech">
+      {showNotification && <div className="notification">⚔️Recherche terminée</div>}
+
+      <ButtonSound text="X" className="buttonX" navigateTo={"/province"} />
+      <TechnologySection technologies={stone} ageId={1} />
+      <TechnologySection technologies={bronze} ageId={2} />
+      <TechnologySection technologies={iron} ageId={3} />
     </div>
   );
 }

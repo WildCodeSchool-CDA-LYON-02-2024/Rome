@@ -1,11 +1,14 @@
+// TechnologyById.js
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
-import Ressource from "../Ressource/Ressource.jsx";
+import Ressource from "../Ressource/Ressource";
+import { useTechnology } from "../../context/TechnologyContext";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
+  const { addTechnology } = useTechnology();
 
   const { id } = useParams();
   const technologyID = parseInt(id);
@@ -13,7 +16,6 @@ export default function TechnologyById() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //récupération de la liste des technologie
     fetch(`http://localhost:3310/technology/${technologyID}`)
       .then((response) => response.json())
       .then((data) => {
@@ -24,10 +26,10 @@ export default function TechnologyById() {
       .catch((err) => {
         console.error(
           "Erreur lors de la récupération des données de technologie :",
-          err,
+          err
         );
       });
-    //récupération des ressources totales
+
     fetch(`http://localhost:3310/province/${provinceID}/ressource`)
       .then((response) => response.json())
       .then((data) => {
@@ -40,7 +42,6 @@ export default function TechnologyById() {
 
   const handleAdd = (event) => {
     event.preventDefault();
-    //ajout de la techologie dans la province correspondante (achat)
     fetch(`http://localhost:3310/technology/${technologyID}`, {
       method: "POST",
       credentials: "include",
@@ -50,20 +51,19 @@ export default function TechnologyById() {
       .then((response) => {
         if (response.status === 201) {
           console.info(
-            "La recherche de la technologie a été lancée avec succès.",
+            "La recherche de la technologie a été lancée avec succès."
           );
+          addTechnology(technology[0]); // Ajouter la technologie au contexte
           navigate("/technology");
-          window.location.reload();
         }
       })
       .catch((err) => {
         console.error("Erreur lors du lancement de la recherche :", err);
       });
 
-    // soustrait du total des ressources si des id correspondent
     const updatedQuantities = ressource.map((resourceItem) => {
       const technologyItem = technology.find(
-        (techItem) => techItem.ressource_id === resourceItem.id,
+        (techItem) => techItem.ressource_id === resourceItem.id
       );
       if (technologyItem) {
         return {
@@ -77,7 +77,6 @@ export default function TechnologyById() {
     const quantitiesToUpdate = updatedQuantities.map((item) => item.quantity);
     const idsToUpdate = updatedQuantities.map((item) => item.id);
 
-    //mise à jour des ressources totale suite à lancement de la recherche de la techno
     fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
       method: "PUT",
       credentials: "include",
@@ -91,11 +90,10 @@ export default function TechnologyById() {
       .then((response) => {
         if (response.status === 201) {
           console.info("Les ressources sont suffisantes.");
-          navigate("/technology");
         } else {
           console.error(
             "Erreur lors de la mise à jour des ressources :",
-            response.statusText,
+            response.statusText
           );
         }
       })
@@ -104,11 +102,8 @@ export default function TechnologyById() {
       });
   };
 
- 
-
   return (
     <section>
-     
       <div>
         <Ressource />
         {technology && (
@@ -120,7 +115,7 @@ export default function TechnologyById() {
             description={technology[0].description}
             costs={technology.map((ressource) => ressource.ressource_cost)}
             resourceImages={technology.map(
-              (ressource) => ressource.ressource_image,
+              (ressource) => ressource.ressource_image
             )}
             technologyID={technologyID}
             handleButton={handleAdd}

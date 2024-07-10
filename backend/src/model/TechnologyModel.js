@@ -21,7 +21,7 @@ export class TechnologyModel {
   readById(id) {
     return new Promise((resolve, reject) => {
       const query =
-        "SELECT technology.id , technology.name , technology.description, technology.image, ressource.id AS ressource_id, ressource.name AS ressource_name, ressource.description AS ressource_description, ressource.image AS ressource_image, technology_ressource.cost AS ressource_cost FROM technology JOIN technology_ressource ON technology.id = technology_ressource.technology_id JOIN ressource ON technology_ressource.ressource_id = ressource.id WHERE technology.id = ?;";
+        "SELECT technology.id , technology.name , technology.description, technology.image,construction_time, ressource.id AS ressource_id, ressource.name AS ressource_name, ressource.description AS ressource_description, ressource.image AS ressource_image, technology_ressource.cost AS ressource_cost FROM technology JOIN technology_ressource ON technology.id = technology_ressource.technology_id JOIN ressource ON technology_ressource.ressource_id = ressource.id WHERE technology.id = ?;";
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
