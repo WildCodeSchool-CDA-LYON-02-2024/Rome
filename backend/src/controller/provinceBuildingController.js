@@ -1,6 +1,5 @@
 import { Database } from "../model/Database.js";
 import ProvinceBuildingModel from "../model/ProvinceBuildingModel.js";
-// import { ressourceModel, update } from "./ressourceController.js";
 import ressourceController from "./ressourceController.js";
 
 const db = new Database();
@@ -54,10 +53,11 @@ const constructBuilding = (req, res) => {
         { id: 1, quantity: 100 },
         { id: 2, quantity: 200 },
       ]; // Example resource requirement (from config or database)
-      const hasResources = checkResourcesAvailability(
-        provinceResources,
-        requiredResources,
-      );
+      const hasResources = provinceResources >= requiredResources;
+      // const hasResources = checkResourcesAvailability(
+      //   provinceResources,
+      //   requiredResources,
+      // );
 
       if (!hasResources) {
         return res.status(400).json({ message: "Ressources insuffisantes" });
@@ -111,12 +111,6 @@ const constructBuilding = (req, res) => {
         .catch((err) => res.status(500).json(err));
     })
     .catch((err) => res.status(500).json(err));
-};
-
-// Helper function to check resource availability
-const checkResourcesAvailability = (allResources, requiredResources) => {
-  // TODO: Implement the logic to check if all required resources are available
-  return true; // Replace with actual check
 };
 
 /*

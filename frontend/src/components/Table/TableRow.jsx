@@ -1,5 +1,6 @@
 import Button from "../Button";
 import { useState } from "react";
+import fetchData from "../../services/fetchData";
 
 export default function TableRow({ id, name, image, description }) {
   const [isConstructing, setIsConstructing] = useState(false);
@@ -12,6 +13,11 @@ export default function TableRow({ id, name, image, description }) {
     const provinceID = 1;
     console.log("id: ", id);
 
+    fetchData(
+      `http://localhost:3310/province/${provinceID}/building/${id}/construct`,
+      "POST",
+    );
+
     fetch(
       `http://localhost:3310/province/${provinceID}/building/${id}/construct`,
       {
@@ -19,7 +25,6 @@ export default function TableRow({ id, name, image, description }) {
         headers: {
           "Content-Type": "application/json",
         },
-        // Add additional information if needed, e.g., the resources used
         body: JSON.stringify({}),
       },
     )
