@@ -2,7 +2,8 @@
   position: absolute;
 display: flex;
 justify-content: center;
-  width: 100%;
+  width: 50%;
+  z-index: 1;
 }
 
 .userIcon {
@@ -17,4 +18,22 @@ justify-content: center;
 
 .username{
 font-size: 2rem;
+margin: auto;
+color:#faae0b ;
+font-weight: bold;
+}
+
+@media screen and (width < 950px) {
+  .userContainer {
+    padding:  4rem 2rem;
+    justify-content: right;
+
+  }
+  .userInformation {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .username{
+    font-size: 1.5rem;
+    }
 }
