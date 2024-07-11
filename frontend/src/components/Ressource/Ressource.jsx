@@ -5,15 +5,12 @@ import useApi from '../../api/useApi';
 
 export default function Ressource() {
   const [ressource, setRessource] = useState([]);
-    const [ressourcesToUpdate, setRessourcesToUpdate] = useState([]);
-  const { authUser, inhabitant } = useAuth();
+  const [ressourcesToUpdate, setRessourcesToUpdate] = useState([]);
+  const { authUser, inhabitant, setInhabitant, token } = useAuth();
   const api = useApi();
-
 
   // const provinceID = 1;
   const provinceID = authUser.province_id;
-
-
 
   useEffect(() => {
     fetch(`http://localhost:3310/province/${provinceID}/ressource`)
@@ -37,7 +34,7 @@ export default function Ressource() {
       setRessource((prevRessource) =>
         prevRessource.map((res) => ({
           ...res,
-          quantity: res.quantity + 1,
+          quantity: res.quantity + 10,
         }))
       );
     }, 1000); // 1000ms = 1 second
@@ -76,10 +73,7 @@ export default function Ressource() {
   }, [ressource, provinceID]);
 
   //Test Séverine
-  
 
-  console.log(inhabitant,"inhabitant")
-  
   const legionary = inhabitant.filter(
     (inhabitant) => inhabitant.image === 'legionary.jpg'
   );
@@ -176,7 +170,8 @@ export default function Ressource() {
     totalEmperor * costInhabitants.emperor.cost.bois +
     totalGladiator * costInhabitants.gladiator.cost.bois +
     totalPraetorian_guard * costInhabitants.praetorian_guard.cost.bois +
-    totalMerchant * costInhabitants.merchant.cost.bois + totalLegionary * costInhabitants.legionary.cost.bois;
+    totalMerchant * costInhabitants.merchant.cost.bois +
+    totalLegionary * costInhabitants.legionary.cost.bois;
 
   const totalCostMeat =
     totalSenator * costInhabitants.senator.cost.viande +
@@ -203,7 +198,7 @@ export default function Ressource() {
     totalGladiator * costInhabitants.gladiator.cost.fer +
     totalPraetorian_guard * costInhabitants.praetorian_guard.cost.fer +
     totalMerchant * costInhabitants.merchant.cost.fer +
-    totalLegionary * costInhabitants.legionary.cost.fer;;
+    totalLegionary * costInhabitants.legionary.cost.fer;
 
   const totalCostGold =
     totalSenator * costInhabitants.senator.cost.or +
@@ -214,120 +209,121 @@ export default function Ressource() {
     totalMerchant * costInhabitants.merchant.cost.or +
     totalLegionary * costInhabitants.legionary.cost.or;
 
-  console.log(totalCostWood, 'bois total');
-  console.log(totalCostMeat, 'viande total');
-  console.log(totalCostStone, 'pierre total');
-  console.log(totalCostIron, 'fer total');
-  console.log(totalCostGold, 'or total');
+  useEffect(() => {
+    const updateQuantities = (type) => {
+      setRessource((prevRessources) => {
+        const updatedQuantities = prevRessources.map((ressource) => {
+          let updatedQuantity = ressource.quantity;
 
+          switch (ressource.name) {
+            case 'Bois':
+              updatedQuantity -= totalCostWood;
+              break;
+            case 'Viande':
+              updatedQuantity -= totalCostMeat;
+              break;
+            case 'Pierre':
+              updatedQuantity -= totalCostStone;
+              break;
+            case 'Fer':
+              updatedQuantity -= totalCostIron;
+              break;
+            case 'Or':
+              updatedQuantity -= totalCostGold;
+              break;
+            default:
+              console.log(`Cette ressource n'est pas disponible`);
+          }
 
-    useEffect(() => {
-      const updateQuantities = (type) => {
-        setRessource((prevRessources) => {
-          const updatedQuantities = prevRessources.map((ressource) => {
-            let updatedQuantity = ressource.quantity;
-
-            switch (ressource.name) {
-              case 'Bois':
-                updatedQuantity -= totalCostWood;
-                break;
-              case 'Viande':
-                updatedQuantity -= totalCostMeat;
-                break;
-              case 'Pierre':
-                updatedQuantity -= totalCostStone;
-                break;
-              case 'Fer':
-                updatedQuantity -= totalCostIron;
-                break;
-              case 'Or':
-                updatedQuantity -= totalCostGold;
-                break;
-              default:
-                console.log(`Cette ressource n'est pas disponible`);
-            }
-
-            return { ...ressource, quantity: updatedQuantity };
-          });
-
-          
-          setRessourcesToUpdate(updatedQuantities);
-
-         
-          return updatedQuantities;
+          return { ...ressource, quantity: updatedQuantity };
         });
-      };
 
-      console.log(ressourcesToUpdate, 'quantité à update');
+        setRessourcesToUpdate(updatedQuantities);
 
-      const sendUpdatedQuantities = (updatedQuantities) => {
-        if (updatedQuantities.length > 0) {
-          console.log('je passe ici');
-          const quantitiesToUpdate = updatedQuantities.map(
-            (res) => res.quantity
-          );
-          const idsToUpdate = updatedQuantities.map((res) => res.id);
+        return updatedQuantities;
+      });
+    };
 
-          fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
-            method: 'PUT',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              quantities: quantitiesToUpdate,
-              ressourceIDs: idsToUpdate,
-              provinceID,
-            }),
-          })
-            .then((response) => {
-              console.log(response.data, 'response');
-              if (response.status === 201) {
-                console.log('Ressources mises à jour avec succès');
-              } else {
-                console.error(
-                  'Erreur lors de la mise à jour des ressources :',
-                  response.statusText
-                );
-              }
-            })
-            .catch((err) => {
+    const sendUpdatedQuantities = (updatedQuantities) => {
+      if (updatedQuantities.length > 0) {
+        console.log('je passe ici');
+        const quantitiesToUpdate = updatedQuantities.map((res) => res.quantity);
+        const idsToUpdate = updatedQuantities.map((res) => res.id);
+
+        fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
+          method: 'PUT',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            quantities: quantitiesToUpdate,
+            ressourceIDs: idsToUpdate,
+            provinceID,
+          }),
+        })
+          .then((response) => {
+             if (response.status === 201) {
+              console.log('Ressources mises à jour avec succès');
+            } else {
               console.error(
                 'Erreur lors de la mise à jour des ressources :',
-                err
+                response.statusText
               );
-            });
-        }
-      };
+            }
+          })
+          .catch((err) => {
+            console.error(
+              'Erreur lors de la mise à jour des ressources :',
+              err
+            );
+          });
+      }
+    };
 
-      const interval = setInterval(() => {
-        console.log('interval');
-        updateQuantities(ressource);
-        sendUpdatedQuantities(ressourcesToUpdate);
-      }, 60000); 
+    const interval = setInterval(() => {
+      console.log('interval');
+      updateQuantities(ressource);
+      sendUpdatedQuantities(ressourcesToUpdate);
+    }, 10000);
 
-      return () => clearInterval(interval);
-    }, [provinceID, ressourcesToUpdate]);
+    return () => clearInterval(interval);
+  }, [provinceID, ressourcesToUpdate]);
 
-    useEffect(() => {
-      api
-        .get(`http://localhost:3310/province/${provinceID}/ressource`)
-        .then((response) => {
-          console.log(response.data, 'ressources dans composants habitants');
-          setRessource(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }, [provinceID, ressourcesToUpdate]);
+  useEffect(() => {
+    api
+      .get(`http://localhost:3310/province/${provinceID}/ressource`)
+      .then((response) => {
+        console.log(response.data, 'ressources dans composants habitants');
+        setRessource(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [provinceID, ressourcesToUpdate]);
 
+  function getInhabitantsByProvinceIdandUserId(provinceId, userId) {
+    console.log(provinceId, userId);
+    api
+      .get(`/users/${userId}/provinces/${provinceId}/inhabitants`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const data = response.data;
 
+        setInhabitant(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-
-
-
+  useEffect(() => {
+    getInhabitantsByProvinceIdandUserId(authUser.province_id, authUser.id);
+  }, []);
 
   //Fin test Séverine
 
- 
   return (
     <div className='ressourceGlobal'>
       {ressource.map((ressources) => (
