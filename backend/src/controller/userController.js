@@ -1,8 +1,9 @@
-import { Database } from "../model/Database.js";
-import { userModel } from "../model/userModel.js";
-import generateToken from "../model/service/generateToken.js";
-import { provinceModel } from "./provinceController.js";
-import { inhabitantModel } from "./inhabitantController.js";
+import { Database } from '../model/Database.js';
+import { userModel } from '../model/userModel.js';
+import generateToken from '../model/service/generateToken.js';
+import { provinceModel } from './provinceController.js';
+import { inhabitantModel } from './inhabitantController.js';
+import {ressourceModel } from './ressourceController.js';
 
 const db = new Database();
 const UserModel = new userModel(db);
@@ -28,6 +29,7 @@ const register = (req, res) => {
         .then((newProvince) => {
           inhabitantModel
             .initPopulation(newProvince.insertId)
+            ressourceModel.initRessource(newProvince.insertId)
             .then(() => {
               res.status(201).json({
                 message: "user created",
@@ -69,6 +71,8 @@ const login = (req, res) => {
     });
     
 };
+
+
 const deleteById = (req, res) => {
   const id = req.params.id;
   UserModel.delete(id)

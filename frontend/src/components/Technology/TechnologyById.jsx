@@ -3,16 +3,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
 import Ressource from "../Ressource/Ressource";
 import { useTechnology } from "../../context/TechnologyContext";
+import { useAuth } from "../../context/AuthProvider";
+
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
+  const { addTechnology, setProgress } = useTechnology();
+  const { authUser } = useAuth();
   const [showNotification, setShowNotification] = useState(false); // State for notification
 
-  const { addTechnology } = useTechnology();
+ 
   const { id } = useParams();
   const technologyID = parseInt(id);
-  const provinceID = 1;
+  // const provinceID = 1;
+   const provinceID = authUser.province_id;
   const navigate = useNavigate();
 
   useEffect(() => {
