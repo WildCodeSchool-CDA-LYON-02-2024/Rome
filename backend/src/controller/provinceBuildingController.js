@@ -44,11 +44,64 @@ const deleteFK = (req, res) => {
 const constructBuilding = (req, res) => {
   const { provinceId, buildingId } = req.params;
 
+  const createLevel = (level, provinceId, buildingId) => {
+    provinceBuildingModel
+      .createLevel(level, provinceId, buildingId)
+      .then((result) => {
+        if (result.affectedRows > 0) {
+          // Update resources
+          // ressourceController.update(req, res);
+          // OR
+          // ressourceController.ressourceModel
+          //   .updateByProvince(quantity, provinceId, ressourceId) // updateResources(provinceId, requiredResources)
+          //   .then(() => {
+          return res.status(200).json({
+            message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+          });
+          //   })
+          //   .catch((err) => res.status(500).json(err));
+        } else {
+          return res.status(404).json({ message: "Bâtiment non trouvé" });
+        }
+      })
+      .catch((err) => res.status(500).json(err));
+  };
+
+  const upgradeLevel = (provinceId, buildingId) => {
+    provinceBuildingModel
+      .updateLevel(provinceId, buildingId)
+      .then((result) => {
+        console.log(result);
+        if (result.affectedRows > 0) {
+          // Update resources
+          // ressourceController.update(req, res);
+          return res.status(200).json({
+            message: `Amélioration du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+          });
+        } else return res.status(404).json({ message: "Bâtiment non trouvé" });
+      })
+      .catch((err) => res.status(500).json(err));
+  };
+
+  const levelManager = (provinceId) => {
+    provinceBuildingModel
+      .getLevel(provinceId, buildingId)
+      .then((provinceLevel) => {
+        if (provinceLevel.length === 0) {
+          createLevel(1, provinceId, buildingId);
+        } else {
+          upgradeLevel(provinceId, buildingId);
+        }
+      })
+      .catch((err) => res.status(500).json(err));
+  };
+
   // Verify resource availability
   ressourceController.ressourceModel
     .selectByProvince(provinceId)
-    .then((provinceResources) => {
-      // TODO: Add logic to check if resources are sufficient for construction/upgrade
+    .then(() => {
+      /* TODO: Add logic to check if resources are sufficient for construction/upgrade
+      (provinceResources) => {
       const requiredResources = [
         { id: 1, quantity: 100 },
         { id: 2, quantity: 200 },
@@ -62,52 +115,8 @@ const constructBuilding = (req, res) => {
       if (!hasResources) {
         return res.status(400).json({ message: "Ressources insuffisantes" });
       }
-
-      // Fetch current building level
-      provinceBuildingModel
-        .getLevel(provinceId, buildingId)
-        .then((provinceLevel) => {
-          if (provinceLevel.length === 0) {
-            // Construct new building
-            provinceBuildingModel
-              .createLevel(1, provinceId, buildingId)
-              .then((result) => {
-                if (result.affectedRows > 0) {
-                  // Update resources
-                  ressourceController.update(req, res);
-                  // ressourceController.ressourceModel
-                  //   .updateByProvince(quantity, provinceId, ressourceId) // updateResources(provinceId, requiredResources)
-                  //   .then(() => {
-                  //     return res.status(200).json({
-                  //       message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
-                  //     });
-                  //   })
-                  //   .catch((err) => res.status(500).json(err));
-                } else {
-                  return res
-                    .status(404)
-                    .json({ message: "Bâtiment non trouvé" });
-                }
-              })
-              .catch((err) => res.status(500).json(err));
-          } else {
-            // Upgrade existing building
-            provinceBuildingModel
-              .updateLevel(provinceId, buildingId)
-              .then((result) => {
-                console.log(result);
-                if (result.affectedRows > 0) {
-                  // Update resources
-                  ressourceController.update(req, res);
-                } else
-                  return res
-                    .status(404)
-                    .json({ message: "Bâtiment non trouvé" });
-              })
-              .catch((err) => res.status(500).json(err));
-          }
-        })
-        .catch((err) => res.status(500).json(err));
+      */
+      levelManager(provinceId);
     })
     .catch((err) => res.status(500).json(err));
 };
