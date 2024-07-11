@@ -73,11 +73,11 @@ export class RessourceModel {
         provinceId,
       ];
       this.connection.execute(query, values, (error, result, fields) => {
-        console.log(query, 'requete');
+        // console.log(query, 'requete');
         if (error) {
           reject(error);
         } else {
-          console.log(result, 'resultat init ressource');
+          // console.log(result, 'resultat init ressource');
           resolve(result);
         }
       });

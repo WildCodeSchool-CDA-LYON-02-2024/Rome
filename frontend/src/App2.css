@@ -142,7 +142,11 @@
     font-size: 62px;
   }
 }
-
+@media screen and (width < 900px) {
+  .menu-icons {
+    flex-direction: column;
+  }
+}
 @media (orientation: portrait) {
   /* Styles spécifiques pour le mode portrait */
   .menu-icons {

@@ -10,8 +10,8 @@ export default class InhabitantModel {
       const values = [id];
 
       this.connection.execute(query, values, (error, results, fields) => {
-        console.log(query);
-        console.log(values);
+        // console.log(query);
+        // console.log(values);
         if (error) reject(error);
         if (results[0] === undefined) reject(error);
         else resolve(results);
@@ -25,7 +25,7 @@ export default class InhabitantModel {
         "select inhabitant.health, inhabitant.attack, inhabitant.defense, role.image, role.name, role.status, role.description, province.name from inhabitant inner join role on inhabitant.role_id = role.id inner join province on province.id= inhabitant.province_id inner join user on user.id = province.user_id where province.id = ? and user.id = ?;";
       const values = [provinceId, userId];
       this.connection.execute(query, values, (error, results, fields) => {
-        console.log(query, "requete");
+        // console.log(query, "requete");
         if (error) reject(error);
         if (results[0] === undefined) reject(error);
         else resolve(results);
@@ -40,11 +40,11 @@ export default class InhabitantModel {
       
       const values = [provinceId,provinceId,provinceId,provinceId,provinceId,provinceId];
       this.connection.execute(query, values, (error, result, fields) => {
-        console.log(query,"requete")
+        // console.log(query,"requete")
         if (error) {
           reject(error);
         } else {
-          console.log(result, "resultat init population");
+          // console.log(result, "resultat init population");
           resolve(result);
         }
       })
