@@ -16,35 +16,13 @@ export default function Buildings() {
   const provinceID = 1;
 
   const getBuildings = () => {
-    const data = fetchData(
+    fetchData(
       `http://localhost:3310/province/${provinceID}/building`,
       "GET",
+      setBuildings,
+      setError,
+      setLoading,
     );
-    console.log("data:", data);
-    // .then((result) => setBuildings(result))
-    // .catch((err) => setError(err.message))
-    // .finally(() => setLoading(false));
-    /*
-        fetch(`http://localhost:3310/province/${provinceID}/building`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => {
-            if (!res.ok) throw new Error("Retrieval failed");
-            return res.json();
-          })
-          .then((data) => {
-            setBuildings(data);
-            setLoading(false);
-          })
-          .catch((err) => {
-            console.error("Error :", err);
-            setError(err.message);
-            setLoading(false);
-          });
-          */
   };
 
   useEffect(() => {
