@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import "./Profil.css";
 
-export default function profil() {
-  const userID = 7 
+export default function Profil() {
+  const [profil, setProfil] = useState([]);
+  const userID = 7;
   useEffect(() => {
     fetch(`http://localhost:3310/user/${userID}`)
       .then((response) => {
@@ -11,12 +13,23 @@ export default function profil() {
         return response.json();
       })
       .then((data) => {
-        setRessource(data);
+        setProfil(data);
       })
       .catch((err) => {
         console.error("Erreur lors de la récupération des données :", err);
       });
-  }, [provinceID]);
+  }, []);
 
-  return <div></div>;
+  let images = profil.image;
+
+  return (
+    <div className="userContainer">
+      {profil.map((information) => (
+        <div className="userInformation">
+          <img className="userIcon" src={information.image} alt="" />
+          <p key={information.id}>{information.username}</p>
+        </div>
+      ))}
+    </div>
+  );
 }

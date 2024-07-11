@@ -62,7 +62,7 @@ export default function Login() {
           return response.json();
         } else {
           setError('Email ou mot de passe incorrect');
-          navigate('/login');
+          navigate('/user/login');
         }
       })
       .then((data) => {

@@ -48,23 +48,26 @@ const register = (req, res) => {
 
 const login = (req, res) => {
   console.log(req.body);
-
+      console.log();
   const { email, password } = req.body;
   UserModel.login(email, password)
     .then(({ isAuthentificated, user }) => {
       if (!isAuthentificated) {
         return res.status(401).json({ message: "invalid to login" });
       }
+      
       return res.status(201).json({
         user,
         message: "Authentification successful",
         token: generateToken(user),
       });
+
     })
     .catch((err) => {
       console.error(err);
       return res.status(500).json({ message: "Failed to login" });
     });
+    
 };
 const deleteById = (req, res) => {
   const id = req.params.id;

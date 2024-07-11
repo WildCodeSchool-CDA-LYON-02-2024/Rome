@@ -1,0 +1,15 @@
+.userContainer {
+  position: absolute;
+  gap: 1.5rem;
+  right: 50%;
+}
+
+.userIcon {
+  width: 50px;
+}
+
+.userInformation {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+}

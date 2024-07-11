@@ -19,7 +19,7 @@ router.delete("/ouvrage/:id");
 // user
 
 router.post("/user/login", userController.login); // pour obtenir toute les information des users
-router.get("/user/:id", verifyToken, userController.readById); // pour obtenir toute les information d'un user en particulier via son id
+router.get("/user/:id", userController.readById); // pour obtenir toute les information d'un user en particulier via son id
 router.post("/user/register",multerMiddleware,  userController.register); //pour créer un nouvel utilisateur
 router.put("/user/:id", userController.update); //pour mettre à jour le profil d'un utilisateur en particulier via son id  /// we should use the token here after the test in the dfront end //
 router.delete("/user/:id", verifyToken, userController.deleteById); // pour supprimer un user en particulier via son id  // everthing work corrctly
