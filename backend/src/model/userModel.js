@@ -6,19 +6,20 @@ export class userModel {
     this.connection = db.connection;
   }
 
-  create(username, email, password, Image) {
+  create(name, email, password, Image) {
     return new Promise((resolve, reject) => {
-      bcrypt.hash(password, 10).then((passwordHash) => {
+
         const query = `INSERT INTO user (username, email, password, Image) VALUES (?,?,?,?)`;
-        const values = [username, email, passwordHash, Image];
+        const values = [name, email, password, Image];
         this.connection.execute(query, values, (err, result) => {
           if (err) {
             reject(err);
           } else {
+      
             resolve(result);
           }
         });
-      });
+
     });
   }
 

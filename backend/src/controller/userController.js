@@ -10,12 +10,11 @@ const UserModel = new userModel(db);
 const register = (req, res) => {
   //to create user
   const { username, email, password } = req.body;
-
-  const dest = req.file.destination.split("public")[1];
   const imageName = req.file.filename;
+  console.log(imageName);
   console.log(req.body);
   console.log(req.file);
-  UserModel.create({ username, email, password, image: `${dest}/${imageName}` })
+  UserModel.create({ username, email, password, image: `images/${imageName}` })
     .then((newUser) => {
       console.log(newUser.insertId, "new user");
       provinceModel

@@ -9,7 +9,7 @@ const storage = diskStorage({
   filename: (req, file, callback) => {
     const name = file.originalname.split(".")[0];
     const extension = file.mimetype.split("/")[1];
-    callback(null, `${name + Date.now()}.${extension}`);
+    callback(null, `${name}.${extension}`);
   },
 });
 
