@@ -1,14 +1,12 @@
 
-
-HTML CSS 
-
-Result
-Skip Results Iframe
-
-EDIT ON
-
 #menu__toggle {
-opacity: 0;
+opacity: 100;
+position: fixed;
+top: 20px;
+left: 20px;
+width: 26px;
+height: 26px;
+background-color: transparent;
 }
 #menu__toggle:checked + .menu__btn > span {
 transform: rotate(45deg);
@@ -31,7 +29,7 @@ left: 20px;
 width: 26px;
 height: 26px;
 cursor: pointer;
-z-index: 1;
+z-index: 2;
 }
 .menu__btn > span,
 .menu__btn > span::before,
@@ -61,9 +59,10 @@ height: 100%;
 margin: 0;
 padding: 80px 0;
 list-style: none;
-background-color: #ECEFF1;
+background-color: rgba(218, 165, 32, 0.747);
 box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
 transition-duration: .25s;
+z-index: 1;
 }
 .menu__item {
 display: block;
