@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 export default function Register() {
-  const [username, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ export default function Register() {
     setPassword(e.target.value);
   };
 
-
   const handleChangeImage = (e) => {
     setImage(e.target.files[0]);
   };
@@ -32,34 +31,26 @@ export default function Register() {
     setName(e.target.value);
   };
 
-  let formData = new FormData()
-  formData.append('username', username);
-  formData.append('email', email);
-  formData.append('password', password);
-  formData.append('userImage', `/images/${image.name}`);
-
-  console.log(Object.fromEntries(formData.entries()).username, 'formadata username');
-  console.log(username);
-  console.log(email);
-  console.log(password);
-  console.log(image);
-
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    let formData = new FormData();
+    formData.append("userImage", image);
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("name", name);
+
+    console.log(Object.fromEntries(formData.entries()), "formData entries");
+
     fetch(`http://localhost:3310/user/register`, {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        image,
-        name
-      }),
+      method: "POST",
+      credentials: "include",
+      body: formData,
     })
       .then((response) => {
         if (response.status === 201) {
-          navigate('/user/login');
+          navigate("/user/login");
         } else {
           return response.json().then((data) => {
             console.info(data);
@@ -72,60 +63,63 @@ export default function Register() {
   };
 
   return (
-    <div className='generalContainer-wrapper'>
-      <section className='generalContainer'>
+    <div className="generalContainer-wrapper">
+      <section className="generalContainer">
         <h2>Enregistrement</h2>
-        <form className='registerContainer'>
-          <label htmlFor='username'>
-            username
+        <form className="registerContainer" onSubmit={handleSubmit}>
+          <label htmlFor="username">
+            Username
             <input
-              id='username'
-              name='username'
+              id="username"
+              name="username"
               value={username}
               onChange={handleChangeUserName}
+              required
             />
           </label>
-          <label htmlFor='email'>
+          <label htmlFor="email">
             Email Address
             <input
-              id='email'
-              name='email'
+              id="email"
+              name="email"
+              type="email"
               value={email}
               onChange={handleChangeEmail}
+              required
             />
           </label>
-          <label htmlFor='password'>
+          <label htmlFor="password">
             Password
             <input
-              name='password'
-              type='password'
-              id='password'
+              name="password"
+              type="password"
+              id="password"
               value={password}
               onChange={handleChangePassword}
+              required
             />
           </label>
-          <label htmlFor='userImage'>
-            image
+          <label htmlFor="userImage">
+            Image
             <input
-              name='userImage'
-              type='file'
-              id='userImage'
+              name="userImage"
+              type="file"
+              id="userImage"
               onChange={handleChangeImage}
+              required
             />
           </label>
-
-          <label htmlFor='province_name'>
-            Province name
+          <label htmlFor="province_name">
+            Province Name
             <input
-              name='name'
-              type='text'
-              id='name'
+              name="name"
+              type="text"
+              id="name"
               value={name}
               onChange={handleChangeName}
             />
           </label>
-
-          <button onClick={handleSubmit}>Confirmer</button>
+          <button type="submit">Confirmer</button>
         </form>
       </section>
     </div>

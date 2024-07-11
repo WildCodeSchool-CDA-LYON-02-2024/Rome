@@ -8,19 +8,24 @@ const db = new Database();
 const UserModel = new userModel(db);
 
 const register = (req, res) => {
-  //to create user
-  const { username, email, password } = req.body;
+  const { username, email, password, name } = req.body;
+
+  if (!req.file) {
+    return res.status(400).json({ message: "Image upload failed" });
+  }
+
   const imageName = req.file.filename;
-  console.log(imageName);
+  const image = `/images/${imageName}`;
+
   console.log(req.body);
-  console.log(req.file);
-  UserModel.create({ username, email, password, image: `images/${imageName}` })
+  console.log(image);
+
+  UserModel.create(username, email, password, image)
     .then((newUser) => {
       console.log(newUser.insertId, "new user");
       provinceModel
-        .createByUser(req.body.name, newUser.insertId)
+        .createByUser(name, newUser.insertId)
         .then((newProvince) => {
-          //TODO: create all I need
           inhabitantModel
             .initPopulation(newProvince.insertId)
             .then(() => {
@@ -33,7 +38,6 @@ const register = (req, res) => {
             });
         })
         .catch((err) => {
-          //TODO: IN THIS CASE REMOVE USER CREATED
           res.status(500).json({ message: err.message });
         });
     })
@@ -41,6 +45,7 @@ const register = (req, res) => {
       res.status(500).json({ err });
     });
 };
+
 const login = (req, res) => {
   console.log(req.body);
 
