@@ -15,8 +15,8 @@ export default function TechnologyById() {
 
   const { id } = useParams();
   const technologyID = parseInt(id);
-  const provinceID = 1;
-  //  const provinceID = authUser.province_id;
+  // const provinceID = 1;
+   const provinceID = authUser.province_id;
   const navigate = useNavigate();
 
   useEffect(() => {

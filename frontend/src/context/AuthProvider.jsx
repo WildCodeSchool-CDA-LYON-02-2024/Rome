@@ -6,6 +6,7 @@ function AuthProvider({ children }) {
   const [authUser, setAuthUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
+    const [inhabitant, setInhabitant] = useState([]);
 
 
 
@@ -16,6 +17,8 @@ function AuthProvider({ children }) {
     setIsLoggedIn,
     token,
     setToken,
+    inhabitant,
+    setInhabitant
   };
 
   sessionStorage.setItem("authUser", token);

@@ -18,8 +18,8 @@ export default function Technology() {
 
   const navigate = useNavigate();
 
-  const provinceID = 1;
-    // const provinceID = authUser.province_id;
+  // const provinceID = 1;
+    const provinceID = authUser.province_id;
   const provinceAgeID = 1;
 
   const ages = [
