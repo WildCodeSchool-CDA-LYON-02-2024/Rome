@@ -1,14 +1,14 @@
 // TechnologyById.js
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import GenericCard from "../GenericCard/GenericCard";
 import Ressource from "../Ressource/Ressource";
-import { useTechnology } from "./TechnologyContext";
+import { useTechnology } from "../../context/TechnologyContext";
 
 export default function TechnologyById() {
   const [technology, setTechnology] = useState(null);
   const [ressource, setRessource] = useState([]);
-  const { addTechnology, setProgress } = useTechnology();
+  const [showNotification, setShowNotification] = useState(false); // State for notification
 
   const { id } = useParams();
   const technologyID = parseInt(id);
@@ -26,7 +26,7 @@ export default function TechnologyById() {
       .catch((err) => {
         console.error(
           "Erreur lors de la récupération des données de technologie :",
-          err,
+          err
         );
       });
 
@@ -38,10 +38,14 @@ export default function TechnologyById() {
       .catch((err) => {
         console.error(err);
       });
-  }, [technologyID]);
+  }, [technologyID, provinceID]);
 
   const handleAdd = (event) => {
     event.preventDefault();
+
+    // Show notification
+    setShowNotification(true);
+
     fetch(`http://localhost:3310/technology/${technologyID}`, {
       method: "POST",
       credentials: "include",
@@ -50,55 +54,18 @@ export default function TechnologyById() {
     })
       .then((response) => {
         if (response.status === 201) {
-          console.info(
-            "La recherche de la technologie a été lancée avec succès.",
-          );
+          console.info("La recherche de la technologie a été lancée avec succès.");
           addTechnology(technology[0]); // Ajouter la technologie au contexte
-          navigate("/technology");
+
+          // Delay navigation by 3 seconds
+          setTimeout(() => {
+            setShowNotification(false);
+            navigate("/technology");
+          }, 3000); // 3000 milliseconds = 3 seconds
         }
       })
       .catch((err) => {
         console.error("Erreur lors du lancement de la recherche :", err);
-      });
-
-    const updatedQuantities = ressource.map((resourceItem) => {
-      const technologyItem = technology.find(
-        (techItem) => techItem.ressource_id === resourceItem.id,
-      );
-      if (technologyItem) {
-        return {
-          id: resourceItem.id,
-          quantity: resourceItem.quantity - technologyItem.ressource_cost,
-        };
-      }
-      return resourceItem;
-    });
-
-    const quantitiesToUpdate = updatedQuantities.map((item) => item.quantity);
-    const idsToUpdate = updatedQuantities.map((item) => item.id);
-
-    fetch(`http://localhost:3310/province/${provinceID}/ressource`, {
-      method: "PUT",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        quantities: quantitiesToUpdate,
-        ressourceIDs: idsToUpdate,
-        provinceID,
-      }),
-    })
-      .then((response) => {
-        if (response.status === 201) {
-          console.info("Les ressources sont suffisantes.");
-        } else {
-          console.error(
-            "Erreur lors de la mise à jour des ressources :",
-            response.statusText,
-          );
-        }
-      })
-      .catch((err) => {
-        console.error("Erreur lors de la mise à jour des ressources :", err);
       });
   };
 
@@ -115,13 +82,14 @@ export default function TechnologyById() {
             description={technology[0].description}
             costs={technology.map((ressource) => ressource.ressource_cost)}
             resourceImages={technology.map(
-              (ressource) => ressource.ressource_image,
+              (ressource) => ressource.ressource_image
             )}
             technologyID={technologyID}
             handleButton={handleAdd}
           />
         )}
       </div>
+      {showNotification && <div className="notification">⚔️ Recherche lancée avec succès</div>}
     </section>
   );
 }
