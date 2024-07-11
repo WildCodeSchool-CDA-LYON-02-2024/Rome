@@ -46,8 +46,8 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  console.log(req.body);
-      console.log();
+  // console.log(req.body);
+  //     console.log();
   const { email, password } = req.body;
   UserModel.login(email, password)
     .then(({ isAuthentificated, user }) => {

@@ -32,13 +32,13 @@ export class userModel {
       const values = [email];
       this.connection.execute(query, values, (err, result) => {
        
-        console.log(result,"resultat login")
+        // console.log(result,"resultat login")
         if (err) return reject(err);
         const hashPassword = result[0].password;
-        const userId = result[0].userId;
-        const provinceId = result[0].provinceId;
-        console.log(userId);
-        console.log(provinceId);
+        // const userId = result[0].userId;
+        // const provinceId = result[0].provinceId;
+        // console.log(userId);
+        // console.log(provinceId);
         bcrypt.compare(password, hashPassword).then((isValid) => {
           resolve({
             isAuthentificated: isValid,
