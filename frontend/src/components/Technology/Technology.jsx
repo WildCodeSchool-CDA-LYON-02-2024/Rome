@@ -4,7 +4,9 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
 import { useAuth } from "../../context/AuthProvider";
 
+
 import ButtonSound from "../Sound/ButtonSound";
+import { useNavigate } from "react-router-dom";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
