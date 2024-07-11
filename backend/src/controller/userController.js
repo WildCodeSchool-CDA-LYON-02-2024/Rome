@@ -18,9 +18,6 @@ const register = (req, res) => {
   const imageName = req.file.filename;
   const image = `/images/${imageName}`;
 
-  console.log(req.body);
-  console.log(image);
-
   UserModel.create(username, email, password, image)
     .then((newUser) => {
       console.log(newUser.insertId, "new user");

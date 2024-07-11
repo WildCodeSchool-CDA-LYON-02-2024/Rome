@@ -1,7 +1,8 @@
 .userContainer {
   position: absolute;
-  gap: 1.5rem;
-  right: 50%;
+display: flex;
+justify-content: center;
+  width: 100%;
 }
 
 .userIcon {
@@ -12,4 +13,8 @@
   display: flex;
   gap: 1rem;
   padding: 0.5rem;
+}
+
+.username{
+font-size: 2rem;
 }

@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthProvider";
 import "./Profil.css";
 
 export default function Profil() {
   const [profil, setProfil] = useState([]);
-  const userID = 7;
+  const { authUser } = useAuth();
+
+  console.log(authUser, "auth dans profil");
+
+  const userID = authUser.id;
   useEffect(() => {
     fetch(`http://localhost:3310/user/${userID}`)
       .then((response) => {
@@ -20,14 +25,12 @@ export default function Profil() {
       });
   }, []);
 
-  let images = profil.image;
-
   return (
     <div className="userContainer">
       {profil.map((information) => (
-        <div className="userInformation">
+        <div className="userInformation" key={information.id}>
           <img className="userIcon" src={information.image} alt="" />
-          <p key={information.id}>{information.username}</p>
+          <p className="username">{information.username}</p>
         </div>
       ))}
     </div>
