@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useTechnology } from "./TechnologyContext";
+import { useTechnology } from "../../context/TechnologyContext";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
 import { useAuth } from "../../context/AuthProvider";
 
+import ButtonSound from "../Sound/ButtonSound";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
@@ -17,6 +17,7 @@ export default function Technology() {
      useAuth();
 
   const navigate = useNavigate();
+  const [showNotification, setShowNotification] = useState(false); // State for notification;
 
   // const provinceID = 1;
     const provinceID = authUser.province_id;
@@ -50,6 +51,19 @@ export default function Technology() {
       });
   }, [provinceID]);
 
+  // useEffect(() => {
+  //   // Display the notification when component mounts
+  //   setShowNotification(true);
+
+  //   // Hide the notification after a delay (optional)
+  //   const notificationTimeout = setTimeout(() => {
+  //     setShowNotification(false);
+  //   }, 3000); // Adjust the delay as needed
+
+  //   // Clean up timeout to avoid memory leaks
+  //   return () => clearTimeout(notificationTimeout);
+  // }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => prevProgress + 1);
@@ -63,18 +77,18 @@ export default function Technology() {
     return age ? age.name : "";
   };
 
-  const handlePrev = (event) => {
-    event.preventDefault();
-    navigate("/province");
-  };
-
   const getProgress = (tech) => {
     const techProgress = userByIDTechnology.find((t) => t.id === tech.id);
 
     if (techProgress) {
       if (progress >= tech.construction_time) {
-        location.reload();
-        return 100;
+        
+        setShowNotification(true);
+        const notificationTimeout = setTimeout(() => {
+          setShowNotification(false);
+        }, 3000); 
+        //location.reload();
+        return 100 &&  clearTimeout(notificationTimeout);
       }
       const constructionTime = tech.construction_time;
       const progressPercentage = Math.ceil((100 / constructionTime) * progress);
@@ -122,9 +136,11 @@ export default function Technology() {
                       <p className="techAcquise">Déjà acquis</p>
                     )
                   ) : (
-                    <Link to={`/technology/${tech.id}`}>
-                      <button className="rechercheTech">Rechercher</button>
-                    </Link>
+                    <ButtonSound
+                      text="Rechercher"
+                      className="rechercheTech"
+                      navigateTo={`/technology/${tech.id}`}
+                    />
                   )}
                 </div>
               </div>
@@ -137,9 +153,9 @@ export default function Technology() {
 
   return (
     <div className="allTech">
-      <button className="buttonX" onClick={handlePrev}>
-        X
-      </button>
+      {showNotification && <div className="notification">⚔️Recherche terminée</div>}
+
+      <ButtonSound text="X" className="buttonX" navigateTo={"/province"} />
       <TechnologySection technologies={stone} ageId={1} />
       <TechnologySection technologies={bronze} ageId={2} />
       <TechnologySection technologies={iron} ageId={3} />

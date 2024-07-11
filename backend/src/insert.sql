@@ -412,7 +412,10 @@ VALUES
         1,
         6
     );
+<<<<<<< HEAD
+=======
 
+>>>>>>> dev
    
 -- Inserer des donnees dans la table inhabitant
 INSERT INTO
