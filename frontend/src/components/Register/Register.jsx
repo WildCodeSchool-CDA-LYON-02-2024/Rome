@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
+import ButtonSound from "../Sound/ButtonSound";
 
 export default function Register() {
   const [username, setUserName] = useState('');
