@@ -11,7 +11,6 @@ export default function TableRow({ id, name, image, description }) {
     setConstructMsg("Construction en cours...");
 
     const provinceID = 1;
-    console.log("id: ", id);
 
     fetch(
       `http://localhost:3310/province/${provinceID}/building/${id}/construct`,
@@ -24,41 +23,36 @@ export default function TableRow({ id, name, image, description }) {
       },
     )
       .then((res) => {
-        console.log("res: ", res);
         if (!res.ok)
           throw new Error(
-            `Construction failed: ${res.status} ${res.statusMessage}`,
+            `Construction failed: ${res.status} ${res.statusText} - ${res.statusMessage}`,
           );
         return res.json();
       })
       .then((data) => {
         setIsConstructing(false);
-        setConstructMsg(`Construction démarrée avec succès !`);
+        setConstructMsg(`Construction has started successfully.`);
       })
       .catch((err) => {
         setIsConstructing(false);
-        setConstructMsg(
-          `Erreur lors du démarrage de la construction: ${err.message}`,
-        );
+        setConstructMsg(`Failure to start construction: ${err.message}`);
       });
   };
 
   return (
-    <>
-      <tr className="tableRow">
-        <th scope="row">{name}</th>
-        <td>
-          <img className="building-img" src={`${image}`} alt={description} />
-        </td>
-        <td>{description}</td>
-        <td>
-          {/* IF building is in DB for this province/user -> Amelioration */}
-          <Button onClick={handleConstruction} disabled={isConstructing}>
-            Construire
-          </Button>
-          {constructMsg}
-        </td>
-      </tr>
-    </>
+    <tr className="tableRow">
+      <th scope="row">{name}</th>
+      <td>
+        <img className="building-img" src={image} alt={description} />
+      </td>
+      <td>{description}</td>
+      <td>
+        {/* IF building is in DB for this province/user -> Amelioration */}
+        <Button onClick={handleConstruction} disabled={isConstructing}>
+          Construire
+        </Button>
+        {constructMsg}
+      </td>
+    </tr>
   );
 }

@@ -15,7 +15,12 @@ const createFK = (req, res) => {
         message: `Building ${buildingId}, level ${level} in Province ${provinceId} has been added to the database.`,
       });
     })
-    .catch((err) => res.status(500).json(err));
+    .catch((err) =>
+      res.status(500).json({
+        error: "Failed to create constraint in province_building table.",
+        details: err.message,
+      }),
+    );
 };
 
 const deleteFK = (req, res) => {
@@ -29,10 +34,15 @@ const deleteFK = (req, res) => {
           message: `Foreign Key between Province ${provinceId} and Building ${buildingId} in province_building table has been deleted.`,
         });
       } else {
-        res.status(404).json({ message: "Foreign Key not found" });
+        res.status(404).json({ message: "Foreign Key not found." });
       }
     })
-    .catch((err) => res.status(500).json(err));
+    .catch((err) =>
+      res.status(500).json({
+        error: "Failed to delete constraint in province_building table.",
+        details: err.message,
+      }),
+    );
 };
 
 /**
@@ -56,12 +66,12 @@ const constructBuilding = (req, res) => {
           //   .updateByProvince(quantity, provinceId, ressourceId) // updateResources(provinceId, requiredResources)
           //   .then(() => {
           return res.status(200).json({
-            message: `Construction du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+            message: `Construction of building ${buildingId} in province ${provinceId} started.`,
           });
           //   })
           //   .catch((err) => res.status(500).json(err));
         } else {
-          return res.status(404).json({ message: "Bâtiment non trouvé" });
+          return res.status(404).json({ message: "Building not found." });
         }
       })
       .catch((err) => res.status(500).json(err));
@@ -76,11 +86,15 @@ const constructBuilding = (req, res) => {
           // Update resources
           // ressourceController.update(req, res);
           return res.status(200).json({
-            message: `Amélioration du bâtiment ${buildingId} dans la province ${provinceId} démarrée.`,
+            message: `Upgrading building ${buildingId} in province ${provinceId} started.`,
           });
-        } else return res.status(404).json({ message: "Bâtiment non trouvé" });
+        } else return res.status(404).json({ message: "Building not found" });
       })
-      .catch((err) => res.status(500).json(err));
+      .catch((err) =>
+        res
+          .status(500)
+          .json({ error: "Failed to upgrade level", details: err.message }),
+      );
   };
 
   const levelManager = (provinceId) => {
@@ -93,47 +107,44 @@ const constructBuilding = (req, res) => {
           upgradeLevel(provinceId, buildingId);
         }
       })
-      .catch((err) => res.status(500).json(err));
+      .catch((err) =>
+        res
+          .status(500)
+          .json({ error: "Failed to manage level", details: err.message }),
+      );
   };
 
-  // Verify resource availability
-  ressourceController.ressourceModel
-    .selectByProvince(provinceId)
-    .then(() => {
-      /* TODO: Add logic to check if resources are sufficient for construction/upgrade
-      (provinceResources) => {
-      const requiredResources = [
-        { id: 1, quantity: 100 },
-        { id: 2, quantity: 200 },
-      ]; // Example resource requirement (from config or database)
-      const hasResources = provinceResources >= requiredResources;
-      // const hasResources = checkResourcesAvailability(
-      //   provinceResources,
-      //   requiredResources,
-      // );
+  const verifyResources = (provinceId) => {
+    ressourceController.ressourceModel
+      .selectByProvince(provinceId)
+      .then((provinceResources) => {
+        // TODO: Add logic to check if resources are sufficient for construction/upgrade
+        const requiredResources = [
+          { id: 1, quantity: 100 },
+          { id: 2, quantity: 200 },
+        ]; // Example resource requirement (from config or database)
 
-      if (!hasResources) {
-        return res.status(400).json({ message: "Ressources insuffisantes" });
-      }
-      */
-      levelManager(provinceId);
-    })
-    .catch((err) => res.status(500).json(err));
-};
+        const hasResources = provinceResources >= requiredResources;
+        // const hasResources = checkResourcesAvailability(
+        //   provinceResources,
+        //   requiredResources,
+        // );
 
-/*
-// Helper function to update resources
-const updateResources = (provinceId, requiredResources) => {
-  const quantities = requiredResources.map((resource) => -resource.quantity); // Negative for deduction
-  const ressourceIDs = requiredResources.map((resource) => resource.id);
+        if (!hasResources) {
+          return res.status(400).json({ message: "Insufficient resources" });
+        }
 
-  const req = {
-    params: { id: provinceId },
-    body: { quantities, ressourceIDs },
+        levelManager(provinceId);
+      })
+      .catch((err) =>
+        res
+          .status(500)
+          .json({ error: "Failed to verify resources", details: err.message }),
+      );
   };
-  return ressourceModel.update(req);
+
+  verifyResources(provinceId);
 };
- */
 
 export default {
   createFK,

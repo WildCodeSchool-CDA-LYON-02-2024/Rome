@@ -14,7 +14,7 @@ export default function Buildings() {
   // Import provinceId dynamically with the :id in the route
   const provinceID = 1;
 
-  const fetchData = () => {
+  const getBuildings = () => {
     fetch(`http://localhost:3310/province/${provinceID}/building`, {
       method: "GET",
       headers: {
@@ -26,6 +26,7 @@ export default function Buildings() {
         return res.json();
       })
       .then((data) => {
+        console.log("data inside Buildings.jsx :", data);
         setBuildings(data);
         setLoading(false);
       })
@@ -37,7 +38,7 @@ export default function Buildings() {
   };
 
   useEffect(() => {
-    fetchData();
+    getBuildings();
   }, []);
 
   function handleClick() {
