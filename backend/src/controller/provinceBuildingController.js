@@ -75,7 +75,6 @@ const constructBuilding = (req, res) => {
                 if (result.affectedRows > 0) {
                   // Update resources
                   ressourceController.update(req, res);
-                  // updateResource();
                   // ressourceController.ressourceModel
                   //   .updateByProvince(quantity, provinceId, ressourceId) // updateResources(provinceId, requiredResources)
                   //   .then(() => {
