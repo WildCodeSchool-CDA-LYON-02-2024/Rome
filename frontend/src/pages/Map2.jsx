@@ -35,12 +35,14 @@ function Map2({ handleClick }) {
   }
 
   return (
-    <section className="section-building">
-      {buildingsToDisplay.map((building, index) => (
-        <button key={index} onClick={() => handleClickedMenu(building)}>
-          <img className="building-img" src={building.image} alt="" />
-        </button>
-      ))}
+    <section className="home-building">
+      <div className="buildingContainer">
+        {buildingsToDisplay.map((building, index) => (
+          <button key={index} onClick={() => handleClickedMenu(building)}>
+            <img className="building-img" src={building.image} alt="" />
+          </button>
+        ))}
+      </div>
       <div className="menu-icons">
         <ButtonSound
           text="POPULATION"
@@ -57,7 +59,9 @@ function Map2({ handleClick }) {
           className="icons"
           navigateTo="/technology"
         />
-        <Button onClick={() => handleClick("logout")} className="logoutButton">SE DÉCONNECTER</Button>
+        <Button onClick={() => handleClick("logout")} className="logoutButton">
+          SE DÉCONNECTER
+        </Button>
       </div>
     </section>
   );
