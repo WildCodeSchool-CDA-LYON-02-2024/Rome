@@ -3,6 +3,7 @@ import { userModel } from '../model/userModel.js';
 import generateToken from '../model/service/generateToken.js';
 import { provinceModel } from './provinceController.js';
 import { inhabitantModel } from './inhabitantController.js';
+import {ressourceModel } from './ressourceController.js';
 
 const db = new Database();
 const UserModel = new userModel(db);
@@ -24,6 +25,7 @@ const register = (req, res) => {
           //TODO: create all I need 
           inhabitantModel
             .initPopulation(newProvince.insertId)
+            ressourceModel.initRessource(newProvince.insertId)
             .then(() => {
               res.status(201).json({
                 message: 'user created',
@@ -33,7 +35,7 @@ const register = (req, res) => {
               res.status(500).json({ err });
             });
 
-        
+          
         }).catch((err) => { 
           //TODO: IN THIS CASE REMOVE USER CREATED
           res.status(500).json({message: err.message});
@@ -44,6 +46,8 @@ const register = (req, res) => {
       res.status(500).json({ err });
     });
 };
+
+
 const login = (req, res) => {
   console.log(req.body);
 
@@ -64,6 +68,8 @@ const login = (req, res) => {
       return res.status(500).json({ message: 'Failed to login' });
     });
 };
+
+
 const deleteById = (req, res) => {
   const id = req.params.id;
   UserModel.delete(id)
