@@ -45,13 +45,19 @@
   width: 65%;
   /* width:95%; */
   margin: auto;
+  object-fit: cover;
+  top: 0;
+  left: 50%;
+  width: 100%;
 
+  background: url("/images/background/bg.png");
   /* line-height: 100px;  */
 }
 
 .section-building > button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .icons {
