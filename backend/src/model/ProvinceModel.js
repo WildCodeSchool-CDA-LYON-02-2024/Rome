@@ -13,7 +13,7 @@ export default class ProvinceModel{
         if (err) { 
           reject(err);
         } else {
-          console.log(result,"result");
+          // console.log(result,"result");
           resolve(result);
         }
       })

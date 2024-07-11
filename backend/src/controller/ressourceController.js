@@ -2,7 +2,7 @@ import { Database } from "../model/Database.js";
 import { RessourceModel } from "../model/RessourceModel.js";
 
 const db = new Database();
-const ressourceModel = new RessourceModel(db);
+export const ressourceModel = new RessourceModel(db);
 
 const read = (req, res) => {
   ressourceModel

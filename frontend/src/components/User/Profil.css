@@ -1,0 +1,20 @@
+.userContainer {
+  position: absolute;
+display: flex;
+justify-content: center;
+  width: 100%;
+}
+
+.userIcon {
+  width: 50px;
+}
+
+.userInformation {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.username{
+font-size: 2rem;
+}

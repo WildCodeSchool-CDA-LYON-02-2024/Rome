@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
 import ButtonSound from "../Sound/ButtonSound";
@@ -14,12 +13,6 @@ export default function GenericCard({
   costs,
   handleButton,
 }) {
-  const navigate = useNavigate();
-
-  const handlePrev = (event) => {
-    event.preventDefault();
-    navigate(-1);
-  };
 
   return (
     <section className="globalContainer">

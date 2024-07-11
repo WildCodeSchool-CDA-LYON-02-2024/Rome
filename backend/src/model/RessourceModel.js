@@ -6,7 +6,7 @@ export class RessourceModel {
 
   read() {
     return new Promise((resolve, reject) => {
-      const query = "select * from ressource;";
+      const query = 'select * from ressource;';
       const values = [];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
@@ -20,7 +20,7 @@ export class RessourceModel {
 
   readById(id) {
     return new Promise((resolve, reject) => {
-      const query = "select * from ressource where id = ?;";
+      const query = 'select * from ressource where id = ?;';
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
@@ -54,6 +54,30 @@ export class RessourceModel {
         if (err) {
           reject(err);
         } else {
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  initRessource(provinceId) {
+    return new Promise((resolve, reject) => {
+      const query =
+        'INSERT INTO province_ressource(quantity,province_id,ressource_id) VALUES (100, ?, 1), (100, ?, 2), (100,?, 3), (100,?, 4), (100,?, 5)';
+
+      const values = [
+        provinceId,
+        provinceId,
+        provinceId,
+        provinceId,
+        provinceId,
+      ];
+      this.connection.execute(query, values, (error, result, fields) => {
+        // console.log(query, 'requete');
+        if (error) {
+          reject(error);
+        } else {
+          // console.log(result, 'resultat init ressource');
           resolve(result);
         }
       });
