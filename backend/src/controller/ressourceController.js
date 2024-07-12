@@ -20,6 +20,7 @@ const readById = (req, res) => {
   ressourceModel
     .readById(id)
     .then((allRessource) => {
+      console.log(allRessource,"ressources controleur")
       res.json(allRessource);
     })
     .catch((error) => {
