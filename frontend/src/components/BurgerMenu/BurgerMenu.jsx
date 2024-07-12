@@ -47,8 +47,6 @@ export default function BurgerMenu() {
           />
         </li>
         <li>
-        </li>
-        <li>
         <ButtonSound
             text="Se déconnecter"
             className="burgerIcons"
