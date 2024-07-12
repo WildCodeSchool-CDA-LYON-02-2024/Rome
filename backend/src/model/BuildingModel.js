@@ -10,7 +10,7 @@ export default class BuildingModel {
       const values = [name, description, image];
       this.connection.query(query, values, (err, result) => {
         if (err) reject(err);
-        resolve(result);
+        else resolve(result);
       });
     });
   }
@@ -25,7 +25,7 @@ export default class BuildingModel {
       const values = [provinceId];
       this.connection.execute(query, values, (err, result) => {
         if (err) reject(err);
-        resolve(result);
+        else resolve(result);
       });
     });
   }
@@ -41,7 +41,7 @@ export default class BuildingModel {
       const values = [provinceId, buildingId];
       this.connection.execute(query, values, (err, result) => {
         if (err) reject(err);
-        resolve(result);
+        else resolve(result);
       });
     });
   }
@@ -59,7 +59,7 @@ export default class BuildingModel {
                              AND b.id = ?`; // Add JOIN ?
       this.connection.query(query, values, (err, result) => {
         if (err) reject(err);
-        resolve(result);
+        else resolve(result);
       });
     });
   }
@@ -73,7 +73,7 @@ export default class BuildingModel {
       const values = [buildingId];
       this.connection.query(query, values, (err, result) => {
         if (err) reject(err);
-        resolve(result);
+        else resolve(result);
       });
     });
   }

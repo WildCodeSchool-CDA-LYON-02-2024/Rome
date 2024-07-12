@@ -412,7 +412,7 @@ VALUES
         1,
         6
     );
-   
+
 -- Inserer des donnees dans la table inhabitant
 INSERT INTO
     inhabitant (

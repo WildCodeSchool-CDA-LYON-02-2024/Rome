@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../components/Table/Table";
+import Button from "../components/Button";
+import "../pages/Buildings.css";
+import fetchData from "../services/fetchData";
 
 export default function Buildings() {
   const navigate = useNavigate();
@@ -12,34 +15,32 @@ export default function Buildings() {
   // Import provinceId dynamically with the :id in the route
   const provinceID = 1;
 
-  const fetchData = () => {
-    fetch(`http://localhost:3310/province/${provinceID}/building`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Retrieval failed");
-        return res.json();
-      })
-      .then((data) => {
-        setBuildings(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error :", err);
-        setError(err.message);
-        setLoading(false);
-      });
+  const getBuildings = () => {
+    fetchData(
+      `http://localhost:3310/province/${provinceID}/building`,
+      "GET",
+      setBuildings,
+      setError,
+      setLoading,
+    );
   };
 
   useEffect(() => {
-    fetchData();
+    getBuildings();
   }, []);
+
+  function handleClick() {
+    navigate("/province");
+  }
 
   return (
     <>
+      <div className="h1-title">
+        <h1>Bâtiments</h1>
+        <Button className="close-btn" onClick={handleClick}>
+          Fermer
+        </Button>
+      </div>
       <section className="section-building">
         {loading ? (
           <p>Loading...</p>

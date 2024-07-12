@@ -13,7 +13,7 @@ export default function TechnologyById() {
   const { authUser } = useAuth();
   const [showNotification, setShowNotification] = useState(false); // State for notification
 
- 
+
   const { id } = useParams();
   const technologyID = parseInt(id);
   // const provinceID = 1;

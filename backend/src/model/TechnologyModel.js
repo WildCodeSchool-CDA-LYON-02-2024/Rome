@@ -35,7 +35,10 @@ export class TechnologyModel {
 
   selectByProvince(id) {
     return new Promise((resolve, reject) => {
-      const query = `SELECT * FROM technology JOIN province_technology ON province_technology.technology_id = technology.id  WHERE province_id = ?;`;
+      const query = `SELECT *
+                           FROM technology
+                                    JOIN province_technology ON province_technology.technology_id = technology.id
+                           WHERE province_id = ?;`;
       const values = [id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
@@ -49,7 +52,8 @@ export class TechnologyModel {
 
   createByProvince(technology_id, province_id) {
     return new Promise((resolve, reject) => {
-      const query = `INSERT INTO province_technology (technology_id, province_id) VALUES (?, ?);`;
+      const query = `INSERT INTO province_technology (technology_id, province_id)
+                           VALUES (?, ?);`;
       const values = [technology_id, province_id];
       this.connection.execute(query, values, (err, result) => {
         if (err) {
