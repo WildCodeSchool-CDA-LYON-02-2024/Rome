@@ -35,6 +35,54 @@
   /* height: 100%; */
   height: 100vh;
   background: url("./assets/background_map.png");
+  z-index: -3;
+}
+
+.section-building {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  /* width:95%; */
+  margin: auto;
+  /* line-height: 100px;  */
+}
+
+.home-building {
+  position: absolute;
+  height: 100vh;
+  width: 125vw;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.home-building::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -25%;
+
+  height: 150%;
+  width: 150%;
+  /* background: url("/images/background/bg4.png") no-repeat center center; */
+  background-size: cover;
+  z-index: -2;
+}
+
+.buildingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 8%;
+  width: 80%;
+}
+
+.buildingContainer > button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .icons {
@@ -56,16 +104,17 @@
   position: absolute;
   left: 30px;
   top: 5px;
+  z-index: 2;
 }
 
-.logoutButton{
+.logoutButton {
   background-color: orange;
   font-weight: 900;
   color: black;
 }
-.building-img{
-  width: 75px;
-  height: 75px;
+.building-img {
+  width: 200px;
+  height: 200px;
 }
 
 .fill-background::after {
@@ -88,31 +137,31 @@
   padding: 16px;
 }
 
-.title-app-container{
+.title-app-container {
   /* background-color: red; */
-    display: flex;
-    flex-direction: column;
-   overflow: auto;
-    /* height: 100%; */
-    height: 100vh;
-    background: url("./assets/background_map.png");
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  /* height: 100%; */
+  height: 100vh;
+  background: url("./assets/background_map.png");
 }
 
 .ressourceHome {
   position: relative;
 }
 
-.modalContainer{
+.burger {
+  display: none;
+}
+
+.modalContainer {
   width: 100vw;
   height: 100vh;
 }
 
 @media only screen and (min-width: 800px) {
   /* Styles pour les écrans plus larges, en mode paysage */
-  .building-img {
-    width: 150px;
-    height: 150px;
-  }
 
   .progressBar-icon {
     position: absolute;
@@ -130,9 +179,26 @@
     font-size: 62px;
   }
 }
-@media screen and (width < 900px) {
+@media screen and (width < 950px) {
   .menu-icons {
-    flex-direction: column;
+    display: none;
+  }
+  .buildingContainer {
+
+    padding: 5%;
+
+    margin-top: 5rem;
+  }
+
+  .building-img {
+    width: 100px;
+    height: 100px;
+  }
+  .burger {
+    display: block;
+  }
+  .home-building::before {
+    top: -50%;
   }
 }
 @media (orientation: portrait) {

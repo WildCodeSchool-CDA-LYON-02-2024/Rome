@@ -1,10 +1,13 @@
 .ressourceGlobal {
   position: absolute;
   display: flex;
+  justify-content: flex-end;
   gap: 1.5rem;
   right: 0;
-  margin-right: 2rem;
+  padding-right: 2rem;
   padding: 0.5rem;
+  z-index: 3;
+  backdrop-filter: blur(10px);
 }
 
 .ressourceContainer {
@@ -19,18 +22,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: black;
+  font-weight: bold;
 }
 
 .ressourceIcon {
   width: 30px;
 }
 
-@media screen and (width < 900px) {
+@media screen and (width < 950px) {
   .ressourceGlobal {
-flex-direction: column;
+    gap: 0.5rem;
   }
   .ressourceName {
     text-align: center;
     width: 100%;
+    font-size: 0.8rem;
+  }
+  .ressourceIcon {
+    width: 20px;
   }
 }

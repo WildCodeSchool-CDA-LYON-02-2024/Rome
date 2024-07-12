@@ -6,6 +6,7 @@ import ButtonSound from "../components/Sound/ButtonSound";
 import Test from "../components/Test";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
+import BurgerMenu from "../components/BurgerMenu/BurgerMenu";
 
 function Map2({ handleClick }) {
   const [clickedButton, setClickedButton] = useState(null);
@@ -35,12 +36,17 @@ function Map2({ handleClick }) {
   }
 
   return (
-    <section className="section-building">
-      {buildingsToDisplay.map((building, index) => (
-        <button key={index} onClick={() => handleClickedMenu(building)}>
-          <img className="building-img" src={building.image} alt="" />
-        </button>
-      ))}
+    <section className="home-building">
+      <div className="buildingContainer">
+        {buildingsToDisplay.map((building, index) => (
+          <button key={index} onClick={() => handleClickedMenu(building)}>
+            <img className="building-img" src={building.image} alt="" />
+          </button>
+        ))}
+      </div>
+      <div className="burger">
+        <BurgerMenu />
+      </div>
       <div className="menu-icons">
         <ButtonSound
           text="POPULATION"
@@ -57,7 +63,9 @@ function Map2({ handleClick }) {
           className="icons"
           navigateTo="/technology"
         />
-        <Button onClick={() => handleClick("logout")} className="logoutButton">SE DÉCONNECTER</Button>
+        <Button onClick={() => handleClick("logout")} className="logoutButton">
+          SE DÉCONNECTER
+        </Button>
       </div>
     </section>
   );
