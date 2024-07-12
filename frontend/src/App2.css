@@ -60,7 +60,7 @@
 .home-building::before {
   content: "";
   position: absolute;
-  top: -25%;
+  top: -40%;
   left: -25%;
 
   height: 150%;
@@ -76,7 +76,7 @@
   justify-content: center;
   align-items: center;
   padding: 10%;
-  margin-top: 25rem;
+  margin-top: 10rem;
   width: 80%;
 }
 
