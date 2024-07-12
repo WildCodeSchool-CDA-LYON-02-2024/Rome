@@ -183,7 +183,7 @@
     width: 100%;
     padding: 5%;
 
-    margin-top: 10rem;
+    margin-top: 5rem;
   }
 
   .building-img {
@@ -192,6 +192,9 @@
   }
   .burger{
     display: block;
+  }
+  .home-building::before {
+    top: -50%;
   }
 }
 @media (orientation: portrait) {
