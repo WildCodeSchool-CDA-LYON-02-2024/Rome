@@ -79,11 +79,8 @@ router.get(
   "/province/:id/inhabitant",
   inhabitantController.getInhabitantByProvinceId,
 ); //avoir l'information sur la population d'une province en particulier
-router.get(
-  "/users/:user_id/provinces/:province_id/inhabitants",
-  verifyToken,
-  inhabitantController.getAllInhabitantsByProvinceIdAndUserId,
-); //pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique/users/:user_id/provinces/:province_id/inhabitants',verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique
+router.get("/users/:user_id/provinces/:province_id/inhabitants", verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique/users/:user_id/provinces/:province_id/inhabitants',verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique
+router.post("/new/inhabitant/",verifyToken, inhabitantController.getInhabitantRoleByDescription)//pour avoir le type d'habitant
 router.post("/province/:id/inhabitant"); //pour créer un nouvel habitant dans une province en particulier
 router.put("/province/:id/inhabitant/:id"); //pour modifier un habitant en particulier (role)
 

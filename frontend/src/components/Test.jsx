@@ -5,15 +5,17 @@ import '../components/Test.css';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthProvider';
+import InhabitantsByRoleId from '../pages/InhabitantsByRoleId.jsx';
 
 function Test() {
   const api = useApi();
   // const [inhabitant, setInhabitant] = useState([]);
   const navigate = useNavigate();
-  const { authUser, token,inhabitant,setInhabitant } = useAuth();
+  const { authUser, token, inhabitant, setInhabitant } = useAuth();
   // const [ressources, setRessources] = useState([]);
   // const [ressourcesToUpdate, setRessourcesToUpdate] = useState([]);
   // const provinceID = authUser.province_id;
+  const [role, setRole] = useState('');
 
   function getInhabitantsByProvinceIdandUserId(provinceId, userId) {
     console.log(provinceId, userId);
@@ -175,10 +177,6 @@ function Test() {
   // console.log(totalCostIron, 'fer total');
   // console.log(totalCostGold, 'or total');
 
-
-
- 
-
   //   useEffect(() => {
   //     const updateQuantities = () => {
   //       setRessources((prevRessources) => {
@@ -208,10 +206,8 @@ function Test() {
   //           return { ...ressource, quantity: updatedQuantity };
   //         });
 
-         
   //         setRessourcesToUpdate(updatedQuantities);
 
-         
   //         return updatedQuantities;
   //       });
   //     };
@@ -260,7 +256,7 @@ function Test() {
   //       console.log('interval');
   //       updateQuantities(ressources);
   //       sendUpdatedQuantities(ressourcesToUpdate);
-  //     }, 5000); 
+  //     }, 5000);
 
   //     return () => clearInterval(interval);
   //   }, [provinceID, ressourcesToUpdate]);
@@ -277,10 +273,33 @@ function Test() {
   //     });
   // }, [provinceID,ressourcesToUpdate]);
 
-
   // console.log(ressources,"données")
   function handleClick() {
     navigate('/province');
+  }
+
+  function handleInhabitantRole(description,province) {
+    setRole(description);
+
+    api
+      .post(
+        `/new/inhabitant/`,
+        {
+          description: description,
+          provinceId:province
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response, 'reponse appel role habitant');
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la mise à jour des ressources :', error);
+      });
   }
 
   return (
@@ -311,7 +330,13 @@ function Test() {
               <li>Attaque : {item.attack}</li>
             </ul>
             <div className='button-container'>
-              <button className='card-button'>Améliorer</button>
+              <button
+                type='submit'
+                className='card-button'
+                onClick={() => handleInhabitantRole(item.description,authUser.province_id)}
+              >
+                Lancer la recherche
+              </button>
             </div>
           </div>
         ))}

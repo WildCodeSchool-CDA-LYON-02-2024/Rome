@@ -20,6 +20,8 @@ const ProtectedRoutes = () => {
   const { isLoggedIn } = useAuth();
   return isLoggedIn ? <App /> : <Navigate to="/user/login" />;
 };
+import InhabitantsByRoleId from "./pages/InhabitantsByRoleId.jsx";
+
 
 const MainRouter = () => {
   const location = useLocation();
@@ -41,6 +43,7 @@ const MainRouter = () => {
           <Route path="technology" element={<TechnologyPage />} />
           <Route path="technology/:id" element={<TechnologyById />} />
           <Route path="users/:user_id/provinces/:province_id/inhabitants" element={<Test />} />
+          <Route path='/inhabitant/:role_id' element={<InhabitantsByRoleId />} />
         </Route>
       </Routes>
     </>
