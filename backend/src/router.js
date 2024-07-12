@@ -5,6 +5,7 @@ import technologyController from "./controller/technologyController.js";
 import buildingController from "./controller/buildingController.js";
 import ressourceController from "./controller/ressourceController.js";
 import inhabitantController from "./controller/inhabitantController.js";
+import provinceBuildingController from "./controller/provinceBuildingController.js";
 import provinceController from "./controller/provinceController.js";
 import multerMiddleware from "./middlewares/multerMiddleware.js";
 
@@ -33,7 +34,6 @@ router.post("/province"); //pour créer une nouvelle province
 router.post("/user/:userId/province",verifyToken,provinceController.addProvinceByUser)// pour créer une province pour un user via son id
 router.delete("/province/:id"); //pour supprimer une province en particulier via son id
 
-
 //  technology
 router.get("/technology", technologyController.read); //pour obtenir la liste complète des R&D possibles
 router.get("/technology/:id", technologyController.readById); //pour obtenir une R&D en particulier via son id
@@ -41,7 +41,10 @@ router.get("/province/:id/technology", technologyController.readByProvince); //p
 router.post("/technology/:id", technologyController.add); //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
 
 // Building
-router.post("/province/:provinceId/building/:buildingId/construct"); // TODO: add buildingController.constructBuilding
+router.post(
+  "/province/:provinceId/building/:buildingId/construct",
+  provinceBuildingController.constructBuilding,
+);
 router.get(
   "/province/:provinceId/building",
   buildingController.getBuildingsByProvince,
@@ -76,7 +79,11 @@ router.get(
   "/province/:id/inhabitant",
   inhabitantController.getInhabitantByProvinceId,
 ); //avoir l'information sur la population d'une province en particulier
-router.get("/users/:user_id/provinces/:province_id/inhabitants",verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique/users/:user_id/provinces/:province_id/inhabitants',verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique
+router.get(
+  "/users/:user_id/provinces/:province_id/inhabitants",
+  verifyToken,
+  inhabitantController.getAllInhabitantsByProvinceIdAndUserId,
+); //pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique/users/:user_id/provinces/:province_id/inhabitants',verifyToken, inhabitantController.getAllInhabitantsByProvinceIdAndUserId);//pour avoir la liste de tous les habitants d'une province associée à un joueur spécifique
 router.post("/province/:id/inhabitant"); //pour créer un nouvel habitant dans une province en particulier
 router.put("/province/:id/inhabitant/:id"); //pour modifier un habitant en particulier (role)
 

@@ -15,3 +15,7 @@ th {
   text-align: left;
   color: black;
 }
+
+table {
+  margin-top: 2rem;
+}
