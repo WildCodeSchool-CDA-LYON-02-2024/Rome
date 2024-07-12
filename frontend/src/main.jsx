@@ -43,7 +43,7 @@ const MainRouter = () => {
           <Route path="technology" element={<TechnologyPage />} />
           <Route path="technology/:id" element={<TechnologyById />} />
           <Route path="users/:user_id/provinces/:province_id/inhabitants" element={<Test />} />
-          <Route path='/inhabitant/:role_id' element={<InhabitantsByRoleId />} />
+          <Route path='inhabitant/:role_id' element={<InhabitantsByRoleId />} />
         </Route>
       </Routes>
     </>

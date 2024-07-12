@@ -65,7 +65,7 @@
 
   height: 150%;
   width: 150%;
-  background: url("/images/background/bg4.png") no-repeat center center;
+  /* background: url("/images/background/bg4.png") no-repeat center center; */
   background-size: cover;
   z-index: -2;
 }
@@ -185,7 +185,7 @@
     display: none;
   }
   .buildingContainer {
-    width: 100%;
+
     padding: 5%;
 
     margin-top: 5rem;
