@@ -37,7 +37,7 @@ export const costInhabitants = {
       or: 30,
     },
   },
-  Praetorian_guard: {
+  Guard: {
     cost: {
       viande: 20,
       bois: 20,

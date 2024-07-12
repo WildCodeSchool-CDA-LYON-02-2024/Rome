@@ -241,7 +241,7 @@ VALUES
         'gladiator.jpg'
     ),
     (
-        'Praetorian Guard',
+        'Guard',
         'Active',
         'Elite unit of the Imperial Roman army',
         'praetorian_guard.jpg'
