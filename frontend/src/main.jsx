@@ -20,6 +20,8 @@ import { AuthProvider } from "./context/AuthProvider.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import LoginMusic from "./components/Sound/loginMusic.jsx";
 import GeneralMusic from "./components/Sound/GeneralMusic.jsx";
+import InhabitantsByRoleId from "./pages/InhabitantsByRoleId.jsx";
+
 
 const MainRouter = () => {
   const location = useLocation();
@@ -34,19 +36,20 @@ const MainRouter = () => {
       {isAuthPage && <LoginMusic />}
       {!isAuthPage && !isHomePage && <GeneralMusic />}
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/province" element={<HomePage />} />
-          <Route path="/buildings" element={<Buildings />} />
-          <Route path="/technology" element={<TechnologyPage />} />
-          <Route path="/technology/:id" element={<TechnologyById />} />
+        <Route path='/' element={<App />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/province' element={<HomePage />} />
+          <Route path='/buildings' element={<Buildings />} />
+          <Route path='/technology' element={<TechnologyPage />} />
+          <Route path='/technology/:id' element={<TechnologyById />} />
+          <Route path='/inhabitant/:role_id' element={<InhabitantsByRoleId />} />
           <Route
-            path="/users/:user_id/provinces/:province_id/inhabitants"
+            path='/users/:user_id/provinces/:province_id/inhabitants'
             element={<Test />}
           />
         </Route>
-        <Route path="/user/login" element={<Login />} />
-        <Route path="/user/register" element={<Register />} />
+        <Route path='/user/login' element={<Login />} />
+        <Route path='/user/register' element={<Register />} />
       </Routes>
     </>
   );

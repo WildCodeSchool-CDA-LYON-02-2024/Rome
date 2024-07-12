@@ -34,7 +34,7 @@ export default function Ressource() {
       setRessource((prevRessource) =>
         prevRessource.map((res) => ({
           ...res,
-          quantity: res.quantity + 10,
+          quantity: res.quantity + 0,
         }))
       );
     }, 1000); // 1000ms = 1 second
@@ -283,7 +283,7 @@ export default function Ressource() {
       console.log('interval');
       updateQuantities(ressource);
       sendUpdatedQuantities(ressourcesToUpdate);
-    }, 10000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [provinceID, ressourcesToUpdate]);
