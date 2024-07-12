@@ -53,21 +53,21 @@
   position: absolute;
   height: 100vh;
   width: 125vw;
-overflow-y: auto;
-  z-index:2;
+  overflow-y: auto;
+  z-index: 2;
 }
 
 .home-building::before {
   content: "";
   position: absolute;
-  top: -25%; 
-  left: -25%; 
+  top: -25%;
+  left: -25%;
 
-  height: 150%; 
+  height: 150%;
   width: 150%;
   background: url("/images/background/bg4.png") no-repeat center center;
   background-size: cover;
-  z-index: -1;
+  z-index: -2;
 }
 
 .buildingContainer {
@@ -76,7 +76,7 @@ overflow-y: auto;
   justify-content: center;
   align-items: center;
   padding: 10%;
-margin-top: 25rem;
+  margin-top: 25rem;
   width: 80%;
 }
 
@@ -152,9 +152,12 @@ margin-top: 25rem;
   position: relative;
 }
 
+.burger{
+  display: none;
+}
+
 @media only screen and (min-width: 800px) {
   /* Styles pour les écrans plus larges, en mode paysage */
-
 
   .progressBar-icon {
     position: absolute;
@@ -174,20 +177,21 @@ margin-top: 25rem;
 }
 @media screen and (width < 950px) {
   .menu-icons {
-    flex-direction: column;
-    gap: 15px;
+    display: none;
   }
   .buildingContainer {
     width: 100%;
     padding: 5%;
 
     margin-top: 10rem;
-    
   }
 
   .building-img {
     width: 100px;
-height: 100px;
+    height: 100px;
+  }
+  .burger{
+    display: block;
   }
 }
 @media (orientation: portrait) {

@@ -1,9 +1,9 @@
 .userContainer {
   position: absolute;
-display: flex;
-justify-content: center;
-  width: 50%;
-  z-index: 1;
+  left: 45%;
+  top: 0;
+  width: 10%;
+  z-index: 3;
 }
 
 .userIcon {
@@ -16,24 +16,18 @@ justify-content: center;
   padding: 0.5rem;
 }
 
-.username{
-font-size: 2rem;
-margin: auto;
-color:#faae0b ;
-font-weight: bold;
+.username {
+  font-size: 2rem;
+  margin: auto;
+  color: black;
+  font-weight: bold;
 }
 
 @media screen and (width < 950px) {
   .userContainer {
-    padding:  4rem 2rem;
-    justify-content: right;
-
+    left: 8%;
   }
-  .userInformation {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-  .username{
+  .username {
     font-size: 1.5rem;
-    }
+  }
 }

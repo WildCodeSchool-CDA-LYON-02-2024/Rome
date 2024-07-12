@@ -81,7 +81,7 @@ const constructBuilding = (req, res) => {
     provinceBuildingModel
       .updateLevel(provinceId, buildingId)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.affectedRows > 0) {
           // Update resources
           // ressourceController.update(req, res);

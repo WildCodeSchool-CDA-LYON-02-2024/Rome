@@ -20,7 +20,7 @@ const register = (req, res) => {
 
   UserModel.create(username, email, password, image)
     .then((newUser) => {
-      console.log(newUser.insertId, "new user");
+      // console.log(newUser.insertId, "new user");
       provinceModel
         .createByUser(name, newUser.insertId)
         .then((newProvince) => {

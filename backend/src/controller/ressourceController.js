@@ -43,7 +43,7 @@ const update = (req, res) => {
   const id = req.params.id;
   const provinceID = parseInt(id);
   const { quantities, ressourceIDs } = req.body;
-  console.log(id, provinceID, quantities, ressourceIDs);
+  // console.log(id, provinceID, quantities, ressourceIDs);
 
   if (
     !Array.isArray(quantities) ||
