@@ -26,6 +26,23 @@ const getInhabitantByProvinceId = (req, res) => {
     });
 };
 
+const getInhabitantRoleIdByProvinceId = (req, res) => {
+  const provinceId = parseInt(req.params.id, 10);
+  console.log(provinceId);
+  inhabitantModel.selectInhabitantRoleIdByProvinceId(provinceId)
+    .then((data) => {
+      res.status(200);
+      res.json(data);
+    })
+    .catch((err) => {
+      if (res.status(404)) {
+        res.json({ message: 'Inhabitants not found' });
+      } else {
+        res.json({ message: err.message });
+      }
+     })
+}
+
 const getAllInhabitantsByProvinceIdAndUserId = (req, res) => {
   const provinceId = parseInt(req.params.province_id, 10);
   const userId = parseInt(req.params.user_id, 10);
@@ -102,4 +119,5 @@ export default {
   getInhabitantByProvinceId,
   getAllInhabitantsByProvinceIdAndUserId,
   getInhabitantRoleByDescription,
+  getInhabitantRoleIdByProvinceId
 };

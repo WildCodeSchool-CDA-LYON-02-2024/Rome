@@ -19,6 +19,22 @@ export default class InhabitantModel {
     });
   }
 
+  selectInhabitantRoleIdByProvinceId(id) {
+    return new Promise((resolve, reject) => {
+      const query =
+        'select role_id, role.name, role.description,role.image, count(inhabitant.id) as count from inhabitant JOIN role ON role.id = role_id  WHERE province_id = ? group by role_id';
+      const values = [id];
+      this.connection.execute(query, values, (error, results, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          console.log(results,"resultats inhabitants")
+          resolve(results);
+        }
+      })
+     })
+   }
+
   selectByProvinceIdandByUserId(provinceId, userId) {
     return new Promise((resolve, reject) => {
       const query =
