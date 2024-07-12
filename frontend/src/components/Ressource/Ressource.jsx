@@ -34,7 +34,7 @@ export default function Ressource() {
       setRessource((prevRessource) =>
         prevRessource.map((res) => ({
           ...res,
-          quantity: res.quantity + 0,
+          quantity: res.quantity + 15,
         }))
       );
     }, 1000); // 1000ms = 1 second
