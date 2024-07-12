@@ -35,8 +35,28 @@ function Test() {
       });
   }
 
+
+  function countInhabitantByType(provinceId) {
+     console.log(provinceId);
+     api
+       .get(`/new/province/${provinceId}/inhabitant`)
+       .then((response) => {
+         console.log(response.data,"mes habitants")
+         const data = response.data;
+
+         setInhabitant(data);
+       })
+       .catch((error) => {
+         console.error(error);
+       });
+  }
+
+  // useEffect(() => {
+  //   getInhabitantsByProvinceIdandUserId(authUser.province_id, authUser.id);
+  // }, []);
+
   useEffect(() => {
-    getInhabitantsByProvinceIdandUserId(authUser.province_id, authUser.id);
+    countInhabitantByType(authUser.province_id)
   }, []);
 
   console.log(inhabitant, 'inhabitant');
@@ -312,6 +332,7 @@ function Test() {
         </div>
         {inhabitant.map((item, index) => (
           <div key={index} className='card-container'>
+           
             <div className='img-container'>
               <img
                 src={`${import.meta.env.VITE_APP_API_IMG_URL}${item.image}`}
@@ -325,17 +346,20 @@ function Test() {
               <p>{item.description}</p>
             </article>
             <ul className='description-container'>
-              <li>Santé : {item.health}</li>
+              {/* <li>Santé : {item.health}</li>
               <li>Défense : {item.defense}</li>
-              <li>Attaque : {item.attack}</li>
+              <li>Attaque : {item.attack}</li> */}
+              <li>Quantité : {item.count}</li>
             </ul>
             <div className='button-container'>
               <button
                 type='submit'
                 className='card-button'
-                onClick={() => handleInhabitantRole(item.description,authUser.province_id)}
+                onClick={() =>
+                  handleInhabitantRole(item.description, authUser.province_id)
+                }
               >
-                Lancer la recherche
+               Acquérir
               </button>
             </div>
           </div>

@@ -1,11 +1,8 @@
-import gold from '/images/gold.png'
-import iron from '/images/iron.png'
-import stone from '/images/stone.png'
-import wood from '/images/wood.png'
-import meat from '/images/meat.png'
-
-
-
+import gold from '/images/gold.png';
+import iron from '/images/iron.png';
+import stone from '/images/stone.png';
+import wood from '/images/wood.png';
+import meat from '/images/meat.png';
 
 const costInhabitants = {
   legionary: {
@@ -16,7 +13,6 @@ const costInhabitants = {
       fer: 30,
       or: 20,
     },
-   
   },
   senator: {
     cost: {
@@ -36,7 +32,7 @@ const costInhabitants = {
       or: 20,
     },
   },
-     gladiator: {
+  gladiator: {
     cost: {
       viande: 30,
       bois: 30,
@@ -45,7 +41,7 @@ const costInhabitants = {
       or: 30,
     },
   },
-  praetorian_guard: {
+  guard: {
     cost: {
       viande: 20,
       bois: 20,
@@ -65,7 +61,6 @@ const costInhabitants = {
   },
 };
 
-
 const picturesRessources = {
   viande: {
     image: `${meat}`,
@@ -84,4 +79,4 @@ const picturesRessources = {
   },
 };
 
-export { costInhabitants, picturesRessources }
+export { costInhabitants, picturesRessources };
