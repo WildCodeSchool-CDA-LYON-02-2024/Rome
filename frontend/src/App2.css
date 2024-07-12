@@ -37,23 +37,6 @@
   background: url("./assets/background_map.png");
 }
 
-.section-building {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 65%;
-  /* width:95%; */
-  margin: auto;
-
-  /* line-height: 100px;  */
-}
-
-.section-building > button {
-  background-color: transparent;
-  border: none;
-}
-
 .icons {
   width: 127px;
   height: 50px;
@@ -119,6 +102,11 @@
   position: relative;
 }
 
+.modalContainer{
+  width: 100vw;
+  height: 100vh;
+}
+
 @media only screen and (min-width: 800px) {
   /* Styles pour les écrans plus larges, en mode paysage */
   .building-img {
@@ -142,7 +130,11 @@
     font-size: 62px;
   }
 }
-
+@media screen and (width < 900px) {
+  .menu-icons {
+    flex-direction: column;
+  }
+}
 @media (orientation: portrait) {
   /* Styles spécifiques pour le mode portrait */
   .menu-icons {

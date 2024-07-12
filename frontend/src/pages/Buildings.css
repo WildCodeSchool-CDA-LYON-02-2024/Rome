@@ -1,0 +1,30 @@
+.h1-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.h1-title h1 {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.h1-title .close-btn {
+    margin-left: auto;
+}
+
+.section-building {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    margin: auto;
+}
+
+.section-building > button {
+    background-color: transparent;
+    border: none;
+}

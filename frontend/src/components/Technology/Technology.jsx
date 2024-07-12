@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { useTechnology } from "../../context/TechnologyContext";
 import ProgressBar from "@ramonak/react-progress-bar";
 import "./Technology.css";
+import { useAuth } from "../../context/AuthProvider";
+
+
 import ButtonSound from "../Sound/ButtonSound";
+import { useNavigate } from "react-router-dom";
 
 export default function Technology() {
   const [userTechnology, setUserTechnology] = useState([]);
@@ -11,9 +15,14 @@ export default function Technology() {
   const [bronze, setBronze] = useState([]);
   const [iron, setIron] = useState([]);
   const [progress, setProgress] = useState(0);
+   const {  authUser } =
+     useAuth();
+
+  const navigate = useNavigate();
   const [showNotification, setShowNotification] = useState(false); // State for notification;
 
-  const provinceID = 1;
+  // const provinceID = 1;
+    const provinceID = authUser.province_id;
   const provinceAgeID = 1;
 
   const ages = [
@@ -80,7 +89,7 @@ export default function Technology() {
         const notificationTimeout = setTimeout(() => {
           setShowNotification(false);
         }, 3000); 
-        location.reload();
+        //location.reload();
         return 100 &&  clearTimeout(notificationTimeout);
       }
       const constructionTime = tech.construction_time;
@@ -93,6 +102,8 @@ export default function Technology() {
 
   const TechnologySection = ({ technologies, ageId }) => {
     const isBlurred = ageId > provinceAgeID;
+
+    console.log(technologies,"technologies")
 
     return (
       <div className={`age ${isBlurred ? "blurred" : ""}`}>

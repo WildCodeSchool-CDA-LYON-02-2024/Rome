@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./GenericCard.css";
 import ButtonSound from "../Sound/ButtonSound";

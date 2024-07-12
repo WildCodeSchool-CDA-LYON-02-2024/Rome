@@ -38,7 +38,7 @@ export default function Register() {
   };
 
   const handleChangeImage = (e) => {
-    setImage(e.target.value);
+    setImage(e.target.files[0]);
   };
 
   const handleChangeName = (e) => {
@@ -50,17 +50,20 @@ export default function Register() {
       audioRef.current.play();
     }
     event.preventDefault();
+
+    let formData = new FormData();
+    formData.append("userImage", image);
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("name", name);
+
+    console.log(Object.fromEntries(formData.entries()), "formData entries");
+
     fetch(`http://localhost:3310/user/register`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-        image,
-        name
-      }),
+      method: "POST",
+      credentials: "include",
+      body: formData,
     })
       .then((response) => {
         if (response.status === 201) {
@@ -81,59 +84,61 @@ export default function Register() {
        <audio ref={audioRef} src={button} />
       <section className='generalContainer'>
         <h2>Enregistrement</h2>
-        <div className='registerContainer'>
-          <label htmlFor='prénom'>
-            username
+        <form className="registerContainer" onSubmit={handleSubmit}>
+          <label htmlFor="username">
+            Username
             <input
-              id='prénom'
-              name='prénom'
+              id="username"
+              name="username"
               value={username}
               onChange={handleChangeUserName}
+              required
             />
           </label>
-          <label htmlFor='email'>
+          <label htmlFor="email">
             Email Address
             <input
-              id='email'
-              name='email'
+              id="email"
+              name="email"
+              type="email"
               value={email}
               onChange={handleChangeEmail}
+              required
             />
           </label>
-          <label htmlFor='password'>
+          <label htmlFor="password">
             Password
             <input
-              name='password'
-              type='password'
-              id='password'
+              name="password"
+              type="password"
+              id="password"
               value={password}
               onChange={handleChangePassword}
+              required
             />
           </label>
-          <label htmlFor='image'>
-            image
+          <label htmlFor="userImage">
+            Image
             <input
-              name='image'
-              type='text'
-              id='image'
-              value={image}
+              name="userImage"
+              type="file"
+              id="userImage"
               onChange={handleChangeImage}
+              required
             />
           </label>
-
-          <label htmlFor='province_name'>
-            Province name
+          <label htmlFor="province_name">
+            Province Name
             <input
-              name='name'
-              type='text'
-              id='name'
+              name="name"
+              type="text"
+              id="name"
               value={name}
               onChange={handleChangeName}
             />
           </label>
-
-          <button onClick={handleSubmit}>Confirmer</button>
-        </div>
+          <button type="submit">Confirmer</button>
+        </form>
       </section>
     </div>
   );
