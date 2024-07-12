@@ -75,8 +75,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 10%;
-  margin-top: 10rem;
+  padding: 8%;
   width: 80%;
 }
 
@@ -114,8 +113,8 @@
   color: black;
 }
 .building-img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 
 .fill-background::after {
