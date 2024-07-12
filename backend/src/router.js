@@ -5,7 +5,9 @@ import technologyController from "./controller/technologyController.js";
 import buildingController from "./controller/buildingController.js";
 import ressourceController from "./controller/ressourceController.js";
 import inhabitantController from "./controller/inhabitantController.js";
+import provinceBuildingController from "./controller/provinceBuildingController.js";
 import provinceController from "./controller/provinceController.js";
+import multerMiddleware from "./middlewares/multerMiddleware.js";
 
 const router = express.Router();
 
@@ -18,8 +20,8 @@ router.delete("/ouvrage/:id");
 // user
 
 router.post("/user/login", userController.login); // pour obtenir toute les information des users
-router.get("/user/:id", verifyToken, userController.readById); // pour obtenir toute les information d'un user en particulier via son id
-router.post("/user/register", userController.register); //pour créer un nouvel utilisateur
+router.get("/user/:id", userController.readById); // pour obtenir toute les information d'un user en particulier via son id
+router.post("/user/register",multerMiddleware,  userController.register); //pour créer un nouvel utilisateur
 router.put("/user/:id", userController.update); //pour mettre à jour le profil d'un utilisateur en particulier via son id  /// we should use the token here after the test in the dfront end //
 router.delete("/user/:id", verifyToken, userController.deleteById); // pour supprimer un user en particulier via son id  // everthing work corrctly
 
@@ -32,7 +34,6 @@ router.post("/province"); //pour créer une nouvelle province
 router.post("/user/:userId/province",verifyToken,provinceController.addProvinceByUser)// pour créer une province pour un user via son id
 router.delete("/province/:id"); //pour supprimer une province en particulier via son id
 
-
 //  technology
 router.get("/technology", technologyController.read); //pour obtenir la liste complète des R&D possibles
 router.get("/technology/:id", technologyController.readById); //pour obtenir une R&D en particulier via son id
@@ -40,7 +41,10 @@ router.get("/province/:id/technology", technologyController.readByProvince); //p
 router.post("/technology/:id", technologyController.add); //pour ajouter une R&D à une province en particulier//  JOIN avec province à faire
 
 // Building
-router.post("/province/:provinceId/building/:buildingId/construct"); // TODO: add buildingController.constructBuilding
+router.post(
+  "/province/:provinceId/building/:buildingId/construct",
+  provinceBuildingController.constructBuilding,
+);
 router.get(
   "/province/:provinceId/building",
   buildingController.getBuildingsByProvince,

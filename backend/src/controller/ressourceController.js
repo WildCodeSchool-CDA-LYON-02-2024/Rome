@@ -39,10 +39,12 @@ const readByProvince = (req, res) => {
       res.json(error);
     });
 };
+
 const update = (req, res) => {
   const id = req.params.id;
   const provinceID = parseInt(id);
   const { quantities, ressourceIDs } = req.body;
+  console.log(id, provinceID, quantities, ressourceIDs);
 
   if (
     !Array.isArray(quantities) ||
@@ -68,6 +70,7 @@ const update = (req, res) => {
 };
 
 export default {
+  ressourceModel,
   read,
   readById,
   readByProvince,

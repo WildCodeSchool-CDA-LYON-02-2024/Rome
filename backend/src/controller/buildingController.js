@@ -46,7 +46,7 @@ const updateBuilding = (req, res) => {
   const { provinceId, buildingId } = req.params;
   const buildingData = req.body;
 
-  console.log(buildingData);
+  // console.log(buildingData);
 
   buildingModel
     .update(provinceId, buildingId, buildingData)

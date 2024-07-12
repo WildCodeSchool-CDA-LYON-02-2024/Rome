@@ -10,8 +10,8 @@ export default class InhabitantModel {
       const values = [id];
 
       this.connection.execute(query, values, (error, results, fields) => {
-        console.log(query);
-        console.log(values);
+        // console.log(query);
+        // console.log(values);
         if (error) reject(error);
         if (results[0] === undefined) reject(error);
         else resolve(results);
